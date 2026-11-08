@@ -47,7 +47,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .slot.drop-ok{border-color:#8bff9e;border-style:solid;background:rgba(123,255,123,.16);box-shadow:0 0 0 2px rgba(123,255,123,.7) inset;transform:scale(1.03)}
 .slot.filled{background:transparent;border-color:transparent}
 .slot .card{width:100%;height:100%;box-shadow:none}
-.hand{display:flex;justify-content:center;align-items:center;gap:5px;padding:2px 0 4px;flex-wrap:wrap;min-height:84px}
+.hand{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:6px 0 4px;align-content:start;min-height:84px}
+.hand .card{width:100%;height:auto}
 .card{width:clamp(38px,7.6vw,58px);aspect-ratio:5/7;background:var(--paper);border-radius:7px;position:relative;flex:none;border:1px solid #b9b9c9;color:#15151f;box-shadow:0 2px 5px rgba(0,0,0,.4)}
 .card.red{color:var(--red)}
 .card i{font-style:normal;font-size:.82em}
@@ -79,6 +80,15 @@ body.dragging-active{user-select:none;cursor:grabbing}
 .deck::after{transform:translate(-1.5px,-1.5px)}
 .deck .count{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);background:#10131a;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:800;z-index:2;white-space:nowrap}
 .deck.empty .face,.deck.empty::before,.deck.empty::after{opacity:.35}
+.drawcol{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none}
+.pdrawlabel{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;opacity:.65}
+.pile{position:relative;width:62px;height:88px;flex:none;cursor:pointer}
+.pile #centerTop{position:absolute;inset:0;z-index:1}
+.pile #centerTop .card{width:100%;height:100%;box-shadow:none}
+.pile-empty{width:100%;height:100%;border:1.5px dashed rgba(255,255,255,.3);border-radius:7px}
+.pile .count{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);background:#10131a;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:800;z-index:2;white-space:nowrap}
+.pile.draw-able{animation:deckGlow 1.4s ease-in-out infinite}
+.pile.empty{opacity:.55}
 .banner{text-align:center;font-weight:700;font-size:clamp(13px,2.6vw,17px);color:#ffe9a8;flex:1;min-width:160px;line-height:1.35}
 .ctrl{display:flex;gap:8px}
 .btn{border:0;border-radius:10px;padding:10px 16px;font-weight:800;font-size:15px;cursor:pointer;background:var(--gold);color:#332606;box-shadow:0 3px 0 #a8791c;transition:transform .05s}
@@ -101,7 +111,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
 .howto .diag{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:0 0 16px}
 .howto .diag div{background:#eef2ff;border-radius:6px;padding:8px 0;text-align:center;font-weight:800;color:#3949ab;font-size:13px}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
-@media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}}
+@media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}.mid .drawcol{order:1}}
 </style>
 </head>
 <body>
@@ -123,7 +133,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
       <div class="card black"><span class="tl">2<i>♣</i></span><span class="mid">♣</span><span class="br">2<i>♣</i></span></div>
     </div>
     <h2>Fill your trash pile to win</h2>
-    <p>Draw 1 card, then drag up to 2 into your trash slots. Race to collect <b>A, 2, 3, 4, 5, 6, 7, 8, 9, 10</b> — before the deck runs out! The Jack is a wild card; Queens and Kings are useless.</p>
+    <p>Draw a card from the deck or the discard pile, then place it in your trash slots. Race to collect <b>A, 2, 3, 4, 5, 6, 7, 8, 9, 10</b> — before the deck runs out! The Jack is a wild card; Queens and Kings are useless.</p>
   </div>
   <div class="modes">
     <button class="mbtn" data-mode="1"><b>1 Player</b><span>You vs the CPU</span></button>
@@ -137,11 +147,14 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <div class="board">
     <div class="zone-row" id="rowTop"></div>
     <div class="mid">
-      <div class="deck" id="deckBox"><div class="face"></div><span class="count" id="deckCount">0</span></div>
+      <div class="drawcol">
+        <div class="deck" id="deckBox"><div class="face"></div><span class="count" id="deckCount">0</span></div>
+        <span class="pdrawlabel">Deck</span>
+      </div>
       <div class="banner" id="banner"></div>
-      <div class="ctrl">
-        <button class="btn" id="btnDraw">Draw</button>
-        <button class="btn secondary" id="btnEnd">End Turn</button>
+      <div class="drawcol">
+        <div class="pile" id="centerBox"><div id="centerTop"></div><span class="count" id="centerCount">0</span></div>
+        <span class="pdrawlabel">Discard</span>
       </div>
     </div>
     <div class="zone-row" id="rowBot"></div>
@@ -159,8 +172,9 @@ body.dragging-active{user-select:none;cursor:grabbing}
     </ol>
     <div class="diag"><div>A</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div></div>
     <ol start="2">
-      <li>On your turn, <b>click the deck to draw 1 card</b>, then <b>drag</b> up to 2 cards from your hand onto the matching empty slots.</li>
+      <li>On your turn, <b>draw 1 card</b> — from the <b>deck</b> or the top of the <b>discard pile</b> — then <b>place 1 card</b> by dragging it to a matching empty slot.</li>
       <li>A card fits only in its own rank's slot — <b>except the Jack (J), a wildcard that fits any empty slot</b>. <b>Queens and Kings are useless</b> — they can never be placed.</li>
+      <li>If you don't place a card, the card you drew goes to the <b>discard pile</b> (visible to everyone). Your turn ends automatically.</li>
       <li>First to fill all <b>10 slots</b> wins instantly.</li>
       <li>If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
     </ol>
@@ -190,7 +204,7 @@ function newGame(n){
   const deck=makeDeck(),players=[];
   for(let i=0;i<total;i++)players.push({name:n===1?(i?'CPU':'You'):'P'+(i+1),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
   for(let c=0;c<4;c++)for(const p of players)p.hand.push(deck.pop());
-  G={players,deck,turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,title:'',subtitle:''};
+  G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,turnDrawnCard:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
   $('#overlay').style.display='none';$('#btnNew').style.display='';
   render();
@@ -205,16 +219,28 @@ function canPlaceRank(c,rank){return c.r==='J'||c.r===rank;}
 function canPlaceInSlot(p,c,s){return !p.slots[s]&&canPlaceRank(c,SLOT_ORDER[s]);}
 function canPlaceAnywhere(p,c){for(let i=0;i<p.slots.length;i++){if(canPlaceInSlot(p,c,i))return true;}return false;}
 function findSlot(p,c){if(c.r==='J')return p.slots.findIndex(s=>!s);const i=SLOT_ORDER.indexOf(c.r);return i>=0&&!p.slots[i]?i:-1;}
-function findPlayable(i){const p=G.players[i];return p.hand.findIndex(c=>findSlot(p,c)>=0);}
+function findPlayable(i){
+  const p=G.players[i];
+  const j=p.hand.findIndex(c=>c.r!=='J'&&findSlot(p,c)>=0);
+  if(j>=0)return j;
+  return p.hand.findIndex(c=>findSlot(p,c)>=0);
+}
 function after(ms,fn){const t=setTimeout(fn,G.fast?0:ms);G.timers.push(t);return t;}
 
-function doDraw(pIdx){
+function doDraw(pIdx,source){
   if(!G||G.over||G.phase!=='awaiting')return;
   const p=G.players[pIdx];
-  p.hand.push(G.deck.pop());
-  G.phase='acting';G.placedThisTurn=0;G.lastPlaced=null;G.lastDrawn=[pIdx,p.hand.length-1];
+  let card=null;
+  if(source==='center'&&G.center.length>0)card=G.center.pop();
+  else if(source==='deck'&&G.deck.length>0)card=G.deck.pop();
+  else if(G.deck.length>0)card=G.deck.pop();
+  else if(G.center.length>0)card=G.center.pop();
+  else return;
+  p.hand.push(card);
+  G.phase='acting';G.placedThisTurn=0;G.lastPlaced=null;G.turnDrawnCard=card;G.lastDrawn=[pIdx,p.hand.length-1];
   sfx('draw');render();
   if(p.isAI&&!G.over)aiStep(pIdx);
+  else if(findPlayable(pIdx)<0)after(900,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')endTurn();});
 }
 function shakeCard(pIdx,hi){const el=document.querySelector('.card[data-p="'+pIdx+'"][data-hi="'+hi+'"]');if(el){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),350);}}
 function placeCard(pIdx,hi,sIdx){
@@ -230,23 +256,36 @@ function placeCard(pIdx,hi,sIdx){
   sfx('place');
   if(p.placed>=10){gameOverWin(pIdx);return true;}
   render();
-  if(G.placedThisTurn>=2&&!G.over)endTurn();
+  if(G.placedThisTurn>=1&&!G.over)after(450,()=>{if(G&&!G.over)endTurn();});
   return true;
 }
 function endTurn(){
   if(!G||G.over)return;
+  if(G.placedThisTurn===0){
+    const p=G.players[G.turn],di=p.hand.indexOf(G.turnDrawnCard);
+    if(di>=0){p.hand.splice(di,1);G.center.push(G.turnDrawnCard);}
+  }
   if(G.deck.length===0){gameOverByScore();return;}
   G.turn=(G.turn+1)%G.players.length;
-  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=null;
+  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=null;G.turnDrawnCard=null;
   render();
   if(G.players[G.turn].isAI)aiTurnStart();
 }
-function aiTurnStart(){render();after(900,()=>{if(inGame()&&!G.over&&G.players[G.turn].isAI)doDraw(G.turn);});}
+function aiChooseDrawSource(){
+  const p=G.players[G.turn];
+  if(G.center.length>0&&G.deck.length>0){
+    if(findSlot(p,G.center[G.center.length-1])>=0)return 'center';
+    return 'deck';
+  }
+  return G.center.length>0?'center':'deck';
+}
+function aiTurnStart(){render();after(900,()=>{if(inGame()&&!G.over&&G.players[G.turn].isAI)doDraw(G.turn,aiChooseDrawSource());});}
 function aiStep(i){
   const ok=()=>G&&inGame()&&!G.over&&G.turn===i&&G.players[i].isAI;
   if(!ok()||G.phase!=='acting')return;
-  if(findPlayable(i)<0||G.placedThisTurn>=2){after(750,()=>{if(ok()&&G.phase==='acting')endTurn();});return;}
-  after(750,()=>{if(!ok())return;placeCard(i,findPlayable(i));if(ok()&&G.phase==='acting')aiStep(i);});
+  const hi=findPlayable(i);
+  if(hi<0){after(750,()=>{if(ok()&&G.phase==='acting')endTurn();});return;}
+  after(750,()=>{if(!ok())return;placeCard(i,hi);});
 }
 function winTitle(i){const n=G.players[i].name;return n==='You'?'You win!':n+' wins!';}
 function gameOverWin(i){
@@ -275,7 +314,7 @@ function bannerText(){
   const p=G.players[G.turn];
   if(p.isAI)return 'CPU is thinking…';
   const who=G.mode===1?'':'P'+(G.turn+1)+': ';
-  let t=G.phase==='awaiting'?who+'Your turn — click the deck to draw':who+'Drag cards into your slots (up to 2), then end your turn';
+  let t=G.phase==='awaiting'?who+'Your turn — draw from the deck or the discard':who+'Drag a card into a matching slot';
   if(G.deck.length===0)t+=' • deck is empty!';
   return t;
 }
@@ -306,11 +345,14 @@ function render(){
   $('#rowBot').innerHTML=rows[1].map(i=>renderZone(i)).join('');
   $('#deckCount').textContent=G.deck.length===0?'empty':G.deck.length;
   $('#deckBox').classList.toggle('empty',G.deck.length===0);
+  const top=G.center.length?G.center[G.center.length-1]:null;
+  $('#centerTop').innerHTML=top?cardHTML(top):'<div class="pile-empty"></div>';
+  $('#centerCount').textContent=G.center.length;
+  $('#centerBox').classList.toggle('empty',G.center.length===0);
   $('#banner').textContent=bannerText();
   const me=G.turn>=0&&!G.players[G.turn].isAI&&!G.over;
-  $('#deckBox').classList.toggle('draw-able',me&&G.phase==='awaiting');
-  $('#btnDraw').disabled=!(me&&G.phase==='awaiting');
-  $('#btnEnd').disabled=!(me&&G.phase==='acting');
+  $('#deckBox').classList.toggle('draw-able',me&&G.phase==='awaiting'&&G.deck.length>0);
+  $('#centerBox').classList.toggle('draw-able',me&&G.phase==='awaiting'&&G.center.length>0);
 }
 function showOverlay(){
   const order=G.players.map((p,i)=>({p,i})).sort((a,b)=>b.p.placed-a.p.placed);
@@ -419,9 +461,8 @@ $('#btnHow').onclick=()=>{$('#modal').style.display='flex';};
 $('#btnGotIt').onclick=()=>{$('#modal').style.display='none';};
 $('#btnNew').onclick=showStart;
 $('#btnSound').onclick=()=>{muted=!muted;$('#btnSound').textContent=muted?'🔇':'🔊';};
-$('#btnDraw').onclick=()=>{if(inGame()&&G.phase==='awaiting')doDraw(G.turn);};
-$('#deckBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI)doDraw(G.turn);};
-$('#btnEnd').onclick=()=>{if(inGame()&&G.phase==='acting')endTurn();};
+$('#deckBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI&&G.deck.length>0)doDraw(G.turn,'deck');};
+$('#centerBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI&&G.center.length>0)doDraw(G.turn,'center');};
 $('#screenGame').addEventListener('pointerdown',e=>{
   const el=e.target.closest('.card[data-hi]');
   if(!el||!inGame()||G.over)return;
@@ -433,15 +474,15 @@ $('#screenGame').addEventListener('pointerdown',e=>{
 window.addEventListener('keydown',e=>{
   if(!inGame()||G.over)return;
   if(G.players[G.turn].isAI)return;
-  if(e.key==='d'||e.key==='D')$('#btnDraw').click();
-  if(e.key==='Enter'||e.key==='e'||e.key==='E')$('#btnEnd').click();
+  if(e.key==='d'||e.key==='D'){if(G.phase==='awaiting'&&G.deck.length>0)doDraw(G.turn,'deck');}
+  if(e.key==='c'||e.key==='C'){if(G.phase==='awaiting'&&G.center.length>0)doDraw(G.turn,'center');}
 });
 window.__game={
   state:()=>G,
   newGame(n){newGame(n||1);return this;},
   fast(v){if(G)G.fast=!!v;return this;},
-  draw(){doDraw(G.turn);return this;},
-  place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i);const hi=findPlayable(i);if(hi>=0)placeCard(i,hi);else endTurn();return this;},
+  draw(src){doDraw(G.turn,src||'deck');return this;},
+  place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i,'deck');const hi=findPlayable(i);if(hi>=0)placeCard(i,hi);return this;},
   end(){endTurn();return this;}
 };
 showStart();

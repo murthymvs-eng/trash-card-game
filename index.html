@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Trash — The Classic Card Game</title>
-<meta name="description" content="Trash, the classic 8-slot card race — in your browser. Fill your trash pile with all the 2s and 3s!">
+<meta name="description" content="Trash — the 10-card race. Collect A through 10 (J is a wild card, Q and K are useless)!">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗑️</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -41,9 +41,10 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .pname{font-weight:800;letter-spacing:.5px;font-size:15px;display:flex;align-items:center;gap:8px}
 .turnchip{background:var(--gold);color:#222;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;letter-spacing:.5px}
 .score{background:rgba(0,0,0,.4);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:800}
-.trash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.slot{aspect-ratio:5/7;border-radius:8px;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.42);font-weight:800;font-size:clamp(11px,2.4vw,15px);position:relative}
-.slot .ghost{display:flex;flex-direction:column;align-items:center;line-height:1.15;font-size:.95em;user-select:none}
+.trash-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.slot{aspect-ratio:5/7;border-radius:8px;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-weight:800;font-size:clamp(12px,3vw,20px);position:relative;transition:background .12s,border-color .12s,box-shadow .12s,transform .12s}
+.slot .ghost{display:flex;align-items:center;justify-content:center;user-select:none;letter-spacing:.5px}
+.slot.drop-ok{border-color:#8bff9e;border-style:solid;background:rgba(123,255,123,.16);box-shadow:0 0 0 2px rgba(123,255,123,.7) inset;transform:scale(1.03)}
 .slot.filled{background:transparent;border-color:transparent}
 .slot .card{width:100%;height:100%;box-shadow:none}
 .hand{display:flex;justify-content:center;align-items:center;gap:5px;padding:2px 0 4px;flex-wrap:wrap;min-height:84px}
@@ -56,13 +57,19 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .card .mid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,4.2vw,32px)}
 .card.back{background:linear-gradient(135deg,#3b63c4,#1d3a7d 55%,#3b63c4);border-color:#101f4e}
 .card.back::after{content:'';position:absolute;inset:14% 18%;border:2px solid rgba(255,255,255,.55);border-radius:5px;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.25),transparent 70%)}
-.card.playable{cursor:pointer;box-shadow:0 0 0 2px var(--gold),0 2px 5px rgba(0,0,0,.4)}
+.card.playable{cursor:grab;box-shadow:0 0 0 2px var(--gold),0 2px 5px rgba(0,0,0,.4)}
 .card.playable:hover{transform:translateY(-6px)}
 .card.dim{opacity:.5}
 .card.pop{animation:pop .38s ease-out}
 .card.shake{animation:shake .32s}
 @keyframes pop{0%{transform:scale(.35) translateY(-14px)}70%{transform:scale(1.08)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.card.draggable{touch-action:none;cursor:grab}
+.card.dragging{opacity:.3}
+.card.drag-ghost{position:fixed;margin:0;pointer-events:none;z-index:1000;box-shadow:0 10px 24px rgba(0,0,0,.55);transform:scale(1.06) rotate(2deg);cursor:grabbing}
+.deck.draw-able{cursor:pointer;animation:deckGlow 1.4s ease-in-out infinite}
+@keyframes deckGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(255,210,77,0))}50%{filter:drop-shadow(0 0 12px rgba(255,210,77,.95))}}
+body.dragging-active{user-select:none;cursor:grabbing}
 .mid{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(0,0,0,.28);border-radius:14px;padding:10px 14px;flex-wrap:wrap}
 .deck{position:relative;width:62px;height:88px;flex:none}
 .deck .face{position:absolute;inset:0;border-radius:7px;background:linear-gradient(135deg,#3b63c4,#1d3a7d 55%,#3b63c4);border:1px solid #101f4e}
@@ -91,7 +98,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .howto{text-align:left}
 .howto h3{margin-bottom:10px;font-size:20px;text-align:center}
 .howto ol{margin:0 0 12px 18px;display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.45}
-.howto .diag{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:0 0 16px}
+.howto .diag{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:0 0 16px}
 .howto .diag div{background:#eef2ff;border-radius:6px;padding:8px 0;text-align:center;font-weight:800;color:#3949ab;font-size:13px}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
 @media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}}
@@ -116,7 +123,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
       <div class="card black"><span class="tl">2<i>♣</i></span><span class="mid">♣</span><span class="br">2<i>♣</i></span></div>
     </div>
     <h2>Fill your trash pile to win</h2>
-    <p>Draw 1 card, place up to 2. Race to complete all four 2s, then all four 3s — before the deck runs out!</p>
+    <p>Draw 1 card, then drag up to 2 into your trash slots. Race to collect <b>A, 2, 3, 4, 5, 6, 7, 8, 9, 10</b> — before the deck runs out! The Jack is a wild card; Queens and Kings are useless.</p>
   </div>
   <div class="modes">
     <button class="mbtn" data-mode="1"><b>1 Player</b><span>You vs the CPU</span></button>
@@ -148,12 +155,13 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
   <div class="panel howto">
     <h3>How to Play Trash</h3>
     <ol>
-      <li>Every player is dealt <b>4 cards</b>. In front of you sit <b>8 trash slots</b> that must be filled:</li>
+      <li>Every player is dealt <b>4 cards</b>. In front of you sit <b>10 trash slots</b> — one for each rank A through 10:</li>
     </ol>
-    <div class="diag"><div>2♣</div><div>2♦</div><div>2♥</div><div>2♠</div><div>3♣</div><div>3♦</div><div>3♥</div><div>3♠</div></div>
+    <div class="diag"><div>A</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div></div>
     <ol start="2">
-      <li>On your turn, <b>draw 1 card</b> from the deck, then <b>place up to 2</b> cards from your hand into matching empty slots (any order).</li>
-      <li>First to fill all <b>8 slots</b> wins instantly.</li>
+      <li>On your turn, <b>click the deck to draw 1 card</b>, then <b>drag</b> up to 2 cards from your hand onto the matching empty slots.</li>
+      <li>A card fits only in its own rank's slot — <b>except the Jack (J), a wildcard that fits any empty slot</b>. <b>Queens and Kings are useless</b> — they can never be placed.</li>
+      <li>First to fill all <b>10 slots</b> wins instantly.</li>
       <li>If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
     </ol>
     <div class="row"><button class="btn blue" id="btnGotIt">Got it!</button></div>
@@ -167,7 +175,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 const $=s=>document.querySelector(s);
 const SUIT_GLYPH={C:'♣',D:'♦',H:'♥',S:'♠'};
 const RANKS=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
-const SLOT_ORDER=[['2','C'],['2','D'],['2','H'],['2','S'],['3','C'],['3','D'],['3','H'],['3','S']];
+const SLOT_ORDER=['A','2','3','4','5','6','7','8','9','10'];
 let G=null,muted=false,actx=null;
 
 function makeDeck(){
@@ -180,7 +188,7 @@ function newGame(n){
   if(G&&G.timers)G.timers.forEach(clearTimeout);
   const total=n===1?2:n;
   const deck=makeDeck(),players=[];
-  for(let i=0;i<total;i++)players.push({name:n===1?(i?'CPU':'You'):'P'+(i+1),isAI:n===1&&i===1,hand:[],slots:Array(8).fill(null),placed:0});
+  for(let i=0;i<total;i++)players.push({name:n===1?(i?'CPU':'You'):'P'+(i+1),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
   for(let c=0;c<4;c++)for(const p of players)p.hand.push(deck.pop());
   G={players,deck,turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
@@ -193,7 +201,10 @@ function showStart(){
   $('#overlay').style.display='none';$('#btnNew').style.display='none';
 }
 const inGame=()=>G&&$('#screenGame').style.display!=='none';
-function findSlot(p,c){return SLOT_ORDER.findIndex((n,i)=>!p.slots[i]&&n[0]===c.r&&n[1]===c.s);}
+function canPlaceRank(c,rank){return c.r==='J'||c.r===rank;}
+function canPlaceInSlot(p,c,s){return !p.slots[s]&&canPlaceRank(c,SLOT_ORDER[s]);}
+function canPlaceAnywhere(p,c){for(let i=0;i<p.slots.length;i++){if(canPlaceInSlot(p,c,i))return true;}return false;}
+function findSlot(p,c){if(c.r==='J')return p.slots.findIndex(s=>!s);const i=SLOT_ORDER.indexOf(c.r);return i>=0&&!p.slots[i]?i:-1;}
 function findPlayable(i){const p=G.players[i];return p.hand.findIndex(c=>findSlot(p,c)>=0);}
 function after(ms,fn){const t=setTimeout(fn,G.fast?0:ms);G.timers.push(t);return t;}
 
@@ -205,21 +216,19 @@ function doDraw(pIdx){
   sfx('draw');render();
   if(p.isAI&&!G.over)aiStep(pIdx);
 }
-function tryPlace(pIdx,hi){
+function shakeCard(pIdx,hi){const el=document.querySelector('.card[data-p="'+pIdx+'"][data-hi="'+hi+'"]');if(el){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),350);}}
+function placeCard(pIdx,hi,sIdx){
   if(!G||G.over)return false;
   const p=G.players[pIdx],c=p.hand[hi];
   if(!c)return false;
-  const s=findSlot(p,c);
-  if(s<0){
-    sfx('err');render();
-    const el=document.querySelector('.card[data-p="'+pIdx+'"][data-hi="'+hi+'"]');
-    if(el){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),350);}
-    return false;
+  if(sIdx==null)sIdx=findSlot(p,c);
+  if(sIdx<0||!canPlaceInSlot(p,c,sIdx)){
+    sfx('err');render();shakeCard(pIdx,hi);return false;
   }
-  p.slots[s]=c;p.hand.splice(hi,1);p.placed++;G.placedThisTurn++;
-  G.lastDrawn=null;G.lastPlaced=[pIdx,s];
+  p.slots[sIdx]=c;p.hand.splice(hi,1);p.placed++;G.placedThisTurn++;
+  G.lastDrawn=null;G.lastPlaced=[pIdx,sIdx];
   sfx('place');
-  if(p.placed>=8){gameOverWin(pIdx);return true;}
+  if(p.placed>=10){gameOverWin(pIdx);return true;}
   render();
   if(G.placedThisTurn>=2&&!G.over)endTurn();
   return true;
@@ -237,13 +246,13 @@ function aiStep(i){
   const ok=()=>G&&inGame()&&!G.over&&G.turn===i&&G.players[i].isAI;
   if(!ok()||G.phase!=='acting')return;
   if(findPlayable(i)<0||G.placedThisTurn>=2){after(750,()=>{if(ok()&&G.phase==='acting')endTurn();});return;}
-  after(750,()=>{if(!ok())return;tryPlace(i,findPlayable(i));if(ok()&&G.phase==='acting')aiStep(i);});
+  after(750,()=>{if(!ok())return;placeCard(i,findPlayable(i));if(ok()&&G.phase==='acting')aiStep(i);});
 }
 function winTitle(i){const n=G.players[i].name;return n==='You'?'You win!':n+' wins!';}
 function gameOverWin(i){
   G.over=true;G.winner=[i];
   G.title=G.mode===1?(i===0?'You win! 🎉':'CPU wins!'):winTitle(i);
-  G.subtitle='All 8 slots filled — trash pile complete!';
+  G.subtitle='All 10 slots filled — trash pile complete!';
   render();showOverlay();confetti();sfx('win');
 }
 function gameOverByScore(){
@@ -266,30 +275,29 @@ function bannerText(){
   const p=G.players[G.turn];
   if(p.isAI)return 'CPU is thinking…';
   const who=G.mode===1?'':'P'+(G.turn+1)+': ';
-  let t=G.phase==='awaiting'?who+'Your turn — draw a card':who+'Place up to 2 cards, then end your turn';
+  let t=G.phase==='awaiting'?who+'Your turn — click the deck to draw':who+'Drag cards into your slots (up to 2), then end your turn';
   if(G.deck.length===0)t+=' • deck is empty!';
   return t;
 }
 function renderZone(i){
   const p=G.players[i],active=i===G.turn,handUp=!p.isAI&&(G.mode===1||active);
   let slots='';
-  for(let s=0;s<8;s++){
+  for(let s=0;s<10;s++){
     if(p.slots[s]){
       const pop=G.lastPlaced&&G.lastPlaced[0]===i&&G.lastPlaced[1]===s?'pop':'';
-      slots+='<div class="slot filled">'+cardHTML(p.slots[s],pop)+'</div>';
+      slots+='<div class="slot filled" data-p="'+i+'" data-s="'+s+'">'+cardHTML(p.slots[s],pop)+'</div>';
     }else{
-      const n=SLOT_ORDER[s];
-      slots+='<div class="slot"><span class="ghost">'+n[0]+'<i>'+SUIT_GLYPH[n[1]]+'</i></span></div>';
+      slots+='<div class="slot" data-p="'+i+'" data-s="'+s+'"><span class="ghost">'+SLOT_ORDER[s]+'</span></div>';
     }
   }
   let hand=p.hand.map((c,j)=>{
     if(!handUp)return backCardHTML();
     const cls=[];
-    if(active&&G.phase==='acting'&&!G.over)cls.push(findSlot(p,c)>=0?'playable':'dim');
+    if(active&&G.phase==='acting'&&!G.over){cls.push('draggable');cls.push(canPlaceAnywhere(p,c)?'playable':'dim');}
     if(G.lastDrawn&&G.lastDrawn[0]===i&&G.lastDrawn[1]===j)cls.push('pop');
     return cardHTML(c,cls.join(' '),dataAttrs(i,j));
   }).join('');
-  return '<div class="zone'+(active?' active':'')+'"><div class="zone-head"><span class="pname">'+p.name+(active?'<span class="turnchip">TURN</span>':'')+'</span><span class="score">'+p.placed+'/8</span></div><div class="trash-grid">'+slots+'</div><div class="hand">'+hand+'</div></div>';
+  return '<div class="zone'+(active?' active':'')+'"><div class="zone-head"><span class="pname">'+p.name+(active?'<span class="turnchip">TURN</span>':'')+'</span><span class="score">'+p.placed+'/10</span></div><div class="trash-grid">'+slots+'</div><div class="hand">'+hand+'</div></div>';
 }
 function render(){
   if(!G)return;
@@ -300,13 +308,14 @@ function render(){
   $('#deckBox').classList.toggle('empty',G.deck.length===0);
   $('#banner').textContent=bannerText();
   const me=G.turn>=0&&!G.players[G.turn].isAI&&!G.over;
+  $('#deckBox').classList.toggle('draw-able',me&&G.phase==='awaiting');
   $('#btnDraw').disabled=!(me&&G.phase==='awaiting');
   $('#btnEnd').disabled=!(me&&G.phase==='acting');
 }
 function showOverlay(){
   const order=G.players.map((p,i)=>({p,i})).sort((a,b)=>b.p.placed-a.p.placed);
   const w=G.winner;
-  $('#overlayPanel').innerHTML='<h2>'+G.title+'</h2><div class="sub">'+G.subtitle+'</div><div class="scores">'+order.map(o=>'<div class="srow'+(w.includes(o.i)?' w':'')+'"><span>'+o.p.name+(w.includes(o.i)?' 🏆':'')+'</span><span class="pts">'+o.p.placed+'/8</span></div>').join('')+'</div><div class="row"><button class="btn" id="btnAgain">Play Again</button><button class="btn blue" id="btnModes">Change Mode</button></div>';
+  $('#overlayPanel').innerHTML='<h2>'+G.title+'</h2><div class="sub">'+G.subtitle+'</div><div class="scores">'+order.map(o=>'<div class="srow'+(w.includes(o.i)?' w':'')+'"><span>'+o.p.name+(w.includes(o.i)?' 🏆':'')+'</span><span class="pts">'+o.p.placed+'/10</span></div>').join('')+'</div><div class="row"><button class="btn" id="btnAgain">Play Again</button><button class="btn blue" id="btnModes">Change Mode</button></div>';
   $('#overlay').style.display='flex';
   $('#btnAgain').onclick=()=>newGame(G.mode);
   $('#btnModes').onclick=showStart;
@@ -348,19 +357,78 @@ function sfx(kind){
     else if(kind==='win'){tone(523,523,.14,.13,'square',0);tone(659,659,.14,.13,'square',.12);tone(784,784,.14,.13,'square',.24);tone(1046,1046,.32,.13,'square',.36);}
   }catch(e){}
 }
+// ---- Drag & Drop ----
+let drag=null;
+function startDrag(e,p,hi,el){
+  if(drag)return;
+  const rect=el.getBoundingClientRect();
+  const ghost=el.cloneNode(true);
+  ghost.classList.add('drag-ghost');
+  ghost.classList.remove('dim','playable','draggable','pop');
+  ghost.style.width=rect.width+'px';
+  ghost.style.height=rect.height+'px';
+  ghost.style.left='0px';
+  ghost.style.top='0px';
+  document.body.appendChild(ghost);
+  document.body.classList.add('dragging-active');
+  el.classList.add('dragging');
+  drag={p,hi,ghost,el,dx:e.clientX-rect.left,dy:e.clientY-rect.top};
+  window.addEventListener('pointermove',onDragMove);
+  window.addEventListener('pointerup',onDragUp);
+  window.addEventListener('pointercancel',onDragCancel);
+  highlightTargets();
+  moveGhost(e);
+}
+function moveGhost(e){
+  if(!drag)return;
+  drag.ghost.style.left=(e.clientX-drag.dx)+'px';
+  drag.ghost.style.top=(e.clientY-drag.dy)+'px';
+}
+function onDragMove(e){if(drag)moveGhost(e);}
+function onDragUp(e){
+  if(!drag)return;
+  const was=drag;
+  const hit=document.elementFromPoint(e.clientX,e.clientY);
+  const slotEl=hit&&hit.closest?hit.closest('.slot[data-s]'):null;
+  endDrag();
+  if(slotEl&&+slotEl.dataset.p===was.p)placeCard(was.p,was.hi,+slotEl.dataset.s);
+}
+function onDragCancel(){if(drag)endDrag();}
+function endDrag(){
+  if(!drag)return;
+  if(drag.ghost&&drag.ghost.parentNode)drag.ghost.parentNode.removeChild(drag.ghost);
+  if(drag.el&&drag.el.parentNode)drag.el.classList.remove('dragging');
+  document.body.classList.remove('dragging-active');
+  clearHighlights();
+  drag=null;
+}
+function highlightTargets(){
+  clearHighlights();
+  if(!drag)return;
+  const p=G.players[drag.p],c=G.players[drag.p].hand[drag.hi];
+  for(let s=0;s<p.slots.length;s++){
+    if(canPlaceInSlot(p,c,s)){
+      const el=document.querySelector('.slot[data-p="'+drag.p+'"][data-s="'+s+'"]');
+      if(el)el.classList.add('drop-ok');
+    }
+  }
+}
+function clearHighlights(){document.querySelectorAll('.slot.drop-ok').forEach(el=>el.classList.remove('drop-ok'));}
 document.querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>newGame(+b.dataset.mode));
 $('#btnHow').onclick=()=>{$('#modal').style.display='flex';};
 $('#btnGotIt').onclick=()=>{$('#modal').style.display='none';};
 $('#btnNew').onclick=showStart;
 $('#btnSound').onclick=()=>{muted=!muted;$('#btnSound').textContent=muted?'🔇':'🔊';};
 $('#btnDraw').onclick=()=>{if(inGame()&&G.phase==='awaiting')doDraw(G.turn);};
+$('#deckBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI)doDraw(G.turn);};
 $('#btnEnd').onclick=()=>{if(inGame()&&G.phase==='acting')endTurn();};
-$('#screenGame').addEventListener('click',e=>{
+$('#screenGame').addEventListener('pointerdown',e=>{
   const el=e.target.closest('.card[data-hi]');
-  if(!el||!inGame())return;
+  if(!el||!inGame()||G.over)return;
   const p=+el.dataset.p,hi=+el.dataset.hi;
-  if(p!==G.turn||G.players[p].isAI||G.phase!=='acting'||G.over)return;
-  tryPlace(p,hi);
+  if(p!==G.turn||G.players[p].isAI||G.phase!=='acting')return;
+  e.preventDefault();
+  startDrag(e,p,hi,el);
 });
 window.addEventListener('keydown',e=>{
   if(!inGame()||G.over)return;
@@ -373,7 +441,7 @@ window.__game={
   newGame(n){newGame(n||1);return this;},
   fast(v){if(G)G.fast=!!v;return this;},
   draw(){doDraw(G.turn);return this;},
-  place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i);const hi=findPlayable(i);if(hi>=0)tryPlace(i,hi);else endTurn();return this;},
+  place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i);const hi=findPlayable(i);if(hi>=0)placeCard(i,hi);else endTurn();return this;},
   end(){endTurn();return this;}
 };
 showStart();

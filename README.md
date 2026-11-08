@@ -25,6 +25,12 @@ Single file (`index.html`) — no build step, no dependencies. Open it anywhere.
 - Click the deck or the discard pile to draw; drag cards to place. Keyboard: `D` = draw from
   deck, `C` = draw from discard.
 
+## Visuals
+
+Every card is hand-authored **SVG** (crisp at any size, no images): classic corner indices,
+solid suit pips, stylized illustrated **J / Q / K court cards**, and ornamental red card
+backs — all laid on a green felt table with lighting and texture.
+
 ## Tech
 
 Vanilla HTML/CSS/JS in one file — pointer-based drag & drop, a shared face-up discard pile,

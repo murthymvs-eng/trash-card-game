@@ -59,8 +59,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .slot.filled{background:transparent;border-color:transparent;box-shadow:none;color:transparent}
 .slot.filled .ghost{display:none}
 .slot .card{width:100%;height:100%}
-.hand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;padding:6px 0 4px;align-content:start;min-height:78px}
-.hand .card{width:100%;height:auto}
+.hand{display:flex;justify-content:center;align-items:center;gap:8px;padding:8px 0 4px;min-height:80px}
+.hand .card{width:clamp(64px,10vw,100px);height:auto}
 .card{width:clamp(46px,8.2vw,80px);aspect-ratio:5/7;position:relative;flex:none;border-radius:7px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.45);transition:transform .12s,box-shadow .12s}
 .face-svg,.back-svg{display:block;width:100%;height:100%}
 .face-svg text,.back-svg text{font-family:Georgia,'Times New Roman',serif}
@@ -140,7 +140,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <div class="hero">
     <div class="fan" id="fan"></div>
     <h2>Fill your trash pile to win</h2>
-    <p>Draw a card from the deck or the discard pile, then place it in your trash slots. Race to collect <b>A, 2, 3, 4, 5, 6, 7, 8, 9, 10</b> — before the deck runs out! The Jack is a wild card; Queens and Kings are useless.</p>
+    <p>No hands — every card is dealt from the <b>deck</b>. Each turn, draw 1 card and place it in your trash slots or dump it in the discard; nothing gets kept. Race to collect <b>A, 2, 3, 4, 5, 6, 7, 8, 9, 10</b> — before the deck runs out! The Jack is a wild card; Queens and Kings are useless.</p>
   </div>
   <div class="modes">
     <button class="mbtn" data-mode="1"><b>1 Player</b><span>You vs the CPU</span></button>
@@ -175,15 +175,14 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <div class="panel howto">
     <h3>How to Play Trash</h3>
     <ol>
-      <li>Every player is dealt <b>4 cards</b>. In front of you sit <b>10 trash slots</b> — one for each rank A through 10:</li>
+      <li>No hands — all <b>52 cards</b> start in the <b>deck</b>. In front of each player sit <b>10 trash slots</b> — one for each rank A through 10:</li>
     </ol>
     <div class="diag"><div>A</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div></div>
     <ol start="2">
-      <li>On your turn, <b>draw 1 card</b> — from the <b>deck</b> or the top of the <b>discard pile</b> — then <b>place 1 card</b> by dragging it to a matching empty slot.</li>
+      <li>On your turn, <b>draw 1 card</b> — from the <b>deck</b> or the top of the <b>discard pile</b> — then either <b>place it</b> (drag it to a matching empty slot) or <b>discard it</b> (tap the card, or press X) into the <b>discard pile</b>.</li>
+      <li>Nothing is kept — there is no hand to save cards in. Every card you draw is placed or discarded.</li>
       <li>A card fits only in its own rank's slot — <b>except the Jack (J), a wildcard that fits any empty slot</b>. <b>Queens and Kings are useless</b> — they can never be placed.</li>
-      <li>If you don't place a card, the card you drew goes to the <b>discard pile</b> (visible to everyone). Your turn ends automatically.</li>
-      <li>First to fill all <b>10 slots</b> wins instantly.</li>
-      <li>If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
+      <li>First to fill all <b>10 slots</b> wins instantly. If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
     </ol>
     <div class="row"><button class="btn blue" id="btnGotIt">Got it!</button></div>
   </div>
@@ -210,7 +209,7 @@ function newGame(n){
   const total=n===1?2:n;
   const deck=makeDeck(),players=[];
   for(let i=0;i<total;i++)players.push({name:n===1?(i?'CPU':'You'):'P'+(i+1),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
-  for(let c=0;c<4;c++)for(const p of players)p.hand.push(deck.pop());
+  // No starting hands — all cards begin in the deck. Each turn you draw one card and place it or discard it (no buffer).
   G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,turnDrawnCard:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
   $('#overlay').style.display='none';$('#btnNew').style.display='';
@@ -247,7 +246,7 @@ function doDraw(pIdx,source){
   G.phase='acting';G.placedThisTurn=0;G.lastPlaced=null;G.turnDrawnCard=card;G.lastDrawn=[pIdx,p.hand.length-1];
   sfx('draw');render();
   if(p.isAI&&!G.over)aiStep(pIdx);
-  else if(findPlayable(pIdx)<0)after(900,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')endTurn();});
+  else if(findPlayable(pIdx)<0)after(1200,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')endTurn();});
 }
 function shakeCard(pIdx,hi){const el=document.querySelector('.card[data-p="'+pIdx+'"][data-hi="'+hi+'"]');if(el){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),350);}}
 function placeCard(pIdx,hi,sIdx){
@@ -265,6 +264,14 @@ function placeCard(pIdx,hi,sIdx){
   render();
   if(G.placedThisTurn>=1&&!G.over)after(450,()=>{if(G&&!G.over)endTurn();});
   return true;
+}
+function discardCard(pIdx,hi){
+  if(!G||G.over)return;
+  const p=G.players[pIdx],c=p.hand[hi];
+  if(!c)return;
+  p.hand.splice(hi,1);G.center.push(c);G.lastDrawn=null;
+  sfx('discard');
+  endTurn();
 }
 function endTurn(){
   if(!G||G.over)return;
@@ -412,7 +419,7 @@ function bannerText(){
   const p=G.players[G.turn];
   if(p.isAI)return 'CPU is thinking…';
   const who=G.mode===1?'':'P'+(G.turn+1)+': ';
-  let t=G.phase==='awaiting'?who+'Your turn — draw from the deck or the discard':who+'Drag a card into a matching slot';
+  let t=G.phase==='awaiting'?who+'Your turn — draw from the deck or the discard':who+'Drag it to a slot — or tap the card to discard';
   if(G.deck.length===0)t+=' • deck is empty!';
   return t;
 }
@@ -496,6 +503,7 @@ function sfx(kind){
     if(kind==='draw')tone(300,540,.1,.12);
     else if(kind==='place')tone(500,780,.11,.14);
     else if(kind==='err')tone(170,90,.16,.12,'sawtooth');
+    else if(kind==='discard')tone(280,160,.12,.1);
     else if(kind==='win'){tone(523,523,.14,.13,'square',0);tone(659,659,.14,.13,'square',.12);tone(784,784,.14,.13,'square',.24);tone(1046,1046,.32,.13,'square',.36);}
   }catch(e){}
 }
@@ -504,29 +512,35 @@ let drag=null;
 function startDrag(e,p,hi,el){
   if(drag)return;
   const rect=el.getBoundingClientRect();
-  const ghost=el.cloneNode(true);
-  ghost.classList.add('drag-ghost');
-  ghost.classList.remove('dim','playable','draggable','pop');
-  ghost.style.width=rect.width+'px';
-  ghost.style.height=rect.height+'px';
-  ghost.style.left='0px';
-  ghost.style.top='0px';
-  document.body.appendChild(ghost);
-  document.body.classList.add('dragging-active');
-  el.classList.add('dragging');
-  drag={p,hi,ghost,el,dx:e.clientX-rect.left,dy:e.clientY-rect.top};
+  drag={p,hi,el,dx:e.clientX-rect.left,dy:e.clientY-rect.top,sx:e.clientX,sy:e.clientY,ghost:null};
   window.addEventListener('pointermove',onDragMove);
   window.addEventListener('pointerup',onDragUp);
   window.addEventListener('pointercancel',onDragCancel);
-  highlightTargets();
-  moveGhost(e);
+}
+function onDragMove(e){
+  if(!drag)return;
+  if(!drag.ghost&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)>10){
+    const el=drag.el,rect=el.getBoundingClientRect();
+    const ghost=el.cloneNode(true);
+    ghost.classList.add('drag-ghost');
+    ghost.classList.remove('dim','playable','draggable','pop');
+    ghost.style.width=rect.width+'px';
+    ghost.style.height=rect.height+'px';
+    ghost.style.left='0px';
+    ghost.style.top='0px';
+    document.body.appendChild(ghost);
+    el.classList.add('dragging');
+    document.body.classList.add('dragging-active');
+    drag.ghost=ghost;
+    highlightTargets();
+  }
+  if(drag.ghost)moveGhost(e);
 }
 function moveGhost(e){
-  if(!drag)return;
+  if(!drag||!drag.ghost)return;
   drag.ghost.style.left=(e.clientX-drag.dx)+'px';
   drag.ghost.style.top=(e.clientY-drag.dy)+'px';
 }
-function onDragMove(e){if(drag)moveGhost(e);}
 function onDragUp(e){
   if(!drag)return;
   const was=drag;
@@ -534,6 +548,7 @@ function onDragUp(e){
   const slotEl=hit&&hit.closest?hit.closest('.slot[data-s]'):null;
   endDrag();
   if(slotEl&&+slotEl.dataset.p===was.p)placeCard(was.p,was.hi,+slotEl.dataset.s);
+  else if(!was.ghost&&G&&!G.over&&G.phase==='acting'&&!G.players[was.p].isAI)discardCard(was.p,was.hi);
 }
 function onDragCancel(){if(drag)endDrag();}
 function endDrag(){
@@ -576,6 +591,7 @@ window.addEventListener('keydown',e=>{
   if(G.players[G.turn].isAI)return;
   if(e.key==='d'||e.key==='D'){if(G.phase==='awaiting'&&G.deck.length>0)doDraw(G.turn,'deck');}
   if(e.key==='c'||e.key==='C'){if(G.phase==='awaiting'&&G.center.length>0)doDraw(G.turn,'center');}
+  if(e.key==='x'||e.key==='X'){if(G.phase==='acting'&&G.players[G.turn].hand.length>0)discardCard(G.turn,G.players[G.turn].hand.length-1);}
 });
 window.__game={
   state:()=>G,

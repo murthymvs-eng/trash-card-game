@@ -60,7 +60,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .slot.filled .ghost{display:none}
 .slot .card{width:100%;height:100%}
 .hand{display:flex;justify-content:center;align-items:center;gap:8px;padding:8px 0 4px;min-height:80px}
-.hand .card{width:clamp(64px,10vw,100px);height:auto}
+.hand .card{width:clamp(56px,8.6vw,86px);height:auto}
 .card{width:clamp(46px,8.2vw,80px);aspect-ratio:5/7;position:relative;flex:none;border-radius:7px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.45);transition:transform .12s,box-shadow .12s}
 .face-svg,.back-svg{display:block;width:100%;height:100%}
 .face-svg text,.back-svg text{font-family:Georgia,'Times New Roman',serif}
@@ -107,6 +107,21 @@ body.dragging-active{user-select:none;cursor:grabbing}
 .howto ol{margin:0 0 12px 18px;display:flex;flex-direction:column;gap:9px;font-size:14.5px;line-height:1.5}
 .howto .diag{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:0 0 16px}
 .howto .diag div{background:linear-gradient(180deg,rgba(20,60,40,.55),rgba(8,32,20,.62));border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:9px 0;text-align:center;font-weight:800;color:#cfe9d8;font-size:14px;font-family:var(--serif);aspect-ratio:5/7;display:flex;align-items:center;justify-content:center}
+.settings{max-width:680px;width:calc(100% - 32px);max-height:92vh;overflow:auto;text-align:center}
+.settings h3{font-size:21px;text-align:center;margin-bottom:6px;font-family:var(--serif)}
+.setlabel{display:block;text-align:left;font-weight:700;font-size:12.5px;letter-spacing:.05em;color:#5a5344;margin:12px 0 5px}
+.setlabel span{font-weight:500;opacity:.65}
+#inpName{width:100%;padding:9px 12px;border:1.5px solid #cfc6ae;border-radius:9px;font-size:15px;font-weight:600;background:#fffdf6;outline:none}
+#inpName:focus{border-color:#e5b93c;box-shadow:0 0 0 3px rgba(229,185,60,.25)}
+.themeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;text-align:center}
+.themebtn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 6px 7px;background:#f6f1e2;border:2px solid transparent;border-radius:11px;cursor:pointer;transition:border-color .1s,box-shadow .1s}
+.themebtn:hover{background:#efe8d3}
+.themebtn.sel{border-color:#e5b93c;box-shadow:0 0 0 3px rgba(229,185,60,.3)}
+.prevrow{display:flex;gap:5px}
+.prevrow .card{width:42px}
+.tname{font-size:12px;font-weight:800;color:#3a3325}
+.tsub{font-size:10.5px;color:#8a8172}
+@media (max-width:560px){.themeGrid{grid-template-columns:repeat(2,1fr)}}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
 @media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}.mid .drawcol{order:1}}
 </style>
@@ -124,6 +139,15 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <linearGradient id="gHairJ" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5230"/><stop offset="1" stop-color="#4f331d"/></linearGradient>
   <linearGradient id="gBack" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e23b3b"/><stop offset="1" stop-color="#a81c1c"/></linearGradient>
   <clipPath id="faceClip"><rect x="20" y="30" width="60" height="80" rx="3"/></clipPath>
+  <linearGradient id="gA_S" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3eaff"/><stop offset="1" stop-color="#bcc9ff"/></linearGradient>
+  <linearGradient id="gA_C" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2f6e0"/><stop offset="1" stop-color="#bce6bc"/></linearGradient>
+  <linearGradient id="gA_H" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe1e7"/><stop offset="1" stop-color="#ffc3cf"/></linearGradient>
+  <linearGradient id="gA_D" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9d6"/><stop offset="1" stop-color="#ffd0aa"/></linearGradient>
+  <linearGradient id="gFairy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cbb4f2"/><stop offset=".5" stop-color="#f3c6de"/><stop offset="1" stop-color="#ffe3a1"/></linearGradient>
+  <pattern id="pNeonGrid" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0 H0 V12" fill="none" stroke="#1b2440" stroke-width="1"/></pattern>
+  <filter id="fNeon" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="pWoodGrain" width="10" height="14" patternUnits="userSpaceOnUse"><path d="M3 0 C4 5 2 9 3 14" stroke="#b39468" stroke-width=".7" fill="none" opacity=".55"/><path d="M7 0 C6.5 6 8 10 7 14" stroke="#a5875c" stroke-width=".5" fill="none" opacity=".45"/></pattern>
+  <pattern id="pWoodHatch" width="4" height="4" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#8a6a3f"/><rect width="2.2" height="4" fill="#6b4a2a"/></pattern>
   <g id="rosette"></g>
 </defs></svg>
 <div class="app">
@@ -131,6 +155,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <div class="logo">🗑️ TRASH <span class="sub">THE CARD GAME</span></div>
   <div class="hbtns">
     <button class="hbtn" id="btnHow">How to Play</button>
+    <button class="hbtn" id="btnSet">⚙ Settings</button>
     <button class="hbtn" id="btnNew" style="display:none">New Game</button>
     <button class="hbtn" id="btnSound">🔊</button>
   </div>
@@ -188,6 +213,17 @@ body.dragging-active{user-select:none;cursor:grabbing}
   </div>
 </div>
 
+<div id="settings" class="overlay" style="display:none">
+  <div class="panel settings">
+    <h3>Settings</h3>
+    <label class="setlabel" for="inpName">Your name <span>— shown instead of “You”</span></label>
+    <input id="inpName" maxlength="14" placeholder="You" autocomplete="off">
+    <div class="setlabel">Card theme</div>
+    <div class="themeGrid" id="themeGrid"></div>
+    <div class="row" style="margin-top:16px"><button class="btn blue" id="btnSetDone">Done</button></div>
+  </div>
+</div>
+
 <canvas id="confetti"></canvas>
 
 <script>
@@ -208,7 +244,7 @@ function newGame(n){
   if(G&&G.timers)G.timers.forEach(clearTimeout);
   const total=n===1?2:n;
   const deck=makeDeck(),players=[];
-  for(let i=0;i<total;i++)players.push({name:n===1?(i?'CPU':'You'):'P'+(i+1),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
+  for(let i=0;i<total;i++)players.push({name:i===0?userName():(n===1?'CPU':'P'+(i+1)),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
   // No starting hands — all cards begin in the deck. Each turn you draw one card and place it or discard it (no buffer).
   G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,turnDrawnCard:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
@@ -304,7 +340,7 @@ function aiStep(i){
 function winTitle(i){const n=G.players[i].name;return n==='You'?'You win!':n+' wins!';}
 function gameOverWin(i){
   G.over=true;G.winner=[i];
-  G.title=G.mode===1?(i===0?'You win! 🎉':'CPU wins!'):winTitle(i);
+  G.title=(G.mode===1&&i===0)?userName()+' wins! 🎉':winTitle(i);
   G.subtitle='All 10 slots filled — trash pile complete!';
   render();showOverlay();confetti();sfx('win');
 }
@@ -386,7 +422,14 @@ function cornerSet(rank,suit,col){
   const sBL='<text x="13" y="125" font-size="11" fill="'+col+'" text-anchor="middle" dominant-baseline="central">'+g+'</text>';
   return '<g>'+r+s+'</g>'+sTR+sBL+'<g transform="rotate(180 50 70)">'+r+s+'</g>';
 }
-function faceSVG(c){
+// ---- Card themes ----
+const ANIMAL_EMO={A:'🐭','2':'🐹','3':'🐰','4':'🐱','5':'🐶','6':'🐼','7':'🦁','8':'🐯','9':'🦊','10':'🐲',J:'🦖',Q:'🦄',K:'🐉'};
+const FAIRY_EMO={A:'👑','2':'🕊️','3':'🌹','4':'⭐','5':'🔮','6':'☕','7':'🗝️','8':'🌙','9':'🪄','10':'🏰',J:'🛡️',Q:'👸',K:'🤴'};
+const SACC={S:'#3b5fd9',C:'#2f8a3c',H:'#d93b5c',D:'#e8862a'};
+const NEONCOL={S:'#37e6ff',H:'#ff4f9a',D:'#c46bff',C:'#47ff9e'};
+function corner2D(main){return '<g>'+main+'</g><g transform="rotate(180 50 70)">'+main+'</g>';}
+function rankFS(rank){return rank.length>1?12.5:15.5;}
+function classicFace(c){
   const col=INK[c.s],isFace=(c.r==='J'||c.r==='K'||c.r==='Q');
   const center=isFace?portrait(c):centerPip(c.s);
   return '<svg class="face-svg" viewBox="0 0 100 140">'+
@@ -394,6 +437,88 @@ function faceSVG(c){
     '<rect x="3" y="3" width="94" height="134" rx="5" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1"/>'+
     center+cornerSet(c.r,c.s,col)+'</svg>';
 }
+function animalFace(c){
+  const col=SACC[c.s],rank=c.r;
+  const corner='<text x="14" y="17" font-size="'+rankFS(rank)+'" font-weight="800" fill="#33261c" text-anchor="middle">'+rank+'</text><text x="14" y="31" font-size="10.5" fill="'+col+'" text-anchor="middle">'+SUIT_GLYPH[c.s]+'</text>';
+  return '<svg class="face-svg" viewBox="0 0 100 140">'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="url(#gA_'+c.s+')" stroke="#c9b98f" stroke-width="1"/>'+
+    '<circle cx="83" cy="19" r="1.5" fill="#fff" opacity=".55"/><circle cx="15" cy="121" r="1.7" fill="#fff" opacity=".5"/><circle cx="86" cy="112" r="1.2" fill="#fff" opacity=".5"/>'+
+    '<rect x="25" y="35" width="50" height="74" rx="14" fill="#ffffff" opacity=".55"/>'+
+    '<text x="50" y="74" font-size="46" text-anchor="middle" dominant-baseline="central">'+ANIMAL_EMO[c.r]+'</text>'+
+    '<text x="50" y="118" font-size="10.5" font-weight="700" fill="'+col+'" text-anchor="middle">'+c.r+' '+SUIT_GLYPH[c.s]+'</text>'+
+    corner2D(corner)+'</svg>';
+}
+function minionFace(c){
+  const acc=SACC[c.s],rank=c.r;
+  let top='';
+  const crown='<path d="M34 37 L36 25 L43 32 L50 21 L57 32 L64 25 L66 37 Z" fill="url(#gGold)" stroke="#a67c1a" stroke-width=".8"/><rect x="34" y="35" width="32" height="4" rx="1" fill="url(#gGold2)"/><circle cx="50" cy="30" r="1.6" fill="#3f8fd8"/><circle cx="42.5" cy="33" r="1" fill="#d84a4a"/><circle cx="57.5" cy="33" r="1" fill="#42b04a"/>';
+  if(rank==='J')top='<path d="M25 51 C32 40 68 40 75 51 L75 57 C66 50 34 50 25 57 Z" fill="#d94848" stroke="#a03030" stroke-width=".8"/><path d="M25 51 L15 45 L17 55 L21 61 Z" fill="#d94848" stroke="#a03030" stroke-width=".8"/>';
+  if(rank==='Q')top=crown;
+  if(rank==='K')top='<g transform="translate(0 -6)">'+crown+'</g><path d="M41 74 C44 78 48 78 50 76 C52 78 56 78 59 74 L59 79 C55 83 45 83 41 79 Z" fill="#2a1c10"/>';
+  const bib='<rect x="35" y="94" width="30" height="18" rx="5" fill="#fff" stroke="#c9b98f" stroke-width="1"/><text x="50" y="103.5" font-size="'+(rank.length>1?11:13)+'" font-weight="800" fill="'+acc+'" text-anchor="middle" dominant-baseline="central">'+rank+'</text>';
+  const corner='<text x="14" y="17" font-size="'+rankFS(rank)+'" font-weight="800" fill="#4a3a20" text-anchor="middle">'+rank+'</text><text x="14" y="31" font-size="10.5" fill="'+acc+'" text-anchor="middle">'+SUIT_GLYPH[c.s]+'</text>';
+  return '<svg class="face-svg" viewBox="0 0 100 140">'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="#f7f0da" stroke="#d9cba0" stroke-width="1"/>'+
+    '<rect x="3" y="3" width="94" height="134" rx="5" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1"/>'+
+    '<rect x="34" y="88" width="32" height="28" rx="10" fill="'+acc+'"/>'+
+    '<ellipse cx="50" cy="64" rx="27" ry="31" fill="#f7c843" stroke="#c99a1e" stroke-width="1.2"/>'+
+    '<rect x="27" y="54" width="46" height="15" rx="7.5" fill="#ccd4dc" stroke="#5f6b78" stroke-width="1"/>'+
+    '<circle cx="41" cy="61.5" r="6.5" fill="#fff" stroke="#454f5c" stroke-width="1"/>'+
+    '<circle cx="59" cy="61.5" r="6.5" fill="#fff" stroke="#454f5c" stroke-width="1"/>'+
+    '<circle cx="42" cy="62.5" r="2.6" fill="#14161a"/><circle cx="60" cy="62.5" r="2.6" fill="#14161a"/>'+
+    top+'<path d="M44 82 C47 86 53 86 56 82" stroke="#8a6420" stroke-width="1.6" fill="none" stroke-linecap="round"/>'+
+    bib+corner2D(corner)+'</svg>';
+}
+function fairyFace(c){
+  const rank=c.r;
+  const corner='<text x="14" y="17" font-size="'+(rank.length>1?13:16)+'" font-weight="700" font-style="italic" font-family="Georgia,serif" fill="#6d3f86" text-anchor="middle">'+rank+'</text><text x="14" y="31" font-size="10.5" fill="#c9962b" text-anchor="middle">'+SUIT_GLYPH[c.s]+'</text>';
+  return '<svg class="face-svg" viewBox="0 0 100 140">'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="url(#gFairy)" stroke="#c9a0d8" stroke-width="1"/>'+
+    '<rect x="3" y="3" width="94" height="134" rx="5" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1"/>'+
+    '<text x="24" y="30" font-size="12" fill="#fff" opacity=".9">✦</text>'+
+    '<text x="76" y="42" font-size="9" fill="#fff" opacity=".8">✧</text>'+
+    '<text x="28" y="110" font-size="10" fill="#ffe9a0" opacity=".9">✦</text>'+
+    '<text x="74" y="114" font-size="8" fill="#fff" opacity=".7">✦</text>'+
+    '<circle cx="50" cy="72" r="25" fill="#fff" opacity=".32"/>'+
+    '<text x="50" y="74" font-size="42" text-anchor="middle" dominant-baseline="central">'+FAIRY_EMO[c.r]+'</text>'+
+    corner2D(corner)+'</svg>';
+}
+function neonFace(c){
+  const n=NEONCOL[c.s],word={J:'JACK',Q:'QUEEN',K:'KING',A:'ACE'}[c.r];
+  let center;
+  if(word)center='<text x="50" y="68" font-size="56" fill="'+n+'" text-anchor="middle" dominant-baseline="central" filter="url(#fNeon)">'+SUIT_GLYPH[c.s]+'</text><text x="50" y="106" font-size="11" font-weight="700" letter-spacing="3" fill="'+n+'" text-anchor="middle" filter="url(#fNeon)">'+word+'</text>';
+  else center='<text x="50" y="68" font-size="58" font-weight="800" fill="'+n+'" text-anchor="middle" dominant-baseline="central" filter="url(#fNeon)">'+c.r+'</text><text x="50" y="105" font-size="16" fill="'+n+'" opacity=".9" text-anchor="middle" filter="url(#fNeon)">'+SUIT_GLYPH[c.s]+'</text>';
+  const corner='<text x="14" y="17" font-size="'+rankFS(c.r)+'" font-weight="800" fill="'+n+'" text-anchor="middle" filter="url(#fNeon)">'+c.r+'</text><text x="14" y="31" font-size="10.5" fill="'+n+'" opacity=".8" text-anchor="middle">'+SUIT_GLYPH[c.s]+'</text>';
+  return '<svg class="face-svg" viewBox="0 0 100 140">'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="#0c1020" stroke="#2a3550" stroke-width="1"/>'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="url(#pNeonGrid)"/>'+
+    '<circle cx="50" cy="70" r="30" fill="'+n+'" opacity=".06"/>'+
+    center+corner2D(corner)+'</svg>';
+}
+function woodFace(c){
+  const ink={S:'#2a1f14',C:'#24201a',H:'#8a2b1d',D:'#9a3416'}[c.s];
+  const g=SUIT_GLYPH[c.s],word={J:'JACK',Q:'QUEEN',K:'KING'}[c.r];
+  const center='<text x="51.5" y="72.5" font-size="80" fill="#5c4a2f" opacity=".3" text-anchor="middle" dominant-baseline="central">'+g+'</text>'+
+    '<text x="50" y="71" font-size="80" fill="url(#pWoodHatch)" stroke="#3a2c15" stroke-width="1" text-anchor="middle" dominant-baseline="central">'+g+'</text>'+
+    (word?'<text x="50" y="112" font-size="9" font-weight="700" letter-spacing="2" fill="'+ink+'" text-anchor="middle" font-family="Georgia,serif">'+word+'</text>':'');
+  const corner='<text x="14" y="17" font-size="'+rankFS(c.r)+'" font-weight="700" fill="'+ink+'" text-anchor="middle" font-family="Georgia,serif">'+c.r+'</text><text x="14" y="31" font-size="10.5" fill="'+ink+'" opacity=".85" text-anchor="middle">'+g+'</text>';
+  return '<svg class="face-svg" viewBox="0 0 100 140">'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="#ecdcbb" stroke="#6b4a2a" stroke-width="1.5"/>'+
+    '<rect x="1" y="1" width="98" height="138" rx="7" fill="url(#pWoodGrain)" opacity=".55"/>'+
+    '<rect x="6" y="6" width="88" height="128" rx="4" fill="none" stroke="#6b4a2a" stroke-width="1" opacity=".5"/>'+
+    '<circle cx="9" cy="9" r="1.1" fill="#6b4a2a" opacity=".6"/><circle cx="91" cy="9" r="1.1" fill="#6b4a2a" opacity=".6"/><circle cx="9" cy="131" r="1.1" fill="#6b4a2a" opacity=".6"/><circle cx="91" cy="131" r="1.1" fill="#6b4a2a" opacity=".6"/>'+
+    center+corner2D(corner)+'</svg>';
+}
+const THEMES={
+  classic:{name:'Classic',sub:'Timeless cream',svg:classicFace},
+  animal:{name:'Emoji Party',sub:'Cute critters',svg:animalFace},
+  minion:{name:'Minions',sub:'The yellow crew',svg:minionFace},
+  fairy:{name:'Fairytale',sub:'Storybook sparkle',svg:fairyFace},
+  neon:{name:'Neon Night',sub:'Cyber glow',svg:neonFace},
+  wood:{name:'Woodblock',sub:'Vintage print',svg:woodFace}
+};
+function curTheme(){const t=localStorage.getItem('trashTheme');return THEMES[t]?t:'classic';}
+function faceSVG(c){return THEMES[curTheme()].svg(c);}
 function cardHTML(c,extra,attrs){const col=(c.s==='H'||c.s==='D')?'red':'black';return '<div class="card '+col+' '+(extra||'')+'" '+(attrs||'')+'>'+faceSVG(c)+'</div>';}
 function backSVG(){
   return '<svg class="back-svg" viewBox="0 0 100 140">'+
@@ -574,6 +699,36 @@ function clearHighlights(){document.querySelectorAll('.slot.drop-ok').forEach(el
 document.querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>newGame(+b.dataset.mode));
 $('#btnHow').onclick=()=>{$('#modal').style.display='flex';};
 $('#btnGotIt').onclick=()=>{$('#modal').style.display='none';};
+// ---- Settings: name + card theme ----
+function userName(){const v=(localStorage.getItem('trashName')||'').replace(/\s+/g,' ').trim();return v.slice(0,14)||'You';}
+function buildThemeGrid(){
+  const grid=$('#themeGrid');if(!grid)return;
+  const t=curTheme();
+  grid.innerHTML=Object.keys(THEMES).map(id=>{
+    const th=THEMES[id];
+    return '<div class="themebtn'+(id===t?' sel':'')+'" data-th="'+id+'"><div class="prevrow">'+
+      '<div class="card red">'+th.svg({r:'K',s:'H'})+'</div><div class="card black">'+th.svg({r:'10',s:'C'})+'</div>'+
+      '</div><span class="tname">'+th.name+'</span><span class="tsub">'+th.sub+'</span></div>';
+  }).join('');
+  grid.querySelectorAll('.themebtn').forEach(b=>b.onclick=()=>{
+    localStorage.setItem('trashTheme',b.dataset.th);
+    buildThemeGrid();buildHeroFan();
+    if(G&&inGame())render();
+  });
+}
+$('#btnSet').onclick=()=>{
+  buildThemeGrid();
+  $('#inpName').value=userName()==='You'?'':userName();
+  $('#settings').style.display='flex';
+  $('#inpName').focus();
+};
+$('#btnSetDone').onclick=()=>{$('#settings').style.display='none';};
+$('#settings').addEventListener('click',e=>{if(e.target.id==='settings')$('#settings').style.display='none';});
+$('#inpName').addEventListener('input',e=>{
+  const v=e.target.value.replace(/\s+/g,' ').slice(0,14);
+  localStorage.setItem('trashName',v.trim());
+  if(G&&G.players[0]){G.players[0].name=userName();if(inGame())render();}
+});
 $('#btnNew').onclick=showStart;
 $('#btnSound').onclick=()=>{muted=!muted;$('#btnSound').textContent=muted?'🔇':'🔊';};
 $('#deckBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI&&G.deck.length>0)doDraw(G.turn,'deck');};
@@ -599,11 +754,13 @@ window.__game={
   fast(v){if(G)G.fast=!!v;return this;},
   draw(src){doDraw(G.turn,src||'deck');return this;},
   place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i,'deck');const hi=findPlayable(i);if(hi>=0)placeCard(i,hi);return this;},
-  end(){endTurn();return this;}
+  end(){endTurn();return this;},
+  themes:THEMES,
+  setTheme(id){if(THEMES[id]){localStorage.setItem('trashTheme',id);buildThemeGrid();buildHeroFan();if(G&&inGame())render();}return this;}
 };
 function buildRosette(){let p='',r='';for(let i=0;i<16;i++)p+='<ellipse cx="50" cy="61" rx="3.2" ry="9" transform="rotate('+(i*22.5)+' 50 70)" fill="#fbe0dc" opacity=".85"/>';for(let i=0;i<28;i++)r+='<circle cx="50" cy="50" r=".9" transform="rotate('+(i*(360/28)).toFixed(3)+' 50 70)" fill="#fff" opacity=".5"/>';const g=document.getElementById('rosette');if(g)g.innerHTML=r+p+'<circle cx="50" cy="70" r="6.5" fill="none" stroke="#fff" stroke-opacity=".6"/><circle cx="50" cy="70" r="3.4" fill="#fbe0dc"/><circle cx="50" cy="70" r="1.5" fill="#fff"/>';}
 function buildHeroFan(){const f=document.getElementById('fan');if(f)f.innerHTML=[cardHTML({r:'A',s:'S'}),cardHTML({r:'K',s:'H'}),cardHTML({r:'J',s:'C'})].join('');}
-buildRosette();buildHeroFan();
+buildRosette();buildHeroFan();buildThemeGrid();
 showStart();
 </script>
 </body>

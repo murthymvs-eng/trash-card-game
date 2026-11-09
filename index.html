@@ -761,6 +761,15 @@ window.__game={
 function buildRosette(){let p='',r='';for(let i=0;i<16;i++)p+='<ellipse cx="50" cy="61" rx="3.2" ry="9" transform="rotate('+(i*22.5)+' 50 70)" fill="#fbe0dc" opacity=".85"/>';for(let i=0;i<28;i++)r+='<circle cx="50" cy="50" r=".9" transform="rotate('+(i*(360/28)).toFixed(3)+' 50 70)" fill="#fff" opacity=".5"/>';const g=document.getElementById('rosette');if(g)g.innerHTML=r+p+'<circle cx="50" cy="70" r="6.5" fill="none" stroke="#fff" stroke-opacity=".6"/><circle cx="50" cy="70" r="3.4" fill="#fbe0dc"/><circle cx="50" cy="70" r="1.5" fill="#fff"/>';}
 function buildHeroFan(){const f=document.getElementById('fan');if(f)f.innerHTML=[cardHTML({r:'A',s:'S'}),cardHTML({r:'K',s:'H'}),cardHTML({r:'J',s:'C'})].join('');}
 buildRosette();buildHeroFan();buildThemeGrid();
+if(/[?&]demo=1/.test(location.search)){
+  newGame(1);
+  G.fast=true;
+  G.players[0].slots[0]={r:'A',s:'S'};G.players[0].slots[2]={r:'3',s:'D'};G.players[0].placed=2;
+  G.players[1].slots[0]={r:'A',s:'D'};G.players[1].placed=1;
+  G.players[0].hand=[{r:'7',s:'C'}];
+  G.turn=0;G.phase='acting';G.center=[{r:'Q',s:'S'}];
+  render();
+}
 showStart();
 </script>
 </body>

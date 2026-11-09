@@ -28,6 +28,12 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .logo{font-family:var(--serif);font-weight:900;letter-spacing:2px;font-size:clamp(20px,4vw,30px);color:#fff;text-shadow:0 2px 3px rgba(0,0,0,.55);display:flex;align-items:center;gap:8px}
 .logo .sub{font-family:ui-rounded,system-ui,sans-serif;font-size:.5em;font-weight:700;letter-spacing:2px;opacity:.72}
 .hbtns{display:flex;gap:8px}
+@media (max-width:640px){
+  header{flex-wrap:wrap;justify-content:center;row-gap:8px}
+  .logo{flex-basis:100%;justify-content:center}
+  .hbtns{gap:6px;flex-wrap:wrap;justify-content:center}
+  .hbtn{padding:6px 11px;font-size:12px}
+}
 .hbtn{background:rgba(0,0,0,.32);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s,transform .1s}
 .hbtn:hover{background:rgba(0,0,0,.55);transform:translateY(-1px)}
 .screen{display:flex;flex-direction:column;flex:1;gap:16px}
@@ -123,7 +129,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
 .tsub{font-size:10.5px;color:#8a8172}
 @media (max-width:560px){.themeGrid{grid-template-columns:repeat(2,1fr)}}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
-@media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}.mid .drawcol{order:1}}
+@media (max-width:620px){.zone{flex:1 1 100%}.mid{justify-content:center}.banner{order:-1;flex-basis:100%}.mid .drawcol{order:1}.modes{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>

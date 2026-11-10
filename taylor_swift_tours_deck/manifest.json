@@ -1,0 +1,366 @@
+{
+  "hearts_A.png": {
+    "suit": "hearts",
+    "rank": "A",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 298124314
+  },
+  "hearts_2.png": {
+    "suit": "hearts",
+    "rank": "2",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 3750142265
+  },
+  "hearts_3.png": {
+    "suit": "hearts",
+    "rank": "3",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 775982295
+  },
+  "hearts_4.png": {
+    "suit": "hearts",
+    "rank": "4",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 1614673702
+  },
+  "hearts_5.png": {
+    "suit": "hearts",
+    "rank": "5",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 3326244696
+  },
+  "hearts_6.png": {
+    "suit": "hearts",
+    "rank": "6",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 1781698116
+  },
+  "hearts_7.png": {
+    "suit": "hearts",
+    "rank": "7",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 1348195825
+  },
+  "hearts_8.png": {
+    "suit": "hearts",
+    "rank": "8",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 3707545663
+  },
+  "hearts_9.png": {
+    "suit": "hearts",
+    "rank": "9",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 3972129248
+  },
+  "hearts_10.png": {
+    "suit": "hearts",
+    "rank": "10",
+    "house": "The Romantic Eras",
+    "character": "FEARLESS",
+    "seed": 1009695979
+  },
+  "hearts_J.png": {
+    "suit": "hearts",
+    "rank": "J",
+    "house": "The Romantic Eras",
+    "character": "SPEAK NOW",
+    "seed": 1326251943
+  },
+  "hearts_Q.png": {
+    "suit": "hearts",
+    "rank": "Q",
+    "house": "The Romantic Eras",
+    "character": "SPEAK NOW",
+    "seed": 1149336529
+  },
+  "hearts_K.png": {
+    "suit": "hearts",
+    "rank": "K",
+    "house": "The Romantic Eras",
+    "character": "SPEAK NOW",
+    "seed": 3322148332
+  },
+  "spades_A.png": {
+    "suit": "spades",
+    "rank": "A",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 3959405161
+  },
+  "spades_2.png": {
+    "suit": "spades",
+    "rank": "2",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 451287926
+  },
+  "spades_3.png": {
+    "suit": "spades",
+    "rank": "3",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 794023291
+  },
+  "spades_4.png": {
+    "suit": "spades",
+    "rank": "4",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 786251024
+  },
+  "spades_5.png": {
+    "suit": "spades",
+    "rank": "5",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 3089059503
+  },
+  "spades_6.png": {
+    "suit": "spades",
+    "rank": "6",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 755719147
+  },
+  "spades_7.png": {
+    "suit": "spades",
+    "rank": "7",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 3916307281
+  },
+  "spades_8.png": {
+    "suit": "spades",
+    "rank": "8",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 1490526969
+  },
+  "spades_9.png": {
+    "suit": "spades",
+    "rank": "9",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 4172936213
+  },
+  "spades_10.png": {
+    "suit": "spades",
+    "rank": "10",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 3675816495
+  },
+  "spades_J.png": {
+    "suit": "spades",
+    "rank": "J",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 2623271641
+  },
+  "spades_Q.png": {
+    "suit": "spades",
+    "rank": "Q",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 3144977437
+  },
+  "spades_K.png": {
+    "suit": "spades",
+    "rank": "K",
+    "house": "The Pop Eras",
+    "character": "ERAS TOUR",
+    "seed": 1034794268
+  },
+  "clubs_A.png": {
+    "suit": "clubs",
+    "rank": "A",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 1364165502
+  },
+  "clubs_2.png": {
+    "suit": "clubs",
+    "rank": "2",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 1841497552
+  },
+  "clubs_3.png": {
+    "suit": "clubs",
+    "rank": "3",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 1597542100
+  },
+  "clubs_4.png": {
+    "suit": "clubs",
+    "rank": "4",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 843120787
+  },
+  "clubs_5.png": {
+    "suit": "clubs",
+    "rank": "5",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 3160427741
+  },
+  "clubs_6.png": {
+    "suit": "clubs",
+    "rank": "6",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 363865398
+  },
+  "clubs_7.png": {
+    "suit": "clubs",
+    "rank": "7",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 3449018131
+  },
+  "clubs_8.png": {
+    "suit": "clubs",
+    "rank": "8",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 1799716418
+  },
+  "clubs_9.png": {
+    "suit": "clubs",
+    "rank": "9",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 2659576786
+  },
+  "clubs_10.png": {
+    "suit": "clubs",
+    "rank": "10",
+    "house": "The Indie Eras",
+    "character": "FOLKLORE",
+    "seed": 1728898667
+  },
+  "clubs_J.png": {
+    "suit": "clubs",
+    "rank": "J",
+    "house": "The Indie Eras",
+    "character": "EVERMORE",
+    "seed": 1726131144
+  },
+  "clubs_Q.png": {
+    "suit": "clubs",
+    "rank": "Q",
+    "house": "The Indie Eras",
+    "character": "EVERMORE",
+    "seed": 1192489598
+  },
+  "clubs_K.png": {
+    "suit": "clubs",
+    "rank": "K",
+    "house": "The Indie Eras",
+    "character": "EVERMORE",
+    "seed": 1194348132
+  },
+  "diamonds_A.png": {
+    "suit": "diamonds",
+    "rank": "A",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 2641630493
+  },
+  "diamonds_2.png": {
+    "suit": "diamonds",
+    "rank": "2",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 1638338007
+  },
+  "diamonds_3.png": {
+    "suit": "diamonds",
+    "rank": "3",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 3052901941
+  },
+  "diamonds_4.png": {
+    "suit": "diamonds",
+    "rank": "4",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 2244940650
+  },
+  "diamonds_5.png": {
+    "suit": "diamonds",
+    "rank": "5",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 3430425312
+  },
+  "diamonds_6.png": {
+    "suit": "diamonds",
+    "rank": "6",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 1349100190
+  },
+  "diamonds_7.png": {
+    "suit": "diamonds",
+    "rank": "7",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 4230171860
+  },
+  "diamonds_8.png": {
+    "suit": "diamonds",
+    "rank": "8",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 3798287564
+  },
+  "diamonds_9.png": {
+    "suit": "diamonds",
+    "rank": "9",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 1462907604
+  },
+  "diamonds_10.png": {
+    "suit": "diamonds",
+    "rank": "10",
+    "house": "The Eras Tour",
+    "character": "MIDNIGHTS",
+    "seed": 915500467
+  },
+  "diamonds_J.png": {
+    "suit": "diamonds",
+    "rank": "J",
+    "house": "The Eras Tour",
+    "character": "TTPD",
+    "seed": 460585230
+  },
+  "diamonds_Q.png": {
+    "suit": "diamonds",
+    "rank": "Q",
+    "house": "The Eras Tour",
+    "character": "TTPD",
+    "seed": 68980514
+  },
+  "diamonds_K.png": {
+    "suit": "diamonds",
+    "rank": "K",
+    "house": "The Eras Tour",
+    "character": "TTPD",
+    "seed": 3538625458
+  }
+}

@@ -70,6 +70,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .card{width:clamp(46px,8.2vw,80px);aspect-ratio:5/7;position:relative;flex:none;border-radius:7px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.45);transition:transform .12s,box-shadow .12s}
 .face-svg,.back-svg{display:block;width:100%;height:100%}
 .face-svg text,.back-svg text{font-family:Georgia,'Times New Roman',serif}
+.cardimg{object-fit:cover;pointer-events:none;-webkit-user-drag:none}
 .card.playable{cursor:grab;box-shadow:0 0 0 2px var(--gold),0 4px 9px rgba(0,0,0,.5)}
 .card.playable:hover{transform:translateY(-6px)}
 .card.dim{opacity:.5}
@@ -159,6 +160,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
   <linearGradient id="gIron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0492f"/><stop offset=".5" stop-color="#c8102e"/><stop offset="1" stop-color="#8f6a12"/></linearGradient>
   <linearGradient id="gCocoBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3d8"/><stop offset="1" stop-color="#ffe0b0"/></linearGradient>
   <linearGradient id="gSpBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b4bd9"/><stop offset="1" stop-color="#101f4d"/></linearGradient>
+  <linearGradient id="gTSBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6b7d5"/><stop offset=".55" stop-color="#e79ac0"/><stop offset="1" stop-color="#c25d92"/></linearGradient>
   <g id="rosette"></g>
 </defs></svg>
 <div class="app">
@@ -630,18 +632,25 @@ function backAv(){return backCardSVG('url(#gAvBg)','#5c0d16','#ffd98a',cAvA());}
 function backSw(){return backCardSVG('url(#gSwBg)','#ffe81f','#ffe81f',cSwStar(),'<g fill="#fff"><circle cx="22" cy="40" r="1"/><circle cx="80" cy="52" r="1.1"/><circle cx="26" cy="98" r="1"/><circle cx="76" cy="90" r=".9"/><circle cx="50" cy="26" r=".9"/><circle cx="50" cy="116" r="1"/></g>');}
 function backSp(){return backCardSVG('url(#gSpBg)','#0a1a4a','#c8102e',spEmblem(),spWeb());}
 function backCoco(){return backCardSVG('url(#gCocoBg)','#8a3f16','#c8102e',coMarigold(),'<g stroke="#c8102e" stroke-width=".8" opacity=".5"><path d="M50 22 L50 34 M50 106 L50 118 M22 70 L34 70 M66 70 L78 70"/></g>');}
+function cTSStar(){return '<g><path d="M50 46 L54.5 65.5 L74 70 L54.5 74.5 L50 94 L45.5 74.5 L26 70 L45.5 65.5 Z" fill="#fff" stroke="#c9a24a" stroke-width=".8"/><circle cx="28" cy="44" r="1.7" fill="#fff"/><circle cx="72" cy="47" r="1.4" fill="#fff"/><circle cx="31" cy="95" r="1.5" fill="#fff"/><circle cx="70" cy="92" r="1.3" fill="#fff"/></g>';}
+function backTS(){return backCardSVG('url(#gTSBg)','#8a2c5c','#ffe89a',cTSStar());}
+// ---- Image art decks (PNG card sets, one folder per deck) ----
+const IMG_SUIT={H:'hearts',S:'spades',C:'clubs',D:'diamonds'};
+function imgFace(c,dir){return '<img class="face-svg cardimg" src="'+dir+'/'+IMG_SUIT[c.s]+'_'+c.r+'.png" alt="" draggable="false">';}
+function imgTheme(dir,name,sub,back){return{name:name,sub:sub,svg:function(c){return imgFace(c,dir);},back:back};}
 const THEMES={
   classic:{name:'Classic',sub:'Timeless cream',svg:classicFace,back:backClassic},
   animal:{name:'Emoji Party',sub:'Cute critters',svg:animalFace,back:backAnimal},
-  minion:{name:'Minions',sub:'The yellow crew',svg:minionFace,back:backMinion},
+  minion:imgTheme('minion_deck','Minions','The yellow crew',backMinion),
   fairy:{name:'Fairytale',sub:'Storybook sparkle',svg:fairyFace,back:backFairy},
   neon:{name:'Neon Night',sub:'Cyber glow',svg:neonFace,back:backNeon},
   wood:{name:'Woodblock',sub:'Vintage print',svg:woodFace,back:backWood},
-  hp:{name:'Harry Potter',sub:'Wands, crests & dragons',svg:hpFace,back:backHp},
-  avengers:{name:'Marvel Avengers',sub:'Assemble! (fan art)',svg:avFace,back:backAv},
-  starwars:{name:'Star Wars',sub:'Galaxy far away',svg:swFace,back:backSw},
+  hp:imgTheme('hp_card_deck','Harry Potter','The House Deck',backHp),
+  avengers:imgTheme('avengers_deck','Marvel Avengers','Assemble!',backAv),
+  starwars:imgTheme('starwars_deck','Star Wars','Galaxy far away',backSw),
   spiderman:{name:'Spider-Man',sub:'Web of webs (fan art)',svg:spFace,back:backSp},
-  coco:{name:'Coco',sub:'Day of the Dead',svg:coFace,back:backCoco}
+  coco:{name:'Coco',sub:'Day of the Dead',svg:coFace,back:backCoco},
+  taylor:imgTheme('taylor_swift_tours_deck','Taylor Swift','The Eras Tour',backTS)
 };
 function curTheme(){const t=localStorage.getItem('trashTheme');return THEMES[t]?t:'classic';}
 function faceSVG(c){return THEMES[curTheme()].svg(c);}

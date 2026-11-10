@@ -1,0 +1,366 @@
+{
+  "hearts_A.png": {
+    "suit": "hearts",
+    "rank": "A",
+    "house": "Bob the Minion, the group leader",
+    "character": "BOB",
+    "seed": 2997630339
+  },
+  "spades_2.png": {
+    "suit": "spades",
+    "rank": "2",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 2911718025
+  },
+  "hearts_2.png": {
+    "suit": "hearts",
+    "rank": "2",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 2763505404
+  },
+  "hearts_3.png": {
+    "suit": "hearts",
+    "rank": "3",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 3003459843
+  },
+  "hearts_4.png": {
+    "suit": "hearts",
+    "rank": "4",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 3239586179
+  },
+  "hearts_5.png": {
+    "suit": "hearts",
+    "rank": "5",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 999194104
+  },
+  "hearts_6.png": {
+    "suit": "hearts",
+    "rank": "6",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 2629888232
+  },
+  "hearts_7.png": {
+    "suit": "hearts",
+    "rank": "7",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 2599913094
+  },
+  "hearts_8.png": {
+    "suit": "hearts",
+    "rank": "8",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 486547994
+  },
+  "hearts_9.png": {
+    "suit": "hearts",
+    "rank": "9",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 593983620
+  },
+  "hearts_10.png": {
+    "suit": "hearts",
+    "rank": "10",
+    "house": "Bob the Minion, the group leader",
+    "character": null,
+    "seed": 1520811161
+  },
+  "hearts_J.png": {
+    "suit": "hearts",
+    "rank": "J",
+    "house": "Bob the Minion, the group leader",
+    "character": "MARGO",
+    "seed": 1345179172
+  },
+  "hearts_Q.png": {
+    "suit": "hearts",
+    "rank": "Q",
+    "house": "Bob the Minion, the group leader",
+    "character": "LUCY WILDE",
+    "seed": 3229144055
+  },
+  "hearts_K.png": {
+    "suit": "hearts",
+    "rank": "K",
+    "house": "Bob the Minion, the group leader",
+    "character": "GRU",
+    "seed": 179167785
+  },
+  "spades_A.png": {
+    "suit": "spades",
+    "rank": "A",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": "STUART",
+    "seed": 3680574309
+  },
+  "spades_3.png": {
+    "suit": "spades",
+    "rank": "3",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 2842600744
+  },
+  "spades_4.png": {
+    "suit": "spades",
+    "rank": "4",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 1356586250
+  },
+  "spades_5.png": {
+    "suit": "spades",
+    "rank": "5",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 383741281
+  },
+  "spades_6.png": {
+    "suit": "spades",
+    "rank": "6",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 2554518106
+  },
+  "spades_7.png": {
+    "suit": "spades",
+    "rank": "7",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 3106089805
+  },
+  "spades_8.png": {
+    "suit": "spades",
+    "rank": "8",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 2922493262
+  },
+  "spades_9.png": {
+    "suit": "spades",
+    "rank": "9",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 2579491891
+  },
+  "spades_10.png": {
+    "suit": "spades",
+    "rank": "10",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": null,
+    "seed": 1086348745
+  },
+  "spades_J.png": {
+    "suit": "spades",
+    "rank": "J",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": "VECTOR",
+    "seed": 2366069144
+  },
+  "spades_Q.png": {
+    "suit": "spades",
+    "rank": "Q",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": "SCARLET OVERKILL",
+    "seed": 4050599836
+  },
+  "spades_K.png": {
+    "suit": "spades",
+    "rank": "K",
+    "house": "Stuart the Minion, the spiky-haired rebel",
+    "character": "EL MACHO",
+    "seed": 226059883
+  },
+  "clubs_A.png": {
+    "suit": "clubs",
+    "rank": "A",
+    "house": "Karl the Minion, the muscle",
+    "character": "KARL",
+    "seed": 3558809067
+  },
+  "clubs_2.png": {
+    "suit": "clubs",
+    "rank": "2",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1706638161
+  },
+  "clubs_3.png": {
+    "suit": "clubs",
+    "rank": "3",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 2138163672
+  },
+  "clubs_4.png": {
+    "suit": "clubs",
+    "rank": "4",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 425634661
+  },
+  "clubs_5.png": {
+    "suit": "clubs",
+    "rank": "5",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1482224812
+  },
+  "clubs_6.png": {
+    "suit": "clubs",
+    "rank": "6",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1760585881
+  },
+  "clubs_7.png": {
+    "suit": "clubs",
+    "rank": "7",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1528052840
+  },
+  "clubs_8.png": {
+    "suit": "clubs",
+    "rank": "8",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 3032043762
+  },
+  "clubs_9.png": {
+    "suit": "clubs",
+    "rank": "9",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1692509266
+  },
+  "clubs_10.png": {
+    "suit": "clubs",
+    "rank": "10",
+    "house": "Karl the Minion, the muscle",
+    "character": null,
+    "seed": 1490831936
+  },
+  "clubs_J.png": {
+    "suit": "clubs",
+    "rank": "J",
+    "house": "Karl the Minion, the muscle",
+    "character": "DR. NEFARIO",
+    "seed": 244454375
+  },
+  "clubs_Q.png": {
+    "suit": "clubs",
+    "rank": "Q",
+    "house": "Karl the Minion, the muscle",
+    "character": "VELMA",
+    "seed": 2385623964
+  },
+  "clubs_K.png": {
+    "suit": "clubs",
+    "rank": "K",
+    "house": "Karl the Minion, the muscle",
+    "character": "BALTHRAK",
+    "seed": 563009502
+  },
+  "diamonds_A.png": {
+    "suit": "diamonds",
+    "rank": "A",
+    "house": "Speedy the Minion, the fastest",
+    "character": "SPEEDY",
+    "seed": 3730133091
+  },
+  "diamonds_2.png": {
+    "suit": "diamonds",
+    "rank": "2",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 672033789
+  },
+  "diamonds_3.png": {
+    "suit": "diamonds",
+    "rank": "3",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 3169053444
+  },
+  "diamonds_4.png": {
+    "suit": "diamonds",
+    "rank": "4",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 3675137941
+  },
+  "diamonds_5.png": {
+    "suit": "diamonds",
+    "rank": "5",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 1543167613
+  },
+  "diamonds_6.png": {
+    "suit": "diamonds",
+    "rank": "6",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 2608701102
+  },
+  "diamonds_7.png": {
+    "suit": "diamonds",
+    "rank": "7",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 742147417
+  },
+  "diamonds_8.png": {
+    "suit": "diamonds",
+    "rank": "8",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 3990332580
+  },
+  "diamonds_9.png": {
+    "suit": "diamonds",
+    "rank": "9",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 2680187015
+  },
+  "diamonds_10.png": {
+    "suit": "diamonds",
+    "rank": "10",
+    "house": "Speedy the Minion, the fastest",
+    "character": null,
+    "seed": 3785224570
+  },
+  "diamonds_J.png": {
+    "suit": "diamonds",
+    "rank": "J",
+    "house": "Speedy the Minion, the fastest",
+    "character": "AGNES",
+    "seed": 53061997
+  },
+  "diamonds_Q.png": {
+    "suit": "diamonds",
+    "rank": "Q",
+    "house": "Speedy the Minion, the fastest",
+    "character": "EDITH",
+    "seed": 216043720
+  },
+  "diamonds_K.png": {
+    "suit": "diamonds",
+    "rank": "K",
+    "house": "Speedy the Minion, the fastest",
+    "character": "MINION KING",
+    "seed": 3644707389
+  }
+}

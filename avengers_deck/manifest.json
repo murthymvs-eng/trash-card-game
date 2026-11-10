@@ -1,0 +1,366 @@
+{
+  "spades_K.png": {
+    "suit": "spades",
+    "rank": "K",
+    "house": "Thanos and the Dark Nemesis",
+    "character": "LOKI",
+    "seed": 3925249798
+  },
+  "clubs_7.png": {
+    "suit": "clubs",
+    "rank": "7",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 2286624543
+  },
+  "hearts_A.png": {
+    "suit": "hearts",
+    "rank": "A",
+    "house": "Captain America and the Classic Avengers",
+    "character": "CAPTAIN AMERICA",
+    "seed": 4093292675
+  },
+  "hearts_2.png": {
+    "suit": "hearts",
+    "rank": "2",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 421394288
+  },
+  "hearts_3.png": {
+    "suit": "hearts",
+    "rank": "3",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 2441997992
+  },
+  "hearts_4.png": {
+    "suit": "hearts",
+    "rank": "4",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 364621449
+  },
+  "hearts_5.png": {
+    "suit": "hearts",
+    "rank": "5",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 2493565365
+  },
+  "hearts_6.png": {
+    "suit": "hearts",
+    "rank": "6",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 2180913636
+  },
+  "hearts_7.png": {
+    "suit": "hearts",
+    "rank": "7",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 2820811420
+  },
+  "hearts_8.png": {
+    "suit": "hearts",
+    "rank": "8",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 1332899101
+  },
+  "hearts_9.png": {
+    "suit": "hearts",
+    "rank": "9",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 309983315
+  },
+  "hearts_10.png": {
+    "suit": "hearts",
+    "rank": "10",
+    "house": "Captain America and the Classic Avengers",
+    "character": null,
+    "seed": 1892401037
+  },
+  "hearts_J.png": {
+    "suit": "hearts",
+    "rank": "J",
+    "house": "Captain America and the Classic Avengers",
+    "character": "HAWKEYE",
+    "seed": 1906893019
+  },
+  "hearts_Q.png": {
+    "suit": "hearts",
+    "rank": "Q",
+    "house": "Captain America and the Classic Avengers",
+    "character": "BLACK WIDOW",
+    "seed": 2206812691
+  },
+  "hearts_K.png": {
+    "suit": "hearts",
+    "rank": "K",
+    "house": "Captain America and the Classic Avengers",
+    "character": "IRON MAN",
+    "seed": 2838833982
+  },
+  "spades_A.png": {
+    "suit": "spades",
+    "rank": "A",
+    "house": "Thanos and the Dark Nemesis",
+    "character": "THANOS",
+    "seed": 1778411658
+  },
+  "spades_2.png": {
+    "suit": "spades",
+    "rank": "2",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 1977663210
+  },
+  "spades_3.png": {
+    "suit": "spades",
+    "rank": "3",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 755679889
+  },
+  "spades_4.png": {
+    "suit": "spades",
+    "rank": "4",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 558762343
+  },
+  "spades_5.png": {
+    "suit": "spades",
+    "rank": "5",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 1484488918
+  },
+  "spades_6.png": {
+    "suit": "spades",
+    "rank": "6",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 645330974
+  },
+  "spades_7.png": {
+    "suit": "spades",
+    "rank": "7",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 3023250529
+  },
+  "spades_8.png": {
+    "suit": "spades",
+    "rank": "8",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 2453220553
+  },
+  "spades_9.png": {
+    "suit": "spades",
+    "rank": "9",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 2218676279
+  },
+  "spades_10.png": {
+    "suit": "spades",
+    "rank": "10",
+    "house": "Thanos and the Dark Nemesis",
+    "character": null,
+    "seed": 4247319327
+  },
+  "spades_J.png": {
+    "suit": "spades",
+    "rank": "J",
+    "house": "Thanos and the Dark Nemesis",
+    "character": "ULTRON",
+    "seed": 3424453882
+  },
+  "spades_Q.png": {
+    "suit": "spades",
+    "rank": "Q",
+    "house": "Thanos and the Dark Nemesis",
+    "character": "HELA",
+    "seed": 2563464626
+  },
+  "clubs_A.png": {
+    "suit": "clubs",
+    "rank": "A",
+    "house": "the Guardians of the Galaxy",
+    "character": "STAR LORD",
+    "seed": 1060006044
+  },
+  "clubs_2.png": {
+    "suit": "clubs",
+    "rank": "2",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 1626260682
+  },
+  "clubs_3.png": {
+    "suit": "clubs",
+    "rank": "3",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 3091114161
+  },
+  "clubs_4.png": {
+    "suit": "clubs",
+    "rank": "4",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 2595899843
+  },
+  "clubs_5.png": {
+    "suit": "clubs",
+    "rank": "5",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 568368844
+  },
+  "clubs_6.png": {
+    "suit": "clubs",
+    "rank": "6",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 3732726588
+  },
+  "clubs_8.png": {
+    "suit": "clubs",
+    "rank": "8",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 776418855
+  },
+  "clubs_9.png": {
+    "suit": "clubs",
+    "rank": "9",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 2499672467
+  },
+  "clubs_10.png": {
+    "suit": "clubs",
+    "rank": "10",
+    "house": "the Guardians of the Galaxy",
+    "character": null,
+    "seed": 61462326
+  },
+  "clubs_J.png": {
+    "suit": "clubs",
+    "rank": "J",
+    "house": "the Guardians of the Galaxy",
+    "character": "ROCKET RACCOON",
+    "seed": 1315008872
+  },
+  "clubs_Q.png": {
+    "suit": "clubs",
+    "rank": "Q",
+    "house": "the Guardians of the Galaxy",
+    "character": "GAMORA",
+    "seed": 414329411
+  },
+  "clubs_K.png": {
+    "suit": "clubs",
+    "rank": "K",
+    "house": "the Guardians of the Galaxy",
+    "character": "GROOT",
+    "seed": 1909148268
+  },
+  "diamonds_A.png": {
+    "suit": "diamonds",
+    "rank": "A",
+    "house": "the Mystic Sorcerers",
+    "character": "DOCTOR STRANGE",
+    "seed": 4237355340
+  },
+  "diamonds_2.png": {
+    "suit": "diamonds",
+    "rank": "2",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 3476443778
+  },
+  "diamonds_3.png": {
+    "suit": "diamonds",
+    "rank": "3",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 994487515
+  },
+  "diamonds_4.png": {
+    "suit": "diamonds",
+    "rank": "4",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 1260551105
+  },
+  "diamonds_5.png": {
+    "suit": "diamonds",
+    "rank": "5",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 2962764457
+  },
+  "diamonds_6.png": {
+    "suit": "diamonds",
+    "rank": "6",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 4215324118
+  },
+  "diamonds_7.png": {
+    "suit": "diamonds",
+    "rank": "7",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 3360942586
+  },
+  "diamonds_8.png": {
+    "suit": "diamonds",
+    "rank": "8",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 1481528890
+  },
+  "diamonds_9.png": {
+    "suit": "diamonds",
+    "rank": "9",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 2471674660
+  },
+  "diamonds_10.png": {
+    "suit": "diamonds",
+    "rank": "10",
+    "house": "the Mystic Sorcerers",
+    "character": null,
+    "seed": 300960892
+  },
+  "diamonds_J.png": {
+    "suit": "diamonds",
+    "rank": "J",
+    "house": "the Mystic Sorcerers",
+    "character": "VISION",
+    "seed": 2725446513
+  },
+  "diamonds_Q.png": {
+    "suit": "diamonds",
+    "rank": "Q",
+    "house": "the Mystic Sorcerers",
+    "character": "SCARLET WITCH",
+    "seed": 1041985556
+  },
+  "diamonds_K.png": {
+    "suit": "diamonds",
+    "rank": "K",
+    "house": "the Mystic Sorcerers",
+    "character": "WONG",
+    "seed": 3674397191
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "hearts_K.png": {
+    "suit": "hearts",
+    "rank": "K",
+    "house": "Gryffindor",
+    "character": "ALBUS DUMBLEDORE",
+    "seed": 4195318506
+  },
+  "hearts_A.png": {
+    "suit": "hearts",
+    "rank": "A",
+    "house": "Gryffindor",
+    "character": "GODRIC GRYFFINDOR",
+    "seed": 3322067981
+  },
+  "hearts_2.png": {
+    "suit": "hearts",
+    "rank": "2",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 2132353923
+  },
+  "hearts_3.png": {
+    "suit": "hearts",
+    "rank": "3",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 1187085371
+  },
+  "hearts_4.png": {
+    "suit": "hearts",
+    "rank": "4",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 3920037619
+  },
+  "hearts_5.png": {
+    "suit": "hearts",
+    "rank": "5",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 4175459135
+  },
+  "hearts_6.png": {
+    "suit": "hearts",
+    "rank": "6",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 3333626799
+  },
+  "hearts_7.png": {
+    "suit": "hearts",
+    "rank": "7",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 4285182205
+  },
+  "hearts_8.png": {
+    "suit": "hearts",
+    "rank": "8",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 709636181
+  },
+  "hearts_9.png": {
+    "suit": "hearts",
+    "rank": "9",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 2967321195
+  },
+  "hearts_10.png": {
+    "suit": "hearts",
+    "rank": "10",
+    "house": "Gryffindor",
+    "character": null,
+    "seed": 3890854976
+  },
+  "hearts_J.png": {
+    "suit": "hearts",
+    "rank": "J",
+    "house": "Gryffindor",
+    "character": "HARRY POTTER",
+    "seed": 101664980
+  },
+  "spades_A.png": {
+    "suit": "spades",
+    "rank": "A",
+    "house": "Slytherin",
+    "character": "SALAZAR SLYTHERIN",
+    "seed": 3869443933
+  },
+  "spades_2.png": {
+    "suit": "spades",
+    "rank": "2",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 941573222
+  },
+  "spades_3.png": {
+    "suit": "spades",
+    "rank": "3",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 917427826
+  },
+  "spades_4.png": {
+    "suit": "spades",
+    "rank": "4",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 1529161309
+  },
+  "spades_5.png": {
+    "suit": "spades",
+    "rank": "5",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 1889757089
+  },
+  "spades_6.png": {
+    "suit": "spades",
+    "rank": "6",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 3240210663
+  },
+  "spades_7.png": {
+    "suit": "spades",
+    "rank": "7",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 1575555056
+  },
+  "spades_8.png": {
+    "suit": "spades",
+    "rank": "8",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 1106581733
+  },
+  "spades_9.png": {
+    "suit": "spades",
+    "rank": "9",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 973537867
+  },
+  "spades_10.png": {
+    "suit": "spades",
+    "rank": "10",
+    "house": "Slytherin",
+    "character": null,
+    "seed": 512346135
+  },
+  "spades_J.png": {
+    "suit": "spades",
+    "rank": "J",
+    "house": "Slytherin",
+    "character": "DRAKO MALFOY",
+    "seed": 96509420
+  },
+  "spades_Q.png": {
+    "suit": "spades",
+    "rank": "Q",
+    "house": "Slytherin",
+    "character": "BELLATRIX LESTRANGE",
+    "seed": 333268852
+  },
+  "spades_K.png": {
+    "suit": "spades",
+    "rank": "K",
+    "house": "Slytherin",
+    "character": "VOLDEMORT",
+    "seed": 1269618273
+  },
+  "clubs_A.png": {
+    "suit": "clubs",
+    "rank": "A",
+    "house": "Ravenclaw",
+    "character": "ROWENA RAVENCLAW",
+    "seed": 3962160826
+  },
+  "clubs_2.png": {
+    "suit": "clubs",
+    "rank": "2",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 3154142107
+  },
+  "clubs_3.png": {
+    "suit": "clubs",
+    "rank": "3",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 3316710445
+  },
+  "clubs_4.png": {
+    "suit": "clubs",
+    "rank": "4",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 806385516
+  },
+  "clubs_5.png": {
+    "suit": "clubs",
+    "rank": "5",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 4281315266
+  },
+  "clubs_6.png": {
+    "suit": "clubs",
+    "rank": "6",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 4489207
+  },
+  "clubs_7.png": {
+    "suit": "clubs",
+    "rank": "7",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 2091203955
+  },
+  "clubs_8.png": {
+    "suit": "clubs",
+    "rank": "8",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 1950339442
+  },
+  "clubs_9.png": {
+    "suit": "clubs",
+    "rank": "9",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 3270517072
+  },
+  "clubs_10.png": {
+    "suit": "clubs",
+    "rank": "10",
+    "house": "Ravenclaw",
+    "character": null,
+    "seed": 1378993676
+  },
+  "clubs_J.png": {
+    "suit": "clubs",
+    "rank": "J",
+    "house": "Ravenclaw",
+    "character": "LUNA LOVEGOOD",
+    "seed": 716948715
+  },
+  "clubs_Q.png": {
+    "suit": "clubs",
+    "rank": "Q",
+    "house": "Ravenclaw",
+    "character": "CHO CHANG",
+    "seed": 2606973386
+  },
+  "clubs_K.png": {
+    "suit": "clubs",
+    "rank": "K",
+    "house": "Ravenclaw",
+    "character": "GILDEROY LOCKHART",
+    "seed": 1614651251
+  },
+  "diamonds_A.png": {
+    "suit": "diamonds",
+    "rank": "A",
+    "house": "Hufflepuff",
+    "character": "HELG HUFFLEPUFF",
+    "seed": 3918600628
+  },
+  "diamonds_2.png": {
+    "suit": "diamonds",
+    "rank": "2",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 1975418645
+  },
+  "diamonds_3.png": {
+    "suit": "diamonds",
+    "rank": "3",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 3686072908
+  },
+  "diamonds_4.png": {
+    "suit": "diamonds",
+    "rank": "4",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 131607822
+  },
+  "diamonds_5.png": {
+    "suit": "diamonds",
+    "rank": "5",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 3631463217
+  },
+  "diamonds_6.png": {
+    "suit": "diamonds",
+    "rank": "6",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 2536844160
+  },
+  "diamonds_7.png": {
+    "suit": "diamonds",
+    "rank": "7",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 3208247180
+  },
+  "diamonds_8.png": {
+    "suit": "diamonds",
+    "rank": "8",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 1919503512
+  },
+  "diamonds_9.png": {
+    "suit": "diamonds",
+    "rank": "9",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 2278608919
+  },
+  "diamonds_10.png": {
+    "suit": "diamonds",
+    "rank": "10",
+    "house": "Hufflepuff",
+    "character": null,
+    "seed": 1668104810
+  },
+  "diamonds_J.png": {
+    "suit": "diamonds",
+    "rank": "J",
+    "house": "Hufflepuff",
+    "character": "NEWT SCAMANDER",
+    "seed": 2499872711
+  },
+  "diamonds_Q.png": {
+    "suit": "diamonds",
+    "rank": "Q",
+    "house": "Hufflepuff",
+    "character": "NYMPHADORA TONKS",
+    "seed": 1503227136
+  },
+  "diamonds_K.png": {
+    "suit": "diamonds",
+    "rank": "K",
+    "house": "Hufflepuff",
+    "character": "CEDRIC DIGGORY",
+    "seed": 3253883684
+  },
+  "hearts_Q.png": {
+    "suit": "hearts",
+    "rank": "Q",
+    "house": "Gryffindor",
+    "character": "MINERVA MCGONAGALL",
+    "seed": 1052090668
+  }
+}

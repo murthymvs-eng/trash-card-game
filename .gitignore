@@ -1,6 +1,10 @@
 .DS_Store
 
-# Source artwork for the new art decks — the optimized .jpg card faces are committed
-coco_deck/*.png
-spiderman_deck/*.png
-princess_deck/*.png
+# Source artwork for the art decks — the optimized .jpg card faces are committed.
+# The 1500x2100 PNG originals stay on disk but are never pushed (see
+# DECK_OPTIMIZATION.md). Regenerate the JPEGs with:
+#   python3 _optimize_decks.py --jpg
+*_deck/*.png
+
+# Screen recording (local only)
+Screen Recording *.mov

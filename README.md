@@ -49,6 +49,15 @@ Card backs stay SVG (the decks ship faces only). The Spider-Man, Coco and Prince
 shipped as optimized JPEG card faces (~130 KB each, 400 px wide) to keep the repository small;
 the original PNG artwork is kept out of git via `.gitignore`.
 
+### Theme backgrounds
+
+Each theme also ships a full-bleed environment photo — `bg/<themeId>.jpg`, 1600×896 JPEG q82,
+AI-generated via ComfyUI (Qwen-Image 2.1 Turbo). See `BACKGROUNDS.md` for the prompt set, seeds
+and the legibility spec. A fixed scrim plus a blurred, darkened copy of the art masked over the
+card zone keeps the middle calm while edges stay alive, and the felt/slot/accent colours re-tint
+per theme. A missing file silently falls back to the theme's felt gradient — themes ship
+independently.
+
 ## Tech
 
 Vanilla HTML/CSS/JS in one file — pointer-based drag & drop, a shared face-up discard pile,

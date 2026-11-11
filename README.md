@@ -45,9 +45,11 @@ deck alongside `index.html`:
 | Coco          | `coco_deck/`               | JPG |
 | Princess      | `princess_deck/`           | JPG |
 
-Card backs stay SVG (the decks ship faces only). The Spider-Man, Coco and Princess decks are
-shipped as optimized JPEG card faces (~130 KB each, 400 px wide) to keep the repository small;
-the original PNG artwork is kept out of git via `.gitignore`.
+Card backs are **AI-generated per theme** — `backs/<themeId>.jpg` (343×480 JPEG, ~80 KB each) — with
+the original hand-drawn SVG backs kept as an automatic fallback if a file is missing, so a deck is
+never broken. The Spider-Man, Coco and Princess decks are shipped as optimized JPEG card faces
+(~130 KB each, 400 px wide) to keep the repository small; the original PNG artwork is kept out of
+git via `.gitignore`.
 
 ### Theme backgrounds
 

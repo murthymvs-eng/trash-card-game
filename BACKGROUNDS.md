@@ -80,3 +80,56 @@ gates PASS; card-vs-background contrast ≈ 8.5:1.
 
 Raw-art failures of gates 2–4 are acceptable (CSS compensates); raw gate-1 failures
 (bright hot spots the veil can't tame) get one seed re-roll (+1).
+
+---
+
+# Card backs (`backs/`)
+
+One back per theme, 5:7 portrait, AI-generated with the same server and seed family as the
+backgrounds (seed **4242**, so the back art reads as a separate series).
+
+```
+--width 640 --height 896 --seed 4242 --steps 8 --cfg 1.0
+--negative-prompt "text, letters, numbers, watermark, logo, signature, hands, people, faces,
+blurry, lowres, jpeg artifacts, tilted, angled, perspective, asymmetric, off-center, cluttered,
+harsh shadows"
+```
+
+Prompt suffix (identical for all 13):
+
+```
+<scene>, playing card back design, flat front facing view, vertical mirror symmetry,
+ornate rectangular border frame, centered emblem, repeating pattern,
+no text, no letters, no numbers, highly detailed, crisp illustration
+```
+
+| Theme | Scene |
+|---|---|
+| classic | green & gold damask, baroque scrollwork, gold rosette medallion |
+| animal | pastel woodland, leaves & mushrooms, paw-print medallion |
+| minion | yellow/steel-blue industrial, hazard stripes, goggle-lens emblem |
+| fairy | lavender & gold garden, gilded vines, fireflies, crescent medallion |
+| neon | magenta/cyan holo circuit grid, hexagon chip emblem |
+| wood | sepia/indigo woodblock, seigaiha waves, ink-wash mountains, red sun disc |
+| hp | oxblood & gold gothic leather, gold filigree, owl & starry circle |
+| avengers | crimson & gold hex-tech lattice, triangular arc-reactor emblem |
+| starwars | deep blue & amber chrome panels, twin-sun emblem |
+| spiderman | navy & crimson, full radial web, spider emblem |
+| coco | marigold & magenta papel picado, sugar-skull medallion |
+| princess | rose & gold castle filigree, crown & rose medallion |
+| taylor | pink & gold glitter, confetti, stage beams, starburst emblem |
+
+Shipped at **343×480 JPEG q80** (56–130 KB each, 1.1 MB total) — ~4× the largest on-screen
+render, so no visible softness. Re-encode with `sips -Z 480 -s format jpeg -s formatOptions 80`.
+
+**Wiring + fallback.** `THEMES[id].back()` now returns an `<img class="face-svg cardimg">`; the
+previous hand-drawn SVG is kept as `THEMES[id]._backFallback` and is swapped in by `backFail()`
+if the JPG is missing or fails to load (verified by blocking the request — the legacy SVG
+renders instead). Deck piles, the hand and the review sheet all use the same path.
+
+**Validation.** Mirror-symmetry score 0.70–0.88 across the set (no asymmetric outliers); every
+back has a legible central emblem (center stdev 0.09–0.33); all 13 load in-game and in
+`_theme_review.html`; the deck pile re-renders on theme switch.
+
+> Gotcha: ComfyUI names outputs `<prefix>_<counter>_.png` with a **server-global** counter — never
+> assume `_00001_`; pick the newest matching file (`ls -t <prefix>_*.png | head -1`).

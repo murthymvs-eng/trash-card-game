@@ -671,6 +671,16 @@ const THEMES={
   princess:imgTheme('princess_deck','Princess','Once Upon a Time',backPrincess,'jpg'),
   taylor:imgTheme('taylor_swift_tours_deck','Taylor Swift','The Eras Tour',backTS)
 };
+// ---- AI-generated card backs (backs/<id>.jpg) ----
+// Each theme keeps its hand-drawn SVG back as a fallback: if the JPG is missing the
+// <img> swaps itself for the legacy SVG, so a deck is never broken by a missing file.
+function backFail(el,id){var t=THEMES[id];el.outerHTML=(t&&t._backFallback)?t._backFallback():backClassic();}
+window.backFail=backFail;
+Object.keys(THEMES).forEach(function(id){
+  var legacy=THEMES[id].back;
+  THEMES[id]._backFallback=legacy;
+  THEMES[id].back=function(){return '<img class="face-svg cardimg" src="backs/'+id+'.jpg" alt="" draggable="false" onerror="backFail(this,\''+id+'\')">';};
+});
 // ---- Per-theme environment: background art + UI palette ----
 // bg: path under bg/ (missing file => falls back to the felt gradient).
 // felt/slot/accent recolour the chrome so each theme reads as one piece.

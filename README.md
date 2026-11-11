@@ -34,22 +34,26 @@ all laid on a green felt table with lighting and texture.
 Eight themes use full **art decks** instead — 52 generated card faces each (5:7), one folder per
 deck alongside `index.html`:
 
-| Theme         | Deck folder                | Format |
-|---------------|----------------------------|--------|
-| Minions       | `minion_deck/`             | PNG |
-| Harry Potter  | `hp_card_deck/`            | PNG |
-| Marvel Avengers | `avengers_deck/`         | PNG |
-| Star Wars     | `starwars_deck/`           | PNG |
-| Taylor Swift  | `taylor_swift_tours_deck/` | PNG |
-| Spider-Man    | `spiderman_deck/`          | JPG |
-| Coco          | `coco_deck/`               | JPG |
-| Princess      | `princess_deck/`           | JPG |
+| Theme         | Deck folder                |
+|---------------|----------------------------|
+| Minions       | `minion_deck/`             |
+| Harry Potter  | `hp_card_deck/`            |
+| Marvel Avengers | `avengers_deck/`         |
+| Star Wars     | `starwars_deck/`           |
+| Taylor Swift  | `taylor_swift_tours_deck/` |
+| Spider-Man    | `spiderman_deck/`          |
+| Coco          | `coco_deck/`               |
+| Princess      | `princess_deck/`           |
+
+Every deck ships **400 px-wide JPEG card faces (49–137 KB each)** — the display renders a card at
+most ~90 CSS px wide, so 400 px is roughly 2× headroom at 2× DPR. The original 1500×2100 PNG
+artwork stays on disk but is kept out of git (`.gitignore`); regenerate the JPEGs with
+`python3 _optimize_decks.py --jpg`. This took the tracked art from **1.7 GB to 15 MB**.
+See `DECK_OPTIMIZATION.md` for the full measurements and rationale.
 
 Card backs are **AI-generated per theme** — `backs/<themeId>.jpg` (343×480 JPEG, ~80 KB each) — with
 the original hand-drawn SVG backs kept as an automatic fallback if a file is missing, so a deck is
-never broken. The Spider-Man, Coco and Princess decks are shipped as optimized JPEG card faces
-(~130 KB each, 400 px wide) to keep the repository small; the original PNG artwork is kept out of
-git via `.gitignore`.
+never broken.
 
 ### Theme backgrounds
 

@@ -3,6 +3,8 @@
 Goal: get the eight art decks to load fast over the web without visible
 quality loss, and stop paying for ~1.7 GB of print-resolution PNGs in the repo.
 
+**Status: DONE (2026-11-10).** Results are recorded at the bottom of this file.
+
 ## Current state (measured 2026-11-10)
 
 | Deck | Faces | Format | On disk | Tracked in git |
@@ -139,3 +141,85 @@ heaviest single moment in the app. After Phase 1 this drops from ~7 MB each to
   initial paint only fetches the cards actually on screen.
 
 converted.
+
+## What was actually done
+
+### Phase 1 — Convert the five PNG decks ✅
+
+All five decks converted to **400 px wide progressive JPEG q80**, matching the
+contract `coco`/`princess`/`spiderman` already used:
+
+| Deck | PNG before | JPEG after |
+|---|---|---|
+| `avengers_deck` | 355.9 MB | 3.09 MB (58 KB/card) |
+| `hp_card_deck` | 331.3 MB | 2.84 MB (53 KB/card) |
+| `minion_deck` | 312.5 MB | 2.61 MB (49 KB/card) |
+| `starwars_deck` | 328.6 MB | 2.78 MB (52 KB/card) |
+| `taylor_swift_tours_deck` | 371.3 MB | 3.47 MB (65 KB/card) |
+| **Total** | **1,699.5 MB** | **14.79 MB** |
+
+`.gitignore` now excludes `*_deck/*.png` for every deck (not just three), and
+the source PNGs stay on disk so the art can still be re-exported at any size.
+`_optimize_decks.py` regenerates the JPEGs in ~10 s per deck (8-way parallel).
+
+### Phase 2 — Reclaim history ✅
+
+```
+git filter-repo --path-glob '*_deck/*.png' --path-glob '*.mov' --invert-paths --force
+git push --force origin main
+```
+
+- Local `.git`: **1.8 GB → 37 MB** (single pack, 585 objects).
+- All 22 commits preserved (hashes rewritten), working tree untouched.
+- The 58 MB `.mov` was dropped from history as well.
+- Remote `main` now points at `c33f6bc`; GitHub Pages rebuilt automatically.
+- The old PNG paths now return **404** on the live site.
+
+### Phase 3 — Runtime load burst ✅
+
+- `imgFace()` now emits `decoding="async"`.
+- Theme-picker preview faces are `loading="lazy"`, so opening Settings no
+  longer fires every deck's images at once — the grid issues **8 card requests
+  instead of 16**, and only for the visible row.
+- `imgTheme()` default extension changed `png` → `jpg` (the three decks that
+  already passed `'jpg'` are unaffected).
+
+### Verification
+
+- All 8 decks resolve to 400 px faces, **zero broken images** (checked locally
+  and on the live site).
+- Full 1-player game played to completion on the deployed site — 19 slots
+  filled, 25/25 card images loaded, all `.jpg`, no `.png` requests.
+- Live sizes per card face: minion 49 KB, hp 69 KB, avengers 71 KB,
+  starwars 68 KB, taylor 65 KB, princess 118 KB, coco 135 KB, spiderman 137 KB.
+- The theme contact sheet (`_theme_review.html`) renders all 13 ranks of all
+  8 decks over their own backgrounds — no visible downscale artifacts.
+
+### Still available (optional, not done)
+
+- **WebP/AVIF via `<picture>`**: AVIF is 40 KB vs JPEG 61 KB, so ~35% off the
+  remaining 14.8 MB. Needs Pillow (`pip3 install --user pillow`) — `sips` on
+  this machine cannot write WebP (`Error 13`).
+- **Sprite sheet per deck**: one WebP atlas per deck (13 ranks × 4 suits) plus
+  a JSON index — `minion_deck` atlas is **2.15 MB in a single request** vs 52
+  files. Cuts request count 52 → 1 per deck.
+- **srcset at 1×/2×** so 400 px is served deliberately rather than by
+  assumption.
+- `bg/` (3.4 MB) and `backs/` (1.1 MB) are fine as-is.
+
+## Notes / risks
+
+- `sips` on this machine cannot write WebP (`Error 13`) — WebP/AVIF encoding
+  must go through Pillow (`pip3 install --user pillow`; Pillow here has both
+  WebP and AVIF support). Pillow is not currently a declared dependency, so
+  the shipped JPEGs use `sips`/Pillow only as a build-time tool with no runtime
+  dependency.
+- The three pre-existing JPEG decks were exported from *different* source art
+  than the five converted decks, so the five converted decks match them in
+  resolution but not necessarily in JPEG quantization quality. Matching exactly
+  would mean re-encoding the three shipped decks too — optional.
+- The history rewrite means **every existing clone must be re-cloned**; the old
+  commit hashes are gone.
+- A stray broken ref `.git/refs/heads/main 2` (from a Finder copy) was removed;
+  it made `git show-ref` and `git rev-list --all` error out.
+- The `.mov` screen recording is no longer tracked but still on disk locally.

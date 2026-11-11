@@ -1,0 +1,366 @@
+{
+ "clubs_10.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "10",
+  "seed": 3535781443,
+  "suit": "clubs"
+ },
+ "clubs_2.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "2",
+  "seed": 3021909033,
+  "suit": "clubs"
+ },
+ "clubs_3.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "3",
+  "seed": 906488406,
+  "suit": "clubs"
+ },
+ "clubs_4.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "4",
+  "seed": 1940519399,
+  "suit": "clubs"
+ },
+ "clubs_5.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "5",
+  "seed": 2576785688,
+  "suit": "clubs"
+ },
+ "clubs_6.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "6",
+  "seed": 3653730291,
+  "suit": "clubs"
+ },
+ "clubs_7.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "7",
+  "seed": 2314818325,
+  "suit": "clubs"
+ },
+ "clubs_8.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "8",
+  "seed": 3605108754,
+  "suit": "clubs"
+ },
+ "clubs_9.jpg": {
+  "character": null,
+  "house": "the nature and animal lovers",
+  "rank": "9",
+  "seed": 39413771,
+  "suit": "clubs"
+ },
+ "clubs_A.jpg": {
+  "character": "BELLE",
+  "house": "the nature and animal lovers",
+  "rank": "A",
+  "seed": 810379725,
+  "suit": "clubs"
+ },
+ "clubs_J.jpg": {
+  "character": "PRINCE",
+  "house": "the nature and animal lovers",
+  "rank": "J",
+  "seed": 969265335,
+  "suit": "clubs"
+ },
+ "clubs_K.jpg": {
+  "character": "ARIEL",
+  "house": "the nature and animal lovers",
+  "rank": "K",
+  "seed": 396634485,
+  "suit": "clubs"
+ },
+ "clubs_Q.jpg": {
+  "character": "TIANA",
+  "house": "the nature and animal lovers",
+  "rank": "Q",
+  "seed": 3251948256,
+  "suit": "clubs"
+ },
+ "diamonds_10.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "10",
+  "seed": 664355368,
+  "suit": "diamonds"
+ },
+ "diamonds_2.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "2",
+  "seed": 1612348660,
+  "suit": "diamonds"
+ },
+ "diamonds_3.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "3",
+  "seed": 3403293671,
+  "suit": "diamonds"
+ },
+ "diamonds_4.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "4",
+  "seed": 953174584,
+  "suit": "diamonds"
+ },
+ "diamonds_5.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "5",
+  "seed": 852330625,
+  "suit": "diamonds"
+ },
+ "diamonds_6.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "6",
+  "seed": 1708209432,
+  "suit": "diamonds"
+ },
+ "diamonds_7.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "7",
+  "seed": 486578563,
+  "suit": "diamonds"
+ },
+ "diamonds_8.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "8",
+  "seed": 33330255,
+  "suit": "diamonds"
+ },
+ "diamonds_9.jpg": {
+  "character": null,
+  "house": "the magic and modern princesses",
+  "rank": "9",
+  "seed": 63016033,
+  "suit": "diamonds"
+ },
+ "diamonds_A.jpg": {
+  "character": "RAPUNZEL",
+  "house": "the magic and modern princesses",
+  "rank": "A",
+  "seed": 1077587146,
+  "suit": "diamonds"
+ },
+ "diamonds_J.jpg": {
+  "character": "RAYA",
+  "house": "the magic and modern princesses",
+  "rank": "J",
+  "seed": 1613366452,
+  "suit": "diamonds"
+ },
+ "diamonds_K.jpg": {
+  "character": "ELSA",
+  "house": "the magic and modern princesses",
+  "rank": "K",
+  "seed": 2926886299,
+  "suit": "diamonds"
+ },
+ "diamonds_Q.jpg": {
+  "character": "ANNA",
+  "house": "the magic and modern princesses",
+  "rank": "Q",
+  "seed": 2635586725,
+  "suit": "diamonds"
+ },
+ "hearts_10.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "10",
+  "seed": 2172037218,
+  "suit": "hearts"
+ },
+ "hearts_2.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "2",
+  "seed": 1336643496,
+  "suit": "hearts"
+ },
+ "hearts_3.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "3",
+  "seed": 1622008304,
+  "suit": "hearts"
+ },
+ "hearts_4.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "4",
+  "seed": 3306426981,
+  "suit": "hearts"
+ },
+ "hearts_5.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "5",
+  "seed": 621506662,
+  "suit": "hearts"
+ },
+ "hearts_6.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "6",
+  "seed": 3581063158,
+  "suit": "hearts"
+ },
+ "hearts_7.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "7",
+  "seed": 3324129516,
+  "suit": "hearts"
+ },
+ "hearts_8.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "8",
+  "seed": 1337268090,
+  "suit": "hearts"
+ },
+ "hearts_9.jpg": {
+  "character": null,
+  "house": "the classic original princesses",
+  "rank": "9",
+  "seed": 3222943596,
+  "suit": "hearts"
+ },
+ "hearts_A.jpg": {
+  "character": "SNOW WHITE",
+  "house": "the classic original princesses",
+  "rank": "A",
+  "seed": 2093909560,
+  "suit": "hearts"
+ },
+ "hearts_J.jpg": {
+  "character": "PRINCE",
+  "house": "the classic original princesses",
+  "rank": "J",
+  "seed": 2929256421,
+  "suit": "hearts"
+ },
+ "hearts_K.jpg": {
+  "character": "CINDERELLA",
+  "house": "the classic original princesses",
+  "rank": "K",
+  "seed": 940977886,
+  "suit": "hearts"
+ },
+ "hearts_Q.jpg": {
+  "character": "AURORA",
+  "house": "the classic original princesses",
+  "rank": "Q",
+  "seed": 1555849827,
+  "suit": "hearts"
+ },
+ "spades_10.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "10",
+  "seed": 1825138192,
+  "suit": "spades"
+ },
+ "spades_2.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "2",
+  "seed": 3750569775,
+  "suit": "spades"
+ },
+ "spades_3.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "3",
+  "seed": 1016737578,
+  "suit": "spades"
+ },
+ "spades_4.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "4",
+  "seed": 2800933526,
+  "suit": "spades"
+ },
+ "spades_5.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "5",
+  "seed": 60635610,
+  "suit": "spades"
+ },
+ "spades_6.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "6",
+  "seed": 1101495433,
+  "suit": "spades"
+ },
+ "spades_7.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "7",
+  "seed": 1192036058,
+  "suit": "spades"
+ },
+ "spades_8.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "8",
+  "seed": 3446827740,
+  "suit": "spades"
+ },
+ "spades_9.jpg": {
+  "character": null,
+  "house": "the brave adventurers",
+  "rank": "9",
+  "seed": 1724999592,
+  "suit": "spades"
+ },
+ "spades_A.jpg": {
+  "character": "MULAN",
+  "house": "the brave adventurers",
+  "rank": "A",
+  "seed": 218044768,
+  "suit": "spades"
+ },
+ "spades_J.jpg": {
+  "character": "PRINCE",
+  "house": "the brave adventurers",
+  "rank": "J",
+  "seed": 2219789739,
+  "suit": "spades"
+ },
+ "spades_K.jpg": {
+  "character": "MERIDA",
+  "house": "the brave adventurers",
+  "rank": "K",
+  "seed": 629606355,
+  "suit": "spades"
+ },
+ "spades_Q.jpg": {
+  "character": "MOANA",
+  "house": "the brave adventurers",
+  "rank": "Q",
+  "seed": 3621344256,
+  "suit": "spades"
+ }
+}

@@ -1,0 +1,366 @@
+{
+ "clubs_10.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "10",
+  "seed": 2277192599,
+  "suit": "clubs"
+ },
+ "clubs_2.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "2",
+  "seed": 1361794768,
+  "suit": "clubs"
+ },
+ "clubs_3.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "3",
+  "seed": 798897532,
+  "suit": "clubs"
+ },
+ "clubs_4.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "4",
+  "seed": 323138929,
+  "suit": "clubs"
+ },
+ "clubs_5.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "5",
+  "seed": 661935658,
+  "suit": "clubs"
+ },
+ "clubs_6.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "6",
+  "seed": 2705073249,
+  "suit": "clubs"
+ },
+ "clubs_7.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "7",
+  "seed": 2551703214,
+  "suit": "clubs"
+ },
+ "clubs_8.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "8",
+  "seed": 3942430614,
+  "suit": "clubs"
+ },
+ "clubs_9.jpg": {
+  "character": null,
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "9",
+  "seed": 4047895007,
+  "suit": "clubs"
+ },
+ "clubs_A.jpg": {
+  "character": "PETER PARKER",
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "A",
+  "seed": 1445050322,
+  "suit": "clubs"
+ },
+ "clubs_J.jpg": {
+  "character": "HARRY OSBORN",
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "J",
+  "seed": 2773515684,
+  "suit": "clubs"
+ },
+ "clubs_K.jpg": {
+  "character": "THE BROKER",
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "K",
+  "seed": 2191628542,
+  "suit": "clubs"
+ },
+ "clubs_Q.jpg": {
+  "character": "MAY PARKER",
+  "house": "Spider-Man: Brand New Day (2026), a grounded street-level New York the world forgot",
+  "rank": "Q",
+  "seed": 524990409,
+  "suit": "clubs"
+ },
+ "diamonds_10.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "10",
+  "seed": 1212518933,
+  "suit": "diamonds"
+ },
+ "diamonds_2.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "2",
+  "seed": 3686831252,
+  "suit": "diamonds"
+ },
+ "diamonds_3.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "3",
+  "seed": 1027735956,
+  "suit": "diamonds"
+ },
+ "diamonds_4.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "4",
+  "seed": 3202832894,
+  "suit": "diamonds"
+ },
+ "diamonds_5.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "5",
+  "seed": 4269560811,
+  "suit": "diamonds"
+ },
+ "diamonds_6.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "6",
+  "seed": 3785862298,
+  "suit": "diamonds"
+ },
+ "diamonds_7.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "7",
+  "seed": 896418018,
+  "suit": "diamonds"
+ },
+ "diamonds_8.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "8",
+  "seed": 3968926099,
+  "suit": "diamonds"
+ },
+ "diamonds_9.jpg": {
+  "character": null,
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "9",
+  "seed": 574235169,
+  "suit": "diamonds"
+ },
+ "diamonds_A.jpg": {
+  "character": "PETER PARKER",
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "A",
+  "seed": 1639914310,
+  "suit": "diamonds"
+ },
+ "diamonds_J.jpg": {
+  "character": "GREEN GOBLIN",
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "J",
+  "seed": 3558102998,
+  "suit": "diamonds"
+ },
+ "diamonds_K.jpg": {
+  "character": "DOCTOR OCTOPUS",
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "K",
+  "seed": 331056760,
+  "suit": "diamonds"
+ },
+ "diamonds_Q.jpg": {
+  "character": "MARY JANE WATSON",
+  "house": "Spider-Man: No Way Home (2021), a multiverse of villains and ancient magic",
+  "rank": "Q",
+  "seed": 3470447347,
+  "suit": "diamonds"
+ },
+ "hearts_10.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "10",
+  "seed": 4091384988,
+  "suit": "hearts"
+ },
+ "hearts_2.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "2",
+  "seed": 3319394065,
+  "suit": "hearts"
+ },
+ "hearts_3.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "3",
+  "seed": 1391706368,
+  "suit": "hearts"
+ },
+ "hearts_4.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "4",
+  "seed": 357591747,
+  "suit": "hearts"
+ },
+ "hearts_5.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "5",
+  "seed": 180166597,
+  "suit": "hearts"
+ },
+ "hearts_6.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "6",
+  "seed": 65859098,
+  "suit": "hearts"
+ },
+ "hearts_7.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "7",
+  "seed": 1460763604,
+  "suit": "hearts"
+ },
+ "hearts_8.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "8",
+  "seed": 697715921,
+  "suit": "hearts"
+ },
+ "hearts_9.jpg": {
+  "character": null,
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "9",
+  "seed": 1100088203,
+  "suit": "hearts"
+ },
+ "hearts_A.jpg": {
+  "character": "PETER PARKER",
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "A",
+  "seed": 3064255113,
+  "suit": "hearts"
+ },
+ "hearts_J.jpg": {
+  "character": "HARRY OSBORN",
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "J",
+  "seed": 3315033277,
+  "suit": "hearts"
+ },
+ "hearts_K.jpg": {
+  "character": "MYSTERO",
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "K",
+  "seed": 2378412325,
+  "suit": "hearts"
+ },
+ "hearts_Q.jpg": {
+  "character": "BETTY BRANT",
+  "house": "Spider-Man: Far From Home (2019), a European school trip and the Mysterio deception",
+  "rank": "Q",
+  "seed": 1053068302,
+  "suit": "hearts"
+ },
+ "spades_10.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "10",
+  "seed": 2911594918,
+  "suit": "spades"
+ },
+ "spades_2.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "2",
+  "seed": 146600204,
+  "suit": "spades"
+ },
+ "spades_3.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "3",
+  "seed": 3451692397,
+  "suit": "spades"
+ },
+ "spades_4.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "4",
+  "seed": 1621322445,
+  "suit": "spades"
+ },
+ "spades_5.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "5",
+  "seed": 3172150713,
+  "suit": "spades"
+ },
+ "spades_6.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "6",
+  "seed": 1309591461,
+  "suit": "spades"
+ },
+ "spades_7.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "7",
+  "seed": 1793111812,
+  "suit": "spades"
+ },
+ "spades_8.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "8",
+  "seed": 1031151702,
+  "suit": "spades"
+ },
+ "spades_9.jpg": {
+  "character": null,
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "9",
+  "seed": 3403037110,
+  "suit": "spades"
+ },
+ "spades_A.jpg": {
+  "character": "PETER PARKER",
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "A",
+  "seed": 3482883919,
+  "suit": "spades"
+ },
+ "spades_J.jpg": {
+  "character": "PEP POTTER",
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "J",
+  "seed": 1170480568,
+  "suit": "spades"
+ },
+ "spades_K.jpg": {
+  "character": "THE VULTURE",
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "K",
+  "seed": 3862098723,
+  "suit": "spades"
+ },
+ "spades_Q.jpg": {
+  "character": "MARY JANE WATSON",
+  "house": "Spider-Man: Homecoming (2017), high school New York City and the Vulture",
+  "rank": "Q",
+  "seed": 282786774,
+  "suit": "spades"
+ }
+}

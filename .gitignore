@@ -1,1 +1,6 @@
 .DS_Store
+
+# Source artwork for the new art decks — the optimized .jpg card faces are committed
+coco_deck/*.png
+spiderman_deck/*.png
+princess_deck/*.png

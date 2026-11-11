@@ -31,18 +31,23 @@ Every card face is drawn in **SVG** (crisp at any size, no images): classic corn
 solid suit pips, stylized illustrated **J / Q / K court cards**, and ornamental card backs —
 all laid on a green felt table with lighting and texture.
 
-Five themes use full **art decks** instead — 52 generated PNG card faces each (print-quality
-1500×2100, 5:7), one folder per deck alongside `index.html`:
+Eight themes use full **art decks** instead — 52 generated card faces each (5:7), one folder per
+deck alongside `index.html`:
 
-| Theme         | Deck folder                |
-|---------------|----------------------------|
-| Minions       | `minion_deck/`             |
-| Harry Potter  | `hp_card_deck/`            |
-| Marvel Avengers | `avengers_deck/`         |
-| Star Wars     | `starwars_deck/`           |
-| Taylor Swift  | `taylor_swift_tours_deck/` |
+| Theme         | Deck folder                | Format |
+|---------------|----------------------------|--------|
+| Minions       | `minion_deck/`             | PNG |
+| Harry Potter  | `hp_card_deck/`            | PNG |
+| Marvel Avengers | `avengers_deck/`         | PNG |
+| Star Wars     | `starwars_deck/`           | PNG |
+| Taylor Swift  | `taylor_swift_tours_deck/` | PNG |
+| Spider-Man    | `spiderman_deck/`          | JPG |
+| Coco          | `coco_deck/`               | JPG |
+| Princess      | `princess_deck/`           | JPG |
 
-Card backs stay SVG (the decks ship faces only).
+Card backs stay SVG (the decks ship faces only). The Spider-Man, Coco and Princess decks are
+shipped as optimized JPEG card faces (~130 KB each, 400 px wide) to keep the repository small;
+the original PNG artwork is kept out of git via `.gitignore`.
 
 ## Tech
 

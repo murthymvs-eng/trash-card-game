@@ -1,0 +1,366 @@
+{
+ "clubs_10.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "10",
+  "seed": 894724206,
+  "suit": "clubs"
+ },
+ "clubs_2.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "2",
+  "seed": 803305772,
+  "suit": "clubs"
+ },
+ "clubs_3.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "3",
+  "seed": 50246852,
+  "suit": "clubs"
+ },
+ "clubs_4.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "4",
+  "seed": 134709142,
+  "suit": "clubs"
+ },
+ "clubs_5.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "5",
+  "seed": 1675670382,
+  "suit": "clubs"
+ },
+ "clubs_6.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "6",
+  "seed": 2257828515,
+  "suit": "clubs"
+ },
+ "clubs_7.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "7",
+  "seed": 1872667289,
+  "suit": "clubs"
+ },
+ "clubs_8.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "8",
+  "seed": 2657124685,
+  "suit": "clubs"
+ },
+ "clubs_9.jpg": {
+  "character": null,
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "9",
+  "seed": 3837415109,
+  "suit": "clubs"
+ },
+ "clubs_A.jpg": {
+  "character": "HECTOR",
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "A",
+  "seed": 1313514447,
+  "suit": "clubs"
+ },
+ "clubs_J.jpg": {
+  "character": "SKELETON SINGER",
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "J",
+  "seed": 4024888843,
+  "suit": "clubs"
+ },
+ "clubs_K.jpg": {
+  "character": "SKELETON GUITARIST",
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "K",
+  "seed": 1598989465,
+  "suit": "clubs"
+ },
+ "clubs_Q.jpg": {
+  "character": "SKELETON VIOLINIST",
+  "house": "Hector and the forgotten skeleton musicians",
+  "rank": "Q",
+  "seed": 2836842571,
+  "suit": "clubs"
+ },
+ "diamonds_10.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "10",
+  "seed": 1104676068,
+  "suit": "diamonds"
+ },
+ "diamonds_2.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "2",
+  "seed": 1399018441,
+  "suit": "diamonds"
+ },
+ "diamonds_3.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "3",
+  "seed": 3045201128,
+  "suit": "diamonds"
+ },
+ "diamonds_4.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "4",
+  "seed": 1466806434,
+  "suit": "diamonds"
+ },
+ "diamonds_5.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "5",
+  "seed": 2825157895,
+  "suit": "diamonds"
+ },
+ "diamonds_6.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "6",
+  "seed": 2667145951,
+  "suit": "diamonds"
+ },
+ "diamonds_7.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "7",
+  "seed": 2074092688,
+  "suit": "diamonds"
+ },
+ "diamonds_8.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "8",
+  "seed": 4273497845,
+  "suit": "diamonds"
+ },
+ "diamonds_9.jpg": {
+  "character": null,
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "9",
+  "seed": 4199728866,
+  "suit": "diamonds"
+ },
+ "diamonds_A.jpg": {
+  "character": "PEPITA",
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "A",
+  "seed": 1169449183,
+  "suit": "diamonds"
+ },
+ "diamonds_J.jpg": {
+  "character": "SPIRIT GUIDE",
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "J",
+  "seed": 3844849609,
+  "suit": "diamonds"
+ },
+ "diamonds_K.jpg": {
+  "character": "DANTE",
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "K",
+  "seed": 1604802388,
+  "suit": "diamonds"
+ },
+ "diamonds_Q.jpg": {
+  "character": "MAM\u00c1 COCO SPIRIT",
+  "house": "Pepita and the spirit guides of the Land of the Dead",
+  "rank": "Q",
+  "seed": 3861038774,
+  "suit": "diamonds"
+ },
+ "hearts_10.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "10",
+  "seed": 4154500238,
+  "suit": "hearts"
+ },
+ "hearts_2.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "2",
+  "seed": 109114503,
+  "suit": "hearts"
+ },
+ "hearts_3.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "3",
+  "seed": 2615581144,
+  "suit": "hearts"
+ },
+ "hearts_4.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "4",
+  "seed": 2781409413,
+  "suit": "hearts"
+ },
+ "hearts_5.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "5",
+  "seed": 4244880826,
+  "suit": "hearts"
+ },
+ "hearts_6.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "6",
+  "seed": 413801943,
+  "suit": "hearts"
+ },
+ "hearts_7.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "7",
+  "seed": 2017617520,
+  "suit": "hearts"
+ },
+ "hearts_8.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "8",
+  "seed": 2031204307,
+  "suit": "hearts"
+ },
+ "hearts_9.jpg": {
+  "character": null,
+  "house": "the Rivera family, Land of the Living",
+  "rank": "9",
+  "seed": 2120456903,
+  "suit": "hearts"
+ },
+ "hearts_A.jpg": {
+  "character": "MIGUEL",
+  "house": "the Rivera family, Land of the Living",
+  "rank": "A",
+  "seed": 1738320632,
+  "suit": "hearts"
+ },
+ "hearts_J.jpg": {
+  "character": "JULIO",
+  "house": "the Rivera family, Land of the Living",
+  "rank": "J",
+  "seed": 3968006312,
+  "suit": "hearts"
+ },
+ "hearts_K.jpg": {
+  "character": "MAM\u00c1 IMELDA",
+  "house": "the Rivera family, Land of the Living",
+  "rank": "K",
+  "seed": 2909775980,
+  "suit": "hearts"
+ },
+ "hearts_Q.jpg": {
+  "character": "ABUELITA",
+  "house": "the Rivera family, Land of the Living",
+  "rank": "Q",
+  "seed": 2920260575,
+  "suit": "hearts"
+ },
+ "spades_10.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "10",
+  "seed": 4157000527,
+  "suit": "spades"
+ },
+ "spades_2.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "2",
+  "seed": 597998731,
+  "suit": "spades"
+ },
+ "spades_3.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "3",
+  "seed": 82466618,
+  "suit": "spades"
+ },
+ "spades_4.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "4",
+  "seed": 3797259986,
+  "suit": "spades"
+ },
+ "spades_5.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "5",
+  "seed": 2103437675,
+  "suit": "spades"
+ },
+ "spades_6.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "6",
+  "seed": 3605691443,
+  "suit": "spades"
+ },
+ "spades_7.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "7",
+  "seed": 933549425,
+  "suit": "spades"
+ },
+ "spades_8.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "8",
+  "seed": 1694360472,
+  "suit": "spades"
+ },
+ "spades_9.jpg": {
+  "character": null,
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "9",
+  "seed": 2058362661,
+  "suit": "spades"
+ },
+ "spades_A.jpg": {
+  "character": "ERNESTO DE LA CRUZ",
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "A",
+  "seed": 666525092,
+  "suit": "spades"
+ },
+ "spades_J.jpg": {
+  "character": "DANTE",
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "J",
+  "seed": 4246092745,
+  "suit": "spades"
+ },
+ "spades_K.jpg": {
+  "character": "ERNESTO DE LA CRUZ",
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "K",
+  "seed": 4169641614,
+  "suit": "spades"
+ },
+ "spades_Q.jpg": {
+  "character": "MAM\u00c1 COCO",
+  "house": "Ernesto de la Cruz and the Sunrise Spectacular",
+  "rank": "Q",
+  "seed": 1965860146,
+  "suit": "spades"
+ }
+}

@@ -17,6 +17,8 @@ quality loss, and stop paying for ~1.7 GB of print-resolution PNGs in the repo.
 | `coco_deck` | 52 | PNG + JPEG 400px | 48 MB | JPEG only (PNG gitignored) |
 | `princess_deck` | 52 | PNG + JPEG 400px | 48 MB | JPEG only |
 | `spiderman_deck` | 52 | PNG + JPEG 400px | 47 MB | JPEG only |
+| `moana_deck` | 52 | PNG + JPEG 400px | ~48 MB | JPEG only |
+| `toystory_deck` | 52 | PNG + JPEG 400px | ~48 MB | JPEG only |
 
 - Working tree: **912 MB**; `.git`: **333 MB**; GitHub remote: **1.7 GB**
   (API `size` = 1,737,651 KB).
@@ -93,6 +95,31 @@ This removes the PNG blobs from all 19 commits. The remote should drop from
 - **Cap DPR**: add `srcset` at 1×/2× so 400 px is served deliberately rather
   than by assumption.
 - `bg/` is already 3.4 MB total and `backs/` 1.1 MB — both fine, no action.
+
+## The Moana / Toy Story decks (`_gen_deck.py`)
+
+These two decks were generated end-to-end by `_gen_deck.py` (art direction lives in
+`_deck_specs.py`), which differs from the older decks in three ways:
+
+1. **Exact pips are composited, not painted.** The diffusion model cannot count:
+   asked for "two heart pips" it draws four. So the model is prompted to leave the
+   card face clear of pips and `_pips.py` overlays them afterwards at
+   mathematically correct positions and counts (2→2, 3→3 … 10→10), using two
+   columns flanking the portrait medallion plus a bottom-centre pip for odd
+   ranks. Every number card therefore reads as its true rank.
+
+2. **The delivered JPEG is exactly 400×560 (5:7).** These decks are generated directly at
+   400×560 — both sizes divide by the Qwen VAE's 16-px patch, so the decode matches the
+   contract exactly — and the board draws cards into a `aspect-ratio:5/7` box with
+   `object-fit:cover`; a mismatched source would get its edges shaved. These two decks have
+   **0 % aspect deviation** (the older `coco`/`princess`/`spiderman` decks are 400×550 and
+   lose ~1.8 % to the crop; `taylor` loses 0.54 %). The PNG source on disk is 400×560.
+
+3. **They ship the same 400 px JPEG contract** as everything else — 53–71 KB per
+   face at q80, so the two new decks add roughly 6 MB to the repository.
+
+Verify any deck with `python3 _verify_decks.py` (checks all 52 faces per deck
+for presence, 400 px width, decodability and manifest coverage).
 
 ## Verification
 
@@ -223,3 +250,19 @@ git push --force origin main
 - A stray broken ref `.git/refs/heads/main 2` (from a Finder copy) was removed;
   it made `git show-ref` and `git rev-list --all` error out.
 - The `.mov` screen recording is no longer tracked but still on disk locally.
+
+## Direct generation at shipping size (2026-11-11)
+
+The Moana and Toy Story decks no longer use the render-big-then-downscale pipeline.
+`_gen_deck.py` now requests the latent at exactly 400×560 — the shipping contract itself —
+so:
+
+- generation cost drops ~14× (~10 s per card vs ~2 min at 1500×2100; a 52-card deck ≈ 7 min),
+- no 3+ MB source PNGs are produced at all (the on-disk source PNG is 400×560, ~0.5 MB),
+- the JPEG encode is a re-encode of an exact-size image, not a downscale.
+
+400 and 560 both divide by 16 (the Qwen VAE's 8× spatial factor × 2× patch), so
+`EmptyLatentImage` does not snap and the decode is exactly 400×560. The display-headroom
+argument is unchanged: cards render at ≤90 CSS px (≤180 device px at 2× DPR), so 400 px
+still carries ~2× headroom. Quality at this size was validated visually: name-plate
+lettering, corner indices and the `_pips.py` overlays all stay crisp.

@@ -1,10 +1,10 @@
 .DS_Store
 
-# Source artwork for the art decks — the optimized .jpg card faces are committed.
-# The 1500x2100 PNG originals stay on disk but are never pushed (see
-# DECK_OPTIMIZATION.md). Regenerate the JPEGs with:
-#   python3 _optimize_decks.py --jpg
+# Source artwork for the art decks — the .jpg card faces are committed.
+# PNG sources stay on disk but are never pushed (1500x2100 for the five older
+# decks, 400x560 for moana/toystory — see DECK_OPTIMIZATION.md).
 *_deck/*.png
+*_deck/_raw/
 
 # Screen recording (local only)
 Screen Recording *.mov

@@ -27,7 +27,7 @@ hands, people, faces, blurry, lowres, jpeg artifacts, deformed, cluttered center
 bright center, washed out, oversaturated"
 ```
 
-Prompt scaffold (suffix identical for all 13):
+Prompt scaffold (suffix identical for all 15):
 
 ```
 <scene>, empty center, no people, no hands, no text, no cards,
@@ -52,6 +52,8 @@ Scenes:
 | coco | Ofrenda at night, marigold petals, papel picado, candle glow | marigold / magenta |
 | princess | Gilded ballroom, gold columns, stained-glass windows, chandeliers, rose petals | rose / gold |
 | taylor | Stadium stage in haze, confetti, pink/gold beams, rigging bokeh | pink / gold |
+| moana | Sunset over a tropical lagoon, black sand beach, palm trees, outrigger canoe | turquoise / gold |
+| toystory | Sunlit child's playroom, wooden floorboards, stacked toy boxes, alphabet rug | primary red / gold |
 
 Pipeline per image: generate PNG → `sips -s format jpeg -s formatOptions 82 <png> --out bg/<id>.jpg`.
 Run ONE generation at a time (VRAM rule from the skill); a sequential loop is fine.
@@ -95,7 +97,7 @@ blurry, lowres, jpeg artifacts, tilted, angled, perspective, asymmetric, off-cen
 harsh shadows"
 ```
 
-Prompt suffix (identical for all 13):
+Prompt suffix (identical for all 15):
 
 ```
 <scene>, playing card back design, flat front facing view, vertical mirror symmetry,
@@ -118,6 +120,8 @@ no text, no letters, no numbers, highly detailed, crisp illustration
 | coco | marigold & magenta papel picado, sugar-skull medallion |
 | princess | rose & gold castle filigree, crown & rose medallion |
 | taylor | pink & gold glitter, confetti, stage beams, starburst emblem |
+| moana | turquoise & gold lagoon, nautilus-shell medallion, wave pattern |
+| toystory | primary toy-box colours, alphabet blocks, golden sheriff-star medallion |
 
 Shipped at **343×480 JPEG q80** (56–130 KB each, 1.1 MB total) — ~4× the largest on-screen
 render, so no visible softness. Re-encode with `sips -Z 480 -s format jpeg -s formatOptions 80`.

@@ -1,0 +1,366 @@
+{
+ "clubs_10.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "10",
+  "seed": 770036,
+  "suit": "clubs"
+ },
+ "clubs_2.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "2",
+  "seed": 770028,
+  "suit": "clubs"
+ },
+ "clubs_3.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "3",
+  "seed": 770029,
+  "suit": "clubs"
+ },
+ "clubs_4.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "4",
+  "seed": 770030,
+  "suit": "clubs"
+ },
+ "clubs_5.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "5",
+  "seed": 770031,
+  "suit": "clubs"
+ },
+ "clubs_6.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "6",
+  "seed": 770032,
+  "suit": "clubs"
+ },
+ "clubs_7.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "7",
+  "seed": 770033,
+  "suit": "clubs"
+ },
+ "clubs_8.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "8",
+  "seed": 770034,
+  "suit": "clubs"
+ },
+ "clubs_9.jpg": {
+  "character": null,
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "9",
+  "seed": 770035,
+  "suit": "clubs"
+ },
+ "clubs_A.jpg": {
+  "character": "TE FITI",
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "A",
+  "seed": 770027,
+  "suit": "clubs"
+ },
+ "clubs_J.jpg": {
+  "character": "NAINOA",
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "J",
+  "seed": 770037,
+  "suit": "clubs"
+ },
+ "clubs_K.jpg": {
+  "character": "THE ANCESTORS",
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "K",
+  "seed": 770039,
+  "suit": "clubs"
+ },
+ "clubs_Q.jpg": {
+  "character": "THE OCEAN",
+  "house": "Te Fiti and the spirits of the ancestors",
+  "rank": "Q",
+  "seed": 770038,
+  "suit": "clubs"
+ },
+ "diamonds_10.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "10",
+  "seed": 770023,
+  "suit": "diamonds"
+ },
+ "diamonds_2.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "2",
+  "seed": 770015,
+  "suit": "diamonds"
+ },
+ "diamonds_3.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "3",
+  "seed": 770016,
+  "suit": "diamonds"
+ },
+ "diamonds_4.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "4",
+  "seed": 770017,
+  "suit": "diamonds"
+ },
+ "diamonds_5.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "5",
+  "seed": 770018,
+  "suit": "diamonds"
+ },
+ "diamonds_6.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "6",
+  "seed": 770019,
+  "suit": "diamonds"
+ },
+ "diamonds_7.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "7",
+  "seed": 770020,
+  "suit": "diamonds"
+ },
+ "diamonds_8.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "8",
+  "seed": 770021,
+  "suit": "diamonds"
+ },
+ "diamonds_9.jpg": {
+  "character": null,
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "9",
+  "seed": 770022,
+  "suit": "diamonds"
+ },
+ "diamonds_A.jpg": {
+  "character": "MAUI",
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "A",
+  "seed": 770014,
+  "suit": "diamonds"
+ },
+ "diamonds_J.jpg": {
+  "character": "HEI HEI",
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "J",
+  "seed": 770024,
+  "suit": "diamonds"
+ },
+ "diamonds_K.jpg": {
+  "character": "MAUI'S BROTHERS",
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "K",
+  "seed": 770026,
+  "suit": "diamonds"
+ },
+ "diamonds_Q.jpg": {
+  "character": "MAUI'S MOTHER",
+  "house": "Maui and the Demigod of the Fishhook",
+  "rank": "Q",
+  "seed": 770025,
+  "suit": "diamonds"
+ },
+ "hearts_10.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "10",
+  "seed": 770010,
+  "suit": "hearts"
+ },
+ "hearts_2.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "2",
+  "seed": 770002,
+  "suit": "hearts"
+ },
+ "hearts_3.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "3",
+  "seed": 770003,
+  "suit": "hearts"
+ },
+ "hearts_4.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "4",
+  "seed": 770004,
+  "suit": "hearts"
+ },
+ "hearts_5.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "5",
+  "seed": 770005,
+  "suit": "hearts"
+ },
+ "hearts_6.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "6",
+  "seed": 770006,
+  "suit": "hearts"
+ },
+ "hearts_7.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "7",
+  "seed": 770007,
+  "suit": "hearts"
+ },
+ "hearts_8.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "8",
+  "seed": 770008,
+  "suit": "hearts"
+ },
+ "hearts_9.jpg": {
+  "character": null,
+  "house": "Motunui Village and the Chief's family",
+  "rank": "9",
+  "seed": 770009,
+  "suit": "hearts"
+ },
+ "hearts_A.jpg": {
+  "character": "MOANA",
+  "house": "Motunui Village and the Chief's family",
+  "rank": "A",
+  "seed": 770001,
+  "suit": "hearts"
+ },
+ "hearts_J.jpg": {
+  "character": "GRAMMA TALA",
+  "house": "Motunui Village and the Chief's family",
+  "rank": "J",
+  "seed": 770011,
+  "suit": "hearts"
+ },
+ "hearts_K.jpg": {
+  "character": "CHIEF TUI",
+  "house": "Motunui Village and the Chief's family",
+  "rank": "K",
+  "seed": 770013,
+  "suit": "hearts"
+ },
+ "hearts_Q.jpg": {
+  "character": "SINA",
+  "house": "Motunui Village and the Chief's family",
+  "rank": "Q",
+  "seed": 770012,
+  "suit": "hearts"
+ },
+ "spades_10.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "10",
+  "seed": 770049,
+  "suit": "spades"
+ },
+ "spades_2.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "2",
+  "seed": 770041,
+  "suit": "spades"
+ },
+ "spades_3.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "3",
+  "seed": 770042,
+  "suit": "spades"
+ },
+ "spades_4.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "4",
+  "seed": 770043,
+  "suit": "spades"
+ },
+ "spades_5.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "5",
+  "seed": 770044,
+  "suit": "spades"
+ },
+ "spades_6.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "6",
+  "seed": 770045,
+  "suit": "spades"
+ },
+ "spades_7.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "7",
+  "seed": 770046,
+  "suit": "spades"
+ },
+ "spades_8.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "8",
+  "seed": 770047,
+  "suit": "spades"
+ },
+ "spades_9.jpg": {
+  "character": null,
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "9",
+  "seed": 770048,
+  "suit": "spades"
+ },
+ "spades_A.jpg": {
+  "character": "TE KA",
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "A",
+  "seed": 770040,
+  "suit": "spades"
+ },
+ "spades_J.jpg": {
+  "character": "MONSTER'S EYE",
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "J",
+  "seed": 770050,
+  "suit": "spades"
+ },
+ "spades_K.jpg": {
+  "character": "THE STORM",
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "K",
+  "seed": 770052,
+  "suit": "spades"
+ },
+ "spades_Q.jpg": {
+  "character": "THE DARK ISLAND",
+  "house": "The monster, the storm and the island of the dead",
+  "rank": "Q",
+  "seed": 770051,
+  "suit": "spades"
+ }
+}

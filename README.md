@@ -44,12 +44,36 @@ deck alongside `index.html`:
 | Spider-Man    | `spiderman_deck/`          |
 | Coco          | `coco_deck/`               |
 | Princess      | `princess_deck/`           |
+| Moana         | `moana_deck/`              |
+| Toy Story     | `toystory_deck/`           |
+
+The two newest decks — **Moana** and **Toy Story** — are generated end-to-end by
+`_gen_deck.py` (art direction in `_deck_specs.py`): 52 card faces per deck, four
+character "houses" mapped to the four suits, court cards carrying a name plate
+and the number cards reusing the house's lead character inside a true pip layout.
+Both ship as 400 px JPEG faces plus a `manifest.json` recording each card's
+house, character and seed.
+
+Two details are worth knowing if you regenerate them:
+
+- **Pips are composited, not painted.** The image model cannot count (asked for
+  "two heart pips" it draws four), so the model paints the card art with the
+  field left clear and `_pips.py` overlays mathematically correct pips
+  afterwards — a "7" always shows seven.
+- **Faces ship at exactly 400×560 (5:7).** The board draws cards into a
+  `aspect-ratio:5/7` box, so the source is centre-cropped to 5:7 before
+  downscaling; these decks have 0 % aspect deviation.
+
+Run `python3 _verify_decks.py` to check every deck for missing faces, wrong
+width, unreadable files and manifest coverage.
 
 Every deck ships **400 px-wide JPEG card faces (49–137 KB each)** — the display renders a card at
-most ~90 CSS px wide, so 400 px is roughly 2× headroom at 2× DPR. The original 1500×2100 PNG
-artwork stays on disk but is kept out of git (`.gitignore`); regenerate the JPEGs with
-`python3 _optimize_decks.py --jpg`. This took the tracked art from **1.7 GB to 15 MB**.
-See `DECK_OPTIMIZATION.md` for the full measurements and rationale.
+most ~90 CSS px wide, so 400 px is roughly 2× headroom at 2× DPR. The five older art decks were
+generated at 1500×2100 and downscaled (those PNG sources stay on disk, out of git; regenerate
+their JPEGs with `python3 _optimize_decks.py --jpg`) — that took the tracked art from
+**1.7 GB to 15 MB**. The Moana and Toy Story decks are instead generated **directly at 400×560**
+by `_gen_deck.py` — no print-resolution pass, no downscale (~14× fewer latent pixels, ~10 s per
+card). See `DECK_OPTIMIZATION.md` for the full measurements and rationale.
 
 Card backs are **AI-generated per theme** — `backs/<themeId>.jpg` (343×480 JPEG, ~80 KB each) — with
 the original hand-drawn SVG backs kept as an automatic fallback if a file is missing, so a deck is

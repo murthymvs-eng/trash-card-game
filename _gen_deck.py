@@ -48,14 +48,22 @@ def load_spec(name):
 
 
 def card_prompt(deck, suit, rank, house):
-    """Build the prompt for one card face."""
+    """Build the prompt for one card face.
+
+    The image IS the card: flat, full-bleed, straight-on. Any scene language
+    ("a bedroom behind", "a carnival behind") makes the model render a physical
+    card photographed inside a room, and at CFG 1.0 the negative prompt cannot
+    undo that -- so every constraint lives in the positive prompt.
+    """
     style = deck.get("style", "")
+    pip = PIP_NAME[suit]
     if rank in COURTS:
         name, desc = house["characters"][rank]
         subject = ("Centered waist-up portrait of %s (%s) inside an oval gold "
                    "filigree medallion. A small gold name plate banner at the "
                    "bottom reads \"%s\"." % (name, desc, name))
         plate = ""
+        corner = "a large crisp '%s' rank letter above the %s suit symbol" % (rank, pip)
     else:
         # Number cards reuse the house's lead character. The model cannot count
         # pips, so it is told to leave the field clear and _pips.py overlays
@@ -65,17 +73,20 @@ def card_prompt(deck, suit, rank, house):
                    "filigree medallion. The flat area of the card around the "
                    "medallion is plain ornate empty card face."
                    % (name, desc))
-        plate = (" No suit pips, no hearts, no spades, no clubs, no diamonds "
-                 "anywhere on the card, no name plate, no banner, no lettering "
-                 "other than the rank numeral and small suit symbol in the "
-                 "upper-left corner.")
-    return ("Ornate collectible playing card face, the %s of %s. %s "
-            "A %s crest emblem above the medallion, the rank numeral and the %s "
-            "suit symbol printed in the upper-left corner. %s %s "
-            "%s Hand-painted illustration, high detail, elegant, vertical 5:7 "
-            "composition." % (rank, PIP_NAME[suit], subject, house["crest"],
-                              PIP_NAME[suit], house["frame"], house["bg"] + plate,
-                              style))
+        plate = (" No suit pips on the card face except the two corner indices, "
+                 "no extra hearts, spades, clubs or diamonds, no name plate, "
+                 "no banner, no other lettering.")
+        corner = "a large crisp '%s' rank numeral above the %s suit symbol" % (rank, pip)
+    return ("A flat full-bleed ornate playing-card face, the %s of %s: the card "
+            "face fills the entire image edge to edge as one flat 2D "
+            "illustration, perfectly straight-on and upright. %s "
+            "%s in the upper-left corner and a mirrored copy in the lower-right "
+            "corner. A %s printed flat above the medallion. %s %s %s "
+            "No table, no room, no shelf and no scenery around the card, no "
+            "photograph of a physical card, no 3D mockup, no depth of field, no "
+            "perspective tilt: the whole picture is the card face itself."
+            % (rank, pip, subject, corner, house["crest"], house["frame"],
+               house["bg"] + plate, style))
 
 
 def generate(prompt, negative, seed, outdir, prefix, attempts=3):

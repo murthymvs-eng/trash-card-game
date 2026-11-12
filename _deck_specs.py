@@ -133,113 +133,126 @@ DECKS["moana"] = {
 }
 
 # --------------------------------------------------------------------------
-# TOY STORY (1995)
+# TOY STORY (1995) — v2 prompts
 # --------------------------------------------------------------------------
+# v2 rules: the card face IS the whole image (flat, full-bleed, straight-on --
+# scene language turns every card into a photo of a card standing in a room),
+# and characters are described by their canonical movie designs, never as
+# physical toys/figurines/objects.
 DECKS["toystory"] = {
     "dir": "toystory_deck",
-    "style": "Pixar-style 3D CGI character portrait, soft global illumination, shallow depth of field",
+    "style": ("polished 3D animated feature-film character art, smooth studio-grade "
+              "CGI shading, soft even key light, vivid saturated colours, appealing "
+              "expressive cartoon faces"),
     "houses": {
         "hearts": {
-            "house": "Woody and Andy's Round-Up crew",
-            "palette": "bright primary red, yellow and blue with warm wood tones",
-            "frame": "Red and gold toy-box card border with painted wood grain, yellow star corners and a stitched felt edge",
-            "crest": "a sheriff star badge over a pull-string cowboy",
-            "bg": "A sunny child's bedroom behind with wooden shelves and a poster wall",
+            "house": "Woody and the Round-Up gang",
+            "palette": "sheriff gold on warm crimson",
+            "frame": "a flat deep-crimson border band with a thin gold rope inner line and small gold stars printed in the corners",
+            "crest": "gold five-point sheriff star badge emblem",
+            "bg": "flat warm crimson card-face background with a subtle gold rope-swirl damask pattern, no scenery, no objects",
             "main": ("WOODY",
-                     "a vintage pull-string cowboy doll with a yellow plaid shirt, "
-                     "cow-print vest, red bandana and brown cowboy hat, friendly "
-                     "determined smile"),
+                     "a cheerful cowboy character with a brown cowboy hat, yellow checked "
+                     "shirt, black-and-white cow-hide vest with a gold sheriff star badge, "
+                     "blue jeans and a confident friendly smile"),
             "characters": {
                 "A": ("WOODY",
-                      "a vintage pull-string cowboy doll with a yellow plaid shirt, "
-                      "cow-print vest, red bandana and brown cowboy hat, friendly "
-                      "determined smile"),
+                      "a cheerful cowboy character with a brown cowboy hat, yellow checked "
+                      "shirt, black-and-white cow-hide vest with a gold sheriff star badge, "
+                      "blue jeans and a confident friendly smile"),
                 "K": ("BUZZ LIGHTYEAR",
-                      "a space ranger action figure in a white and green spacesuit "
-                      "with a purple visor helmet, translucent wings and a plastic "
-                      "jetpack, heroic pose"),
+                      "a heroic space-ranger character in a white, lime-green and purple "
+                      "spacesuit with a clear dome helmet, green chest control panel and "
+                      "neatly folded white wings, strong cleft chin, proud heroic pose"),
                 "Q": ("JESSIE",
-                      "a vintage yodeling cowgirl doll with red yarn hair in braids, "
-                      "cow-print chaps and a wide-brimmed hat, joyful grin"),
+                      "an energetic cowgirl character with a red yarn ponytail braid tied "
+                      "with a yellow bow, white cowgirl hat, crisp white long-sleeve shirt, "
+                      "blue jeans under cow-print chaps, big joyful grin"),
                 "J": ("REX",
-                      "a small green plastic tyrannosaurus rex toy with tiny arms "
-                      "and wide anxious eyes, timid expression"),
+                      "a big friendly green tyrannosaurus dinosaur character with tiny arms, "
+                      "large worried amber eyes, rounded snout and a nervous open-mouth smile"),
             },
         },
         "diamonds": {
-            "house": "The Pizza Planet aliens and the Sunnyside crew",
-            "palette": "lime green, teal and candy pink",
-            "frame": "Purple and teal alien-lounge card border with chrome rocket fins and glowing green porthole corners",
-            "crest": "a chrome Pizza Planet rocket ship with a hanging claw",
-            "bg": "A toy store shelf behind with pizza boxes and claw machine glow",
+            "house": "the Pizza Planet crew",
+            "palette": "lime green on deep space indigo",
+            "frame": "a flat deep-indigo border band with a thin teal inner line and small gold rocket fins printed in the corners",
+            "crest": "gold rocket-ship emblem on a round purple disc",
+            "bg": "flat deep-indigo card-face background with a subtle tiny gold star pattern, no scenery, no objects",
             "main": ("THE ALIENS",
-                     "a trio of small lime green three-eyed alien toys in matching "
-                     "purple space suits, standing shoulder to shoulder, wide-eyed "
-                     "and amazed"),
+                     "three little lime-green alien characters standing shoulder to "
+                     "shoulder, each with three round black eyes in a row, wearing "
+                     "matching deep-blue one-piece suits, mouths open in amazed wonder"),
             "characters": {
                 "A": ("THE ALIENS",
-                      "a trio of small lime green three-eyed alien toys in matching "
-                      "purple space suits, standing shoulder to shoulder, wide-eyed "
-                      "and amazed"),
+                      "three little lime-green alien characters standing shoulder to "
+                      "shoulder, each with three round black eyes in a row, wearing "
+                      "matching deep-blue one-piece suits, mouths open in amazed wonder"),
                 "K": ("LOTSO",
-                      "a chubby pink and lavender strawberry-scented teddy bear with "
-                      "a smug scowl and stubby plush paws"),
-                "Q": ("MR. POTATO HEAD",
-                      "a mismatched plastic potato head toy with detachable ears, a "
-                      "mustache and a plug-in nose, silly grin"),
+                      "a big fluffy pink teddy-bear character with a paler pink belly, "
+                      "heavy brow, grumpy scowl and a small bamboo cane"),
+                "Q": ("HAMM",
+                      "a pink piggy-bank character with glossy pink glaze, perky little "
+                      "ears, a curly tail and a cork stopper, wry knowing smile"),
                 "J": ("SLINKY DOG",
-                      "a spring-bodied metal and fabric dachshund toy with a long "
-                      "coiled silver spring torso, happy panting expression"),
+                      "a friendly dachshund dog character with a head and tail connected "
+                      "by a long coiled metal spring body, floppy tan ears, happy panting "
+                      "smile"),
             },
         },
         "clubs": {
-            "house": "Toy Story 2 and the toys of Al's Toy Barn",
-            "palette": "dusty mustard, denim blue and aged cardboard tan",
-            "frame": "Weathered brown card border with peeling toy-box print, postage-stamp corners and a frayed cloth edge",
-            "crest": "a battered child's suitcase stamped with travel stickers",
-            "bg": "A dusty antique toy barn shelf behind with old boxes and cobwebs",
+            "house": "the vintage toys of Al's Toy Barn",
+            "palette": "mustard gold and denim blue",
+            "frame": "a flat mustard-gold border band with a stitched denim-blue inner line and small gold rosettes printed in the corners",
+            "crest": "gold barn-star rosette emblem inside a rope circle",
+            "bg": "flat mustard-gold card-face background with subtle denim-blue swirl damask, no scenery, no objects",
             "main": ("WHEEZY",
-                     "a squeaky red tin man toy with a bent antenna, chipped white "
-                     "paint and a round speaker chest, earnest expression"),
+                     "a little red rubber penguin character with a bright orange beak, "
+                     "red bow tie and rosy cheeks, endearing hopeful smile"),
             "characters": {
                 "A": ("WHEEZY",
-                      "a squeaky red tin man toy with a bent antenna, chipped white "
-                      "paint and a round speaker chest, earnest expression"),
+                      "a little red rubber penguin character with a bright orange beak, "
+                      "red bow tie and rosy cheeks, endearing hopeful smile"),
                 "K": ("STINKY PETE",
-                      "a velvety ventriloquist dummy with a cream cloth face, purple "
-                      "velvet suit and a broad unsettling smile"),
-                "Q": ("AL",
-                      "a small one-eyed green alien toy with a metal speaking tube "
-                      "mouth, sly mischievous expression"),
-                "J": ("THE CHILDCARE ROBOT",
-                      "a round white and blue dome robot toy with a headset, a "
-                      "friendly screen face and stubby arms"),
+                      "a stern old prospector character with a bushy white beard and "
+                      "mustache, wide-brimmed brown mining hat with a head lamp, red "
+                      "plaid shirt and brown vest, arms crossed, gruff but kindly look"),
+                "Q": ("MR. POTATO HEAD",
+                      "a comical brown potato-shaped character with big expressive eyes, "
+                      "a black mustache, pink ears, white-gloved hands on hips and a "
+                      "sassy smirk"),
+                "J": ("BULLSEYE",
+                      "a sturdy chestnut-brown horse character with a cream mane and "
+                      "tail, dark gentle eyes and a loyal attentive expression"),
             },
         },
         "spades": {
-            "house": "Toy Story 4 and the carnival of broken toys",
-            "palette": "carnival magenta, sunlit gold and teal canvas stripes",
-            "frame": "Carnival tent-striped card border in magenta and gold with wooden post corners and bulb lights",
-            "crest": "a wooden carousel horse with a golden pole",
-            "bg": "A travelling carnival midway behind with striped tents and strings of bulbs",
+            "house": "the new toys of Bonnie's room",
+            "palette": "carnival magenta and sunlit gold",
+            "frame": "a flat magenta border band with thin gold-and-cream stripe lines and small gold rosette medallions printed in the corners",
+            "crest": "gold sunburst rosette medallion emblem",
+            "bg": "flat deep-magenta card-face background with fine gold filigree curls, no scenery, no objects",
             "main": ("FORKY",
-                     "a small white plastic spork toy with mismatched googly eyes, a "
-                     "pipe-cleaner mustache and a bent tine arm, anxious hopeful "
-                     "expression"),
+                     "a wobbly handmade character made of a white plastic spork with "
+                     "mismatched googly eyes, a red wax mouth, red pipe-cleaner arms "
+                     "and popsicle-stick feet, arms spread in anxious wonder"),
             "characters": {
                 "A": ("FORKY",
-                      "a small white plastic spork toy with mismatched googly eyes, a "
-                      "pipe-cleaner mustache and a bent tine arm, anxious hopeful "
-                      "expression"),
-                "K": ("BO PEEP",
-                      "a porcelain shepherdess figurine in a blue and white floral "
-                      "dress holding a gold crook, serene noble expression"),
-                "Q": ("DUSTY",
-                      "a worn grey cleaning-rag horse toy with a patched cloth body "
-                      "and a lumpy stitched face, gentle weary smile"),
-                "J": ("GABBY GATTY",
-                      "a plush lavender cat toy with a glittery purple floral "
-                      "pattern and enormous sparkly blue eyes, delighted expression"),
+                      "a wobbly handmade character made of a white plastic spork with "
+                      "mismatched googly eyes, a red wax mouth, red pipe-cleaner arms "
+                      "and popsicle-stick feet, arms spread in anxious wonder"),
+                "K": ("DUKE CABOOM",
+                      "a daring stunt-rider character in a glossy white jumpsuit and "
+                      "white crash helmet with a bold black mustache and confident "
+                      "grin, seated on a white and red toy motorcycle"),
+                "Q": ("BO PEEP",
+                      "a graceful porcelain shepherdess character with rosy cheeks, a "
+                      "light-blue dress with white lace trim, a pink hooded cape and a "
+                      "tall light-blue shepherd's crook staff, gentle brave smile"),
+                "J": ("GABBY GABBY",
+                      "a vintage 1950s doll character with auburn ringlet curls, big "
+                      "green eyes, rosy freckled cheeks and a pale pink dress, wistful "
+                      "hopeful smile"),
             },
         },
     },

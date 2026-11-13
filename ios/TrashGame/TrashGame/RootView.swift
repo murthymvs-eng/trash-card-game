@@ -14,7 +14,7 @@ struct RootView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                background
+                background(geo.size)
                 if inGame {
                     GameView(engine: engine, theme: currentTheme)
                 } else {
@@ -48,7 +48,7 @@ struct RootView: View {
                         settingsChip
                         exitChip
                     }
-                    .padding(.top, 6)
+                    .padding(.top, 6 + screenInsets.top)
                     .padding(.trailing, 16 + screenInsets.right)
                 }
             }
@@ -104,32 +104,34 @@ struct RootView: View {
         }
     }
 
-    private var background: some View {
+    /// Matches the web background: full-bleed cover image, slightly darkened
+    /// and saturated, under the same radial scrim as index.html (a light veil
+    /// in the centre, darker toward the screen edges).
+    private func background(_ size: CGSize) -> some View {
         ZStack {
             currentTheme.feltGradient
             if let img = bundleImage("bg_\(currentTheme.id)") {
                 Image(uiImage: img)
                     .resizable()
                     .scaledToFill()
-                    .blur(radius: 4)
-                    .overlay(Color.black.opacity(0.30))
-                    .mask(backgroundMask)
+                    .brightness(-0.18)
+                    .saturation(1.06)
+                    .overlay(
+                        RadialGradient(
+                            gradient: Gradient(stops: [
+                                .init(color: .black.opacity(0.38), location: 0),
+                                .init(color: .black.opacity(0.28), location: 0.32),
+                                .init(color: .black.opacity(0.10), location: 0.56),
+                                .init(color: .black.opacity(0.55), location: 1.0)
+                            ]),
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: max(size.width, size.height) * 0.75
+                        )
+                    )
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
-    private var backgroundMask: some View {
-        RadialGradient(
-            gradient: Gradient(stops: [
-                .init(color: .black.opacity(0.95), location: 0.30),
-                .init(color: .black.opacity(0.8), location: 0.55),
-                .init(color: .black.opacity(0.0), location: 0.80)
-            ]),
-            center: .center,
-            startRadius: 60,
-            endRadius: 240
-        )
     }
 
     /// Floating chip that leaves the game and returns to the main screen.

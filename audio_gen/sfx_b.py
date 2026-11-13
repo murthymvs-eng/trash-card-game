@@ -86,6 +86,24 @@ def animal_wiggle():
     put(y, osc(880, .12, harm=((1, 1), (2, .4)), a=.01, r=.05, amp=.3), .28)
     return trim(y)
 
+def frozen_sparkle():
+    y = np.zeros(int(1.0 * SR))
+    rng = np.random.default_rng(300)
+    for j in range(7):
+        tt_ = j * .06 + rng.uniform(0, .03)
+        m = int(rng.choice([92, 96, 99, 103]))
+        put(y, bell(midi_f(m), .7, amp=.6), tt_, .24)
+    put(y, pad_chord([midi_f(m) for m in (65, 69, 72, 77)], 0.8, a=.3), 0, .12)
+    return trim(y)
+
+def frozen_gust():
+    y = np.zeros(int(1.0 * SR))
+    for i, (fc, d) in enumerate(((160, .45), (420, .5))):
+        put(y, noise(d, low=fc, tilt=-9, dk=1.1, a=.35, seed=140 + i), i * .28, .5)
+    put(y, noise(.3, amp=.18, f0=3600, q=.7, dk=9, a=.12, seed=150), .45)
+    put(y, bell(midi_f(88), .5, amp=.4), .5, .1)
+    return trim(y)
+
 CORE = {
     "click": core_click, "draw": core_draw, "place": core_place,
     "discard": core_discard, "err": core_err, "win": core_win,
@@ -102,6 +120,7 @@ THEME_SFX = {
     "princess": {"princess_fairy": pr_fairy},
     "taylor": {"taylor_shutter": taylor_shutter},
     "mario": {"mario_jump": mario_jump, "mario_coin": mario_coin},
+    "frozen": {"frozen_sparkle": frozen_sparkle, "frozen_gust": frozen_gust},
     "fairy": {"fairy_sparkle": fairy_sparkle},
     "neon": {"neon_zap": neon_zap},
     "animal": {"animal_wiggle": animal_wiggle},

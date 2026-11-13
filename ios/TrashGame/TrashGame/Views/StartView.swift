@@ -83,6 +83,8 @@ struct SettingsSheet: View {
     @Binding var themeID: String
     @Binding var name: String
     @Binding var muted: Bool
+    /// Restart the current game (only offered while a game is in progress).
+    var onStartOver: (() -> Void)? = nil
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -114,6 +116,14 @@ struct SettingsSheet: View {
                                 .buttonStyle(.plain)
                             }
                         }
+                    }
+                }
+                if let startOver = onStartOver {
+                    Section("Game") {
+                        Button("Start Over", action: startOver)
+                        Text("Reshuffles the deck and resets the current game.")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
                     }
                 }
                 Section {

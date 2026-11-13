@@ -44,9 +44,12 @@ struct RootView: View {
             // board) so it always sits in the visible corner of the display.
             .overlay(alignment: .topTrailing) {
                 if inGame {
-                    exitChip
-                        .padding(.top, 6)
-                        .padding(.trailing, 16 + screenInsets.right)
+                    HStack(spacing: 8) {
+                        settingsChip
+                        exitChip
+                    }
+                    .padding(.top, 6)
+                    .padding(.trailing, 16 + screenInsets.right)
                 }
             }
         }
@@ -85,7 +88,19 @@ struct RootView: View {
         .onChange(of: inGame) { _, playing in MusicEngine.shared.play(theme: themeID, mode: playing ? .game : .menu) }
         .onChange(of: themeID) { _, _ in MusicEngine.shared.play(theme: themeID, mode: inGame ? .game : .menu) }
         .sheet(isPresented: $showSettings) {
-            SettingsSheet(theme: currentTheme, engine: engine, themeID: $themeID, name: $name, muted: $muted)
+            SettingsSheet(
+                theme: currentTheme,
+                engine: engine,
+                themeID: $themeID,
+                name: $name,
+                muted: $muted,
+                // Only offered in-game: restart the current mode from scratch.
+                onStartOver: inGame ? {
+                    showSettings = false
+                    Haptics.tap()
+                    engine.newGame(mode: engine.state.mode)
+                } : nil
+            )
         }
     }
 
@@ -135,6 +150,26 @@ struct RootView: View {
         .buttonStyle(.plain)
         .accessibilityIdentifier("exit-button")
         .accessibilityLabel("Exit to main screen")
+    }
+
+    /// Floating chip that opens the in-game settings (theme / start over).
+    private var settingsChip: some View {
+        Button {
+            Haptics.tap()
+            showSettings = true
+        } label: {
+            HStack(spacing: 3) {
+                Image(systemName: "gearshape.fill").font(.system(size: 10, weight: .bold))
+                Text("Settings").font(.system(size: 12, weight: .semibold))
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 9)
+            .padding(.vertical, 5)
+            .background(Capsule().fill(Color.black.opacity(0.45)))
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("settings-button")
+        .accessibilityLabel("Open settings")
     }
 
     /// Safe-area insets of the real window (the app ignores the safe area, so

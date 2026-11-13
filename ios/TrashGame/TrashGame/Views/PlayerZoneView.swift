@@ -20,11 +20,23 @@ struct PlayerZoneView: View {
     let theme: Theme
     let cardW: CGFloat
 
-    private var p: Player { engine.state.players[playerIndex] }
+    private var player: Player? {
+        // The engine can be aborted (players cleared) while this view is still
+        // on screen — never index blindly.
+        engine.state.players.indices.contains(playerIndex) ? engine.state.players[playerIndex] : nil
+    }
     private var slotH: CGFloat { cardW * 7.0 / 5.0 }
     private var active: Bool { engine.state.turn == playerIndex }
 
     var body: some View {
+        if let p = player {
+            zoneView(p: p)
+        } else {
+            EmptyView()
+        }
+    }
+
+    private func zoneView(p: Player) -> some View {
         VStack(spacing: 4) {
             HStack(spacing: 6) {
                 Text(p.name)

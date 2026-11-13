@@ -103,4 +103,77 @@ final class TrashGameUITests: XCTestCase {
         expectation(for: filled, evaluatedWith: target)
         waitForExpectations(timeout: 8)
     }
+
+    /// The in-game Settings chip opens the settings sheet, where the theme can
+    /// be switched without leaving the game.
+    @MainActor
+    func testInGameSettingsChipOffersThemeAndStartOver() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let onePlayer = app.buttons["1 Player"]
+        XCTAssertTrue(onePlayer.waitForExistence(timeout: 8), "Start screen should show a 1 Player button")
+        onePlayer.tap()
+
+        let banner = app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Your turn'")).firstMatch
+        XCTAssertTrue(banner.waitForExistence(timeout: 8), "Game board should be on screen")
+
+        let settings = app.descendants(matching: .any).matching(identifier: "settings-button").firstMatch
+        XCTAssertTrue(settings.waitForExistence(timeout: 5), "Settings chip should be visible in game")
+        settings.tap()
+
+        // Both in-game actions are offered: the theme picker and Start Over.
+        let themeHeader = app.staticTexts["Card theme"]
+        XCTAssertTrue(themeHeader.waitForExistence(timeout: 5), "Theme picker should be offered")
+        let startOver = app.buttons["Start Over"]
+        XCTAssertTrue(startOver.waitForExistence(timeout: 5), "Start Over should be offered in game")
+
+        // Switch the theme mid-game and leave the sheet back to the board.
+        let neonTile = app.buttons["Neon Night"]
+        XCTAssertTrue(neonTile.waitForExistence(timeout: 5), "Theme tiles should be visible")
+        neonTile.tap()
+
+        let done = app.buttons["Done"]
+        XCTAssertTrue(done.waitForExistence(timeout: 5), "Done should close the sheet")
+        done.tap()
+
+        XCTAssertTrue(banner.waitForExistence(timeout: 5), "The game should still be on screen")
+    }
+
+    /// Start Over from the in-game settings resets the game (full deck again)
+    /// and keeps the player ready for a fresh turn.
+    @MainActor
+    func testStartOverResetsGame() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-forceCard", "4"]
+        app.launch()
+
+        let onePlayer = app.buttons["1 Player"]
+        XCTAssertTrue(onePlayer.waitForExistence(timeout: 10), "Start screen should show a 1 Player button")
+        onePlayer.tap()
+
+        let banner = app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Your turn'")).firstMatch
+        XCTAssertTrue(banner.waitForExistence(timeout: 8), "Game board should be on screen")
+
+        // Draw a card so the deck is no longer full.
+        let fullDeck = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Deck, 52 cards'")).firstMatch
+        XCTAssertTrue(fullDeck.waitForExistence(timeout: 8), "The deck should start full")
+        fullDeck.tap()
+        let hand = app.descendants(matching: .any).matching(identifier: "hand-card").firstMatch
+        XCTAssertTrue(hand.waitForExistence(timeout: 8), "The forced card should be in hand")
+        let deck51 = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Deck, 51 cards'")).firstMatch
+        XCTAssertTrue(deck51.waitForExistence(timeout: 5), "The deck should be down to 51 after the draw")
+
+        // Start over from the in-game settings.
+        let settings = app.descendants(matching: .any).matching(identifier: "settings-button").firstMatch
+        XCTAssertTrue(settings.waitForExistence(timeout: 5), "Settings chip should be visible in game")
+        settings.tap()
+        let startOver = app.buttons["Start Over"]
+        XCTAssertTrue(startOver.waitForExistence(timeout: 5), "Start Over should be offered in game")
+        startOver.tap()
+
+        XCTAssertTrue(banner.waitForExistence(timeout: 5), "The game should be ready for a fresh turn")
+        let resetDeck = app.descendants(matching: .any).matching(NSPredicate(format: "label == 'Deck, 52 cards'")).firstMatch
+        XCTAssertTrue(resetDeck.waitForExistence(timeout: 5), "Start Over should reset the deck to full")
+    }
 }

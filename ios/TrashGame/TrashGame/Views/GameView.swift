@@ -12,6 +12,17 @@ struct GameView: View {
     @StateObject private var drag = DragState()
 
     var body: some View {
+        // The engine may be aborted (state cleared) while this view is still on
+        // screen — e.g. the moment the game exits. Rendering anything then
+        // would index into the empty `players` array, so render nothing.
+        if engine.state.players.isEmpty {
+            EmptyView()
+        } else {
+            bodyWithGame
+        }
+    }
+
+    private var bodyWithGame: some View {
         GeometryReader { geo in
             let W = geo.size.width, H = geo.size.height
             let landscape = W > H

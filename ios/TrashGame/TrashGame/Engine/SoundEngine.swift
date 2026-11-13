@@ -37,6 +37,7 @@ final class SoundEngine {
         "princess":  ["place": "princess_fairy"],
         "taylor":    ["win": "taylor_shutter"],
         "mario":     ["draw": "mario_jump", "place": "mario_coin"],
+        "frozen":    ["draw": "frozen_gust", "place": "frozen_sparkle"],
         "animal":    ["place": "animal_wiggle"],
         "fairy":     ["place": "fairy_sparkle"],
         "neon":      ["place": "neon_zap"]

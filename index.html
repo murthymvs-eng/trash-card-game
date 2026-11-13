@@ -664,6 +664,9 @@ function backMoana(){return backCardSVG('url(#gMoanaBg)','#063a52','#ffe89a',cMo
 function cToysStar(){return '<g transform="translate(50 68)"><path d="M0 -18 L5.2 -6 L18 -5 L8 3 L11 16 L0 8.5 L-11 16 L-8 3 L-18 -5 L-5.2 -6 Z" fill="#ffd24d" stroke="#8a2c5c" stroke-width="1"/><circle cx="0" cy="-1" r="3" fill="#e8573c"/></g>';}
 function cToysBlocks(){return '<g opacity=".85"><rect x="18" y="100" width="15" height="15" rx="2.5" fill="#ffd24d" stroke="#7c1616" stroke-width=".8"/><rect x="35" y="100" width="15" height="15" rx="2.5" fill="#4aa3e8" stroke="#7c1616" stroke-width=".8"/><rect x="52" y="100" width="15" height="15" rx="2.5" fill="#e8573c" stroke="#7c1616" stroke-width=".8"/><rect x="69" y="100" width="15" height="15" rx="2.5" fill="#ffd24d" stroke="#7c1616" stroke-width=".8"/></g>';}
 function backToys(){return backCardSVG('url(#gToysBg)','#7c1616','#ffe89a',cToysStar(),cToysBlocks());}
+// Frozen: frostwork damask with a golden snowflake medallion.
+function cFrozenSnow(){return '<g transform="translate(50 70)"><circle r="17" fill="none" stroke="#cfe9f8" stroke-width="1.2"/><g stroke="#e8f6ff" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M0 -13 L0 13 M-11.3 -6.5 L11.3 6.5 M-11.3 6.5 L11.3 -6.5"/><path d="M0 -13 L3 -9.5 M0 -13 L-3 -9.5 M0 13 L3 9.5 M0 13 L-3 9.5 M-11.3 -6.5 L-6.8 -9.8 M11.3 6.5 L6.8 9.8 M-11.3 6.5 L-6.8 9.8 M11.3 -6.5 L6.8 -9.8" stroke-width=".8"/></g></g>';}
+function backFrozen(){return backCardSVG('#16385c','#bfe9ff','#cfe9f8',cFrozenSnow(),'<g fill="#fff" opacity=".7"><circle cx="22" cy="38" r="1"/><circle cx="80" cy="48" r="1.1"/><circle cx="26" cy="98" r="1"/><circle cx="76" cy="106" r="1.2"/><circle cx="50" cy="26" r=".9"/></g>');}
 // ---- Image art decks (card faces, one folder per deck) ----
 // Every deck ships 400px-wide JPEG faces (~50 KB each). The 1500x2100 source
 // PNGs are kept out of git; see DECK_OPTIMIZATION.md.
@@ -686,7 +689,8 @@ const THEMES={
   taylor:imgTheme('taylor_swift_tours_deck','Taylor Swift','The Eras Tour',backTS),
   moana:imgTheme('moana_deck','Moana','The Wayfinders',backMoana,'jpg'),
   toystory:imgTheme('toystory_deck','Toy Story','Andys Playroom',backToys,'jpg'),
-  mario:imgTheme('mario_deck','Mario','Mushroom Kingdom',backClassic,'jpg')
+  mario:imgTheme('mario_deck','Mario','Mushroom Kingdom',backClassic,'jpg'),
+  frozen:imgTheme('frozen_deck','Frozen','Into the Unknown',backFrozen,'jpg')
 };
 // ---- AI-generated card backs (backs/<id>.jpg) ----
 // Each theme keeps its hand-drawn SVG back as a fallback: if the JPG is missing the
@@ -717,7 +721,8 @@ const LOOK={
   taylor:{bg:'bg/taylor.jpg',felt:['#c25d92','#7e3560','#451b35','#250d1c'],slot:['rgba(96,40,68,.5)','rgba(46,19,34,.6)'],accent:'#ffe89a',accentDeep:'#a5701a',accentLite:'#fff4c8'},
   moana:{bg:'bg/moana.jpg',felt:['#1f8fb0','#146b8a','#0b3f55','#05212e'],slot:['rgba(11,63,85,.5)','rgba(5,33,46,.6)'],accent:'#ffd24d',accentDeep:'#a5701a',accentLite:'#ffe08a',accentGlow:'rgba(255,210,77,.28)',accentRing:'rgba(255,210,77,.35)',bannerInk:'#eafaff'},
   toystory:{bg:'bg/toystory.jpg',felt:['#c9452f','#8f2a1c','#521410','#2b0a07'],slot:['rgba(74,18,26,.52)','rgba(34,8,12,.62)'],accent:'#ffd24d',accentDeep:'#a5701a',accentLite:'#ffe08a',accentGlow:'rgba(255,210,77,.28)',accentRing:'rgba(255,210,77,.35)',bannerInk:'#fff3dc'},
-  mario:{bg:'bg/mario.jpg',felt:['#4a7fe0','#2a52b8','#15307a','#0a1740'],slot:['rgba(10,23,64,.55)','rgba(5,13,38,.62)'],accent:'#e5392f',accentDeep:'#8f1a14',accentLite:'#ff8a7a',accentGlow:'rgba(229,57,47,.28)',accentRing:'rgba(229,57,47,.35)',bannerInk:'#fff4e8'}
+  mario:{bg:'bg/mario.jpg',felt:['#4a7fe0','#2a52b8','#15307a','#0a1740'],slot:['rgba(10,23,64,.55)','rgba(5,13,38,.62)'],accent:'#e5392f',accentDeep:'#8f1a14',accentLite:'#ff8a7a',accentGlow:'rgba(229,57,47,.28)',accentRing:'rgba(229,57,47,.35)',bannerInk:'#fff4e8'},
+  frozen:{bg:'bg/frozen.jpg',felt:['#4f9fd8','#2f6ba3','#1c4569','#0c2136'],slot:['rgba(28,69,105,.52)','rgba(12,33,54,.62)'],accent:'#8fd8f5',accentDeep:'#2f6ba3',accentLite:'#d6f3ff',accentGlow:'rgba(143,216,245,.28)',accentRing:'rgba(143,216,245,.35)',bannerInk:'#eaf8ff'}
 };
 const LOOK_DEF=LOOK.classic;
 function lookOf(id){return LOOK[id]||LOOK_DEF;}
@@ -864,11 +869,12 @@ const SFX_SIGNATURE={
   princess:{place:'sfx/princess/princess_fairy.mp3'},
   taylor:{win:'sfx/taylor/taylor_shutter.mp3'},
   mario:{draw:'sfx/mario/mario_jump.mp3',place:'sfx/mario/mario_coin.mp3'},
+  frozen:{draw:'sfx/frozen/frozen_gust.mp3',place:'sfx/frozen/frozen_sparkle.mp3'},
   animal:{place:'sfx/animal/animal_wiggle.mp3'},
   fairy:{place:'sfx/fairy/fairy_sparkle.mp3'},
   neon:{place:'sfx/neon/neon_zap.mp3'}
 };
-const MUSIC_FILES={classic:'music/classic.mp3',starwars:'music/starwars.mp3',hp:'music/hp.mp3',minion:'music/minion.mp3',coco:'music/coco.mp3',avengers:'music/avengers.mp3',spiderman:'music/spiderman.mp3',toystory:'music/toystory.mp3',moana:'music/moana.mp3',princess:'music/princess.mp3',taylor:'music/taylor.mp3',mario:'music/mario.mp3',animal:'music/classic.mp3',fairy:'music/classic.mp3',neon:'music/classic.mp3',wood:'music/classic.mp3'};
+const MUSIC_FILES={classic:'music/classic.mp3',starwars:'music/starwars.mp3',hp:'music/hp.mp3',minion:'music/minion.mp3',coco:'music/coco.mp3',avengers:'music/avengers.mp3',spiderman:'music/spiderman.mp3',toystory:'music/toystory.mp3',moana:'music/moana.mp3',princess:'music/princess.mp3',taylor:'music/taylor.mp3',mario:'music/mario.mp3',frozen:'music/frozen.mp3',animal:'music/classic.mp3',fairy:'music/classic.mp3',neon:'music/classic.mp3',wood:'music/classic.mp3'};
 const sfxBuf={},sfxEl={},sfxBad={};
 let musicEl=null,musicDuckT=0;
 function audioCtx(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();return actx;}catch(e){return null;}}

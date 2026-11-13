@@ -93,7 +93,10 @@ let allThemes: [Theme] = [
           accent: ink("ffd24d"), accentDeep: ink("a5701a"), accentLite: ink("ffe08a"), bannerInk: ink("fff3dc")),
     Theme(id: "mario", name: "Mario", subtitle: "Mushroom Kingdom", face: .image(deckDir: "mario_deck"),
           felt: [ink("4a7fe0"), ink("2a52b8"), ink("15307a"), ink("0a1740")],
-          accent: ink("e5392f"), accentDeep: ink("8f1a14"), accentLite: ink("ff8a7a"), bannerInk: ink("fff4e8"))
+          accent: ink("e5392f"), accentDeep: ink("8f1a14"), accentLite: ink("ff8a7a"), bannerInk: ink("fff4e8")),
+    Theme(id: "frozen", name: "Frozen", subtitle: "Into the Unknown", face: .image(deckDir: "frozen_deck"),
+          felt: [ink("4f9fd8"), ink("2f6ba3"), ink("1c4569"), ink("0c2136")],
+          accent: ink("8fd8f5"), accentDeep: ink("2f6ba3"), accentLite: ink("d6f3ff"), bannerInk: ink("eaf8ff"))
 ]
 
 func theme(_ id: String?) -> Theme {

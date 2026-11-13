@@ -382,3 +382,110 @@ DECKS["mario"] = {
         },
     },
 }
+
+# --------------------------------------------------------------------------
+# FROZEN (2013 / 2014)
+# --------------------------------------------------------------------------
+DECKS["frozen"] = {
+    "dir": "frozen_deck",
+    "style": ("stylized 2D animated feature-film style, cold cinematic lighting, "
+              "icy blue and silver palette, sparkling frost details"),
+    "houses": {
+        "hearts": {
+            "house": "The Royal Family of Arendelle",
+            "palette": "ice blue and silver with gold trim, frostwork filigree",
+            "frame": "ice-blue card border with silver frostwork edging and a gold snowflake motif at each corner",
+            "crest": "a six-pointed gold snowflake emblem",
+            "bg": "flat ice-blue card-face background with a subtle silver frost-swirl damask pattern, no scenery, no objects",
+            "main": ("ELSA",
+                     "a young queen with a long platinum-blonde braid, wearing a shimmering "
+                     "ice-blue gown with sheer sleeves, composed regal expression"),
+            "characters": {
+                "A": ("ELSA",
+                      "a young queen with a long platinum-blonde braid, wearing a shimmering "
+                      "ice-blue gown with sheer sleeves, composed regal expression"),
+                "K": ("KING AGNARR",
+                      "a middle-kingly man with a short brown beard, wearing a dark blue "
+                      "royal robe with silver trim and a small gold crown, stern proud expression"),
+                "Q": ("QUEEN IDUNA",
+                      "an elegant queen with silver hair in a neat updo, wearing a blue "
+                      "royal gown, warm smiling expression"),
+                "J": ("ANNA",
+                      "a young girl with auburn hair in a braid, wearing a green traveling "
+                      "tunic and a brown vest, big excited smile"),
+            },
+        },
+        "diamonds": {
+            "house": "The elemental spirits of the North",
+            "palette": "aurora violet and deep teal with gold trim",
+            "frame": "deep violet card border with gold aurora swirlwork and silver teardrop corners",
+            "crest": "a four-armed spirit compass emblem in gold",
+            "bg": "flat deep-violet card-face background with a subtle gold aurora shimmer pattern, no scenery, no objects",
+            "main": ("THE SPIRIT OF ICE",
+                      "a colossal ice mountain guardian golem, its face carved in the frost, "
+                      "glowing blue eyes, covered in frost and snow"),
+            "characters": {
+                "A": ("THE SPIRIT OF ICE",
+                      "a colossal ice mountain guardian golem, its face carved in the frost, "
+                      "glowing blue eyes, covered in frost and snow"),
+                "K": ("THE SPIRIT OF FOREST",
+                      "a colossal mossy forest spirit shaped like a giant gnarled tree with a "
+                      "kind face, glowing green eyes, vines and glowing spores around it"),
+                "Q": ("THE SPIRIT OF FIRE",
+                      "a great fire salamander spirit with a long serpentine body, glowing "
+                      "amber fur, a warm golden eye and ember sparks around it"),
+                "J": ("THE SPIRIT OF WIND",
+                      "a swirling storm spirit of silver wind and low clouds with a single "
+                      "glowing white eye"),
+            },
+        },
+        "clubs": {
+            "house": "Svalbard and the Gelflings",
+            "palette": "earthy umber and moss green with gold trim, carved bark texture",
+            "frame": "umber bark-carved card border with gold knotwork and moss-green leaf corners",
+            "crest": "a carved wooden gelfling rune emblem",
+            "bg": "flat umber-brown card-face background with a subtle carved knotwork pattern, no scenery, no objects",
+            "main": ("FREYA",
+                      "an elderly wise gelfling woman with white hair in a bun, wearing an "
+                      "earth-toned carved wooden robe with gold trim, kind knowing expression"),
+            "characters": {
+                "A": ("FREYA",
+                      "an elderly wise gelfling woman with white hair in a bun, wearing an "
+                      "earth-toned carved wooden robe with gold trim, kind knowing expression"),
+                "K": ("GRAND PABBIE",
+                      "an elderly gelfling king with a long white beard and a small golden "
+                      "crown, wearing a regal umber robe, dignified expression"),
+                "Q": ("QUEEN ALEENA",
+                      "a regal queen with dark hair, wearing a deep red royal gown with gold "
+                      "embroidery, haughty elegant expression"),
+                "J": ("THE GELFING ROYALS",
+                      "a row of small gelfling royal family figures in umber and gold robes "
+                      "and small crowns, smiling together"),
+            },
+        },
+        "spades": {
+            "house": "The Wilds of the North",
+            "palette": "storm indigo and slate grey with silver trim",
+            "frame": "storm-indigo card border with silver storm-scroll edging and grey scale motifs at the corners",
+            "crest": "a silver storm-spiral emblem",
+            "bg": "flat storm-indigo card-face background with a subtle grey storm-scroll pattern, no scenery, no objects",
+            "main": ("HANS",
+                      "a young prince with blond hair in a neat undercut, wearing a blue royal "
+                      "uniform with silver epaulettes, holding a slender sword, ambitious cold expression"),
+            "characters": {
+                "A": ("HANS",
+                      "a young prince with blond hair in a neat undercut, wearing a blue royal "
+                      "uniform with silver epaulettes, holding a slender sword, ambitious cold expression"),
+                "K": ("MARSHMALLOW",
+                      "a giant friendly snow golem with a round belly, tiny worried eyes, "
+                      "snowflake-crystal hands and a gentle grin"),
+                "Q": ("OLAF",
+                      "a cheerful snowman with stick arms, a crooked carrot nose and a wide "
+                      "happy grin, a few loose snowballs around him"),
+                "J": ("SWEN",
+                      "a huge loyal grey-furred arctic wolf with piercing amber eyes and a "
+                      "snow-dusted mane"),
+            },
+        },
+    },
+}

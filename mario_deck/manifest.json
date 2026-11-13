@@ -1,0 +1,366 @@
+{
+ "clubs_10.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "10",
+  "seed": 880036,
+  "suit": "clubs"
+ },
+ "clubs_2.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "2",
+  "seed": 880028,
+  "suit": "clubs"
+ },
+ "clubs_3.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "3",
+  "seed": 880029,
+  "suit": "clubs"
+ },
+ "clubs_4.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "4",
+  "seed": 880030,
+  "suit": "clubs"
+ },
+ "clubs_5.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "5",
+  "seed": 880031,
+  "suit": "clubs"
+ },
+ "clubs_6.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "6",
+  "seed": 880032,
+  "suit": "clubs"
+ },
+ "clubs_7.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "7",
+  "seed": 880033,
+  "suit": "clubs"
+ },
+ "clubs_8.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "8",
+  "seed": 880034,
+  "suit": "clubs"
+ },
+ "clubs_9.jpg": {
+  "character": null,
+  "house": "Yoshi's Island",
+  "rank": "9",
+  "seed": 880035,
+  "suit": "clubs"
+ },
+ "clubs_A.jpg": {
+  "character": "YOSHI",
+  "house": "Yoshi's Island",
+  "rank": "A",
+  "seed": 880027,
+  "suit": "clubs"
+ },
+ "clubs_J.jpg": {
+  "character": "TOAD",
+  "house": "Yoshi's Island",
+  "rank": "J",
+  "seed": 880037,
+  "suit": "clubs"
+ },
+ "clubs_K.jpg": {
+  "character": "GOOMBA",
+  "house": "Yoshi's Island",
+  "rank": "K",
+  "seed": 880039,
+  "suit": "clubs"
+ },
+ "clubs_Q.jpg": {
+  "character": "LEMUKI",
+  "house": "Yoshi's Island",
+  "rank": "Q",
+  "seed": 880038,
+  "suit": "clubs"
+ },
+ "diamonds_10.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "10",
+  "seed": 880023,
+  "suit": "diamonds"
+ },
+ "diamonds_2.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "2",
+  "seed": 880015,
+  "suit": "diamonds"
+ },
+ "diamonds_3.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "3",
+  "seed": 880016,
+  "suit": "diamonds"
+ },
+ "diamonds_4.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "4",
+  "seed": 880017,
+  "suit": "diamonds"
+ },
+ "diamonds_5.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "5",
+  "seed": 880018,
+  "suit": "diamonds"
+ },
+ "diamonds_6.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "6",
+  "seed": 880019,
+  "suit": "diamonds"
+ },
+ "diamonds_7.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "7",
+  "seed": 880020,
+  "suit": "diamonds"
+ },
+ "diamonds_8.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "8",
+  "seed": 880021,
+  "suit": "diamonds"
+ },
+ "diamonds_9.jpg": {
+  "character": null,
+  "house": "Luigi's Mansion",
+  "rank": "9",
+  "seed": 880022,
+  "suit": "diamonds"
+ },
+ "diamonds_A.jpg": {
+  "character": "LUIGI",
+  "house": "Luigi's Mansion",
+  "rank": "A",
+  "seed": 880014,
+  "suit": "diamonds"
+ },
+ "diamonds_J.jpg": {
+  "character": "TOADETTE",
+  "house": "Luigi's Mansion",
+  "rank": "J",
+  "seed": 880024,
+  "suit": "diamonds"
+ },
+ "diamonds_K.jpg": {
+  "character": "BOWSER JR.",
+  "house": "Luigi's Mansion",
+  "rank": "K",
+  "seed": 880026,
+  "suit": "diamonds"
+ },
+ "diamonds_Q.jpg": {
+  "character": "ROSALINA",
+  "house": "Luigi's Mansion",
+  "rank": "Q",
+  "seed": 880025,
+  "suit": "diamonds"
+ },
+ "hearts_10.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "10",
+  "seed": 880010,
+  "suit": "hearts"
+ },
+ "hearts_2.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "2",
+  "seed": 880002,
+  "suit": "hearts"
+ },
+ "hearts_3.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "3",
+  "seed": 880003,
+  "suit": "hearts"
+ },
+ "hearts_4.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "4",
+  "seed": 880004,
+  "suit": "hearts"
+ },
+ "hearts_5.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "5",
+  "seed": 880005,
+  "suit": "hearts"
+ },
+ "hearts_6.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "6",
+  "seed": 880006,
+  "suit": "hearts"
+ },
+ "hearts_7.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "7",
+  "seed": 880007,
+  "suit": "hearts"
+ },
+ "hearts_8.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "8",
+  "seed": 880008,
+  "suit": "hearts"
+ },
+ "hearts_9.jpg": {
+  "character": null,
+  "house": "Mushroom Kingdom",
+  "rank": "9",
+  "seed": 880009,
+  "suit": "hearts"
+ },
+ "hearts_A.jpg": {
+  "character": "MARIO",
+  "house": "Mushroom Kingdom",
+  "rank": "A",
+  "seed": 880001,
+  "suit": "hearts"
+ },
+ "hearts_J.jpg": {
+  "character": "TOAD",
+  "house": "Mushroom Kingdom",
+  "rank": "J",
+  "seed": 880011,
+  "suit": "hearts"
+ },
+ "hearts_K.jpg": {
+  "character": "BOWSER",
+  "house": "Mushroom Kingdom",
+  "rank": "K",
+  "seed": 880013,
+  "suit": "hearts"
+ },
+ "hearts_Q.jpg": {
+  "character": "PRINCESS PEACH",
+  "house": "Mushroom Kingdom",
+  "rank": "Q",
+  "seed": 880012,
+  "suit": "hearts"
+ },
+ "spades_10.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "10",
+  "seed": 880049,
+  "suit": "spades"
+ },
+ "spades_2.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "2",
+  "seed": 880041,
+  "suit": "spades"
+ },
+ "spades_3.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "3",
+  "seed": 880042,
+  "suit": "spades"
+ },
+ "spades_4.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "4",
+  "seed": 880043,
+  "suit": "spades"
+ },
+ "spades_5.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "5",
+  "seed": 880044,
+  "suit": "spades"
+ },
+ "spades_6.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "6",
+  "seed": 880045,
+  "suit": "spades"
+ },
+ "spades_7.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "7",
+  "seed": 880046,
+  "suit": "spades"
+ },
+ "spades_8.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "8",
+  "seed": 880047,
+  "suit": "spades"
+ },
+ "spades_9.jpg": {
+  "character": null,
+  "house": "Bowser's Castle",
+  "rank": "9",
+  "seed": 880048,
+  "suit": "spades"
+ },
+ "spades_A.jpg": {
+  "character": "BOWSER",
+  "house": "Bowser's Castle",
+  "rank": "A",
+  "seed": 880040,
+  "suit": "spades"
+ },
+ "spades_J.jpg": {
+  "character": "KOOPA TROOPA",
+  "house": "Bowser's Castle",
+  "rank": "J",
+  "seed": 880050,
+  "suit": "spades"
+ },
+ "spades_K.jpg": {
+  "character": "DRY BONES",
+  "house": "Bowser's Castle",
+  "rank": "K",
+  "seed": 880052,
+  "suit": "spades"
+ },
+ "spades_Q.jpg": {
+  "character": "SHY GUY",
+  "house": "Bowser's Castle",
+  "rank": "Q",
+  "seed": 880051,
+  "suit": "spades"
+ }
+}

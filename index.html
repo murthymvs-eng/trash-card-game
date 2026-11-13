@@ -281,6 +281,7 @@ function newGame(n){
   G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,turnDrawnCard:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
   $('#overlay').style.display='none';$('#btnNew').style.display='';
+  playMusic();
   render();
 }
 function showStart(){
@@ -684,7 +685,8 @@ const THEMES={
   princess:imgTheme('princess_deck','Princess','Once Upon a Time',backPrincess,'jpg'),
   taylor:imgTheme('taylor_swift_tours_deck','Taylor Swift','The Eras Tour',backTS),
   moana:imgTheme('moana_deck','Moana','The Wayfinders',backMoana,'jpg'),
-  toystory:imgTheme('toystory_deck','Toy Story','Andys Playroom',backToys,'jpg')
+  toystory:imgTheme('toystory_deck','Toy Story','Andys Playroom',backToys,'jpg'),
+  mario:imgTheme('mario_deck','Mario','Mushroom Kingdom',backClassic,'jpg')
 };
 // ---- AI-generated card backs (backs/<id>.jpg) ----
 // Each theme keeps its hand-drawn SVG back as a fallback: if the JPG is missing the
@@ -714,7 +716,8 @@ const LOOK={
   princess:{bg:'bg/princess.jpg',felt:['#b98bb4','#7d5080','#4c2f4f','#281829'],slot:['rgba(80,44,84,.5)','rgba(38,21,42,.6)'],accent:'#ffd7ea',accentDeep:'#a8548f',accentLite:'#ffeaf6',accentGlow:'rgba(255,215,234,.26)',accentRing:'rgba(255,215,234,.34)',bannerInk:'#fdf1f8'},
   taylor:{bg:'bg/taylor.jpg',felt:['#c25d92','#7e3560','#451b35','#250d1c'],slot:['rgba(96,40,68,.5)','rgba(46,19,34,.6)'],accent:'#ffe89a',accentDeep:'#a5701a',accentLite:'#fff4c8'},
   moana:{bg:'bg/moana.jpg',felt:['#1f8fb0','#146b8a','#0b3f55','#05212e'],slot:['rgba(11,63,85,.5)','rgba(5,33,46,.6)'],accent:'#ffd24d',accentDeep:'#a5701a',accentLite:'#ffe08a',accentGlow:'rgba(255,210,77,.28)',accentRing:'rgba(255,210,77,.35)',bannerInk:'#eafaff'},
-  toystory:{bg:'bg/toystory.jpg',felt:['#c9452f','#8f2a1c','#521410','#2b0a07'],slot:['rgba(74,18,26,.52)','rgba(34,8,12,.62)'],accent:'#ffd24d',accentDeep:'#a5701a',accentLite:'#ffe08a',accentGlow:'rgba(255,210,77,.28)',accentRing:'rgba(255,210,77,.35)',bannerInk:'#fff3dc'}
+  toystory:{bg:'bg/toystory.jpg',felt:['#c9452f','#8f2a1c','#521410','#2b0a07'],slot:['rgba(74,18,26,.52)','rgba(34,8,12,.62)'],accent:'#ffd24d',accentDeep:'#a5701a',accentLite:'#ffe08a',accentGlow:'rgba(255,210,77,.28)',accentRing:'rgba(255,210,77,.35)',bannerInk:'#fff3dc'},
+  mario:{bg:'bg/mario.jpg',felt:['#4a7fe0','#2a52b8','#15307a','#0a1740'],slot:['rgba(10,23,64,.55)','rgba(5,13,38,.62)'],accent:'#e5392f',accentDeep:'#8f1a14',accentLite:'#ff8a7a',accentGlow:'rgba(229,57,47,.28)',accentRing:'rgba(229,57,47,.35)',bannerInk:'#fff4e8'}
 };
 const LOOK_DEF=LOOK.classic;
 function lookOf(id){return LOOK[id]||LOOK_DEF;}
@@ -740,6 +743,7 @@ function applyTheme(){
     r.setProperty('--bgOp','0');
     r.setProperty('--scrim','radial-gradient(120% 100% at 50% 45%,transparent 55%,rgba(0,0,0,.42) 100%)');
   }
+  playMusic();
   return this;
 }
 // Preload background art so switching themes never flashes a blank layer.
@@ -842,8 +846,68 @@ function confetti(){
     if(alive&&f++<420)requestAnimationFrame(step);else ctx.clearRect(0,0,cv.width,cv.height);
   })();
 }
+// ---- Audio: bundled files under audio/mp3/ --------------------------------
+// Core SFX + per-theme signature sounds, one looping music track per theme.
+// Web Audio (decodeAudioData) is used when the files can be fetched (http://);
+// under file:// the fetch is blocked, so HTMLAudioElement is the fallback.
+const AUDIO_BASE='audio/mp3/';
+const SFX_FILES={draw:'sfx/draw.mp3',place:'sfx/place.mp3',discard:'sfx/discard.mp3',err:'sfx/err.mp3',win:'sfx/win.mp3',click:'sfx/click.mp3'};
+const SFX_SIGNATURE={
+  starwars:{place:'sfx/starwars/starwars_pew.mp3',draw:'sfx/starwars/starwars_tie.mp3'},
+  hp:{draw:'sfx/hp/hp_wand.mp3'},
+  minion:{place:'sfx/minion/minion_boing.mp3'},
+  coco:{draw:'sfx/coco/coco_strum.mp3'},
+  avengers:{place:'sfx/avengers/avengers_thunder.mp3'},
+  spiderman:{place:'sfx/spiderman/spiderman_web.mp3'},
+  toystory:{draw:'sfx/toystory/toystory_squeak.mp3'},
+  moana:{draw:'sfx/moana/moana_wave.mp3'},
+  princess:{place:'sfx/princess/princess_fairy.mp3'},
+  taylor:{win:'sfx/taylor/taylor_shutter.mp3'},
+  mario:{draw:'sfx/mario/mario_jump.mp3',place:'sfx/mario/mario_coin.mp3'},
+  animal:{place:'sfx/animal/animal_wiggle.mp3'},
+  fairy:{place:'sfx/fairy/fairy_sparkle.mp3'},
+  neon:{place:'sfx/neon/neon_zap.mp3'}
+};
+const MUSIC_FILES={classic:'music/classic.mp3',starwars:'music/starwars.mp3',hp:'music/hp.mp3',minion:'music/minion.mp3',coco:'music/coco.mp3',avengers:'music/avengers.mp3',spiderman:'music/spiderman.mp3',toystory:'music/toystory.mp3',moana:'music/moana.mp3',princess:'music/princess.mp3',taylor:'music/taylor.mp3',mario:'music/mario.mp3',animal:'music/classic.mp3',fairy:'music/classic.mp3',neon:'music/classic.mp3',wood:'music/classic.mp3'};
+const sfxBuf={},sfxEl={},sfxBad={};
+let musicEl=null,musicDuckT=0;
+function audioCtx(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();return actx;}catch(e){return null;}}
+// Autoplay policies keep a context created before the first gesture suspended —
+// resume it (from a gesture) so the decoded buffers are actually audible.
+function liveCtx(){const c=audioCtx();if(c&&c.state==='suspended'&&c.resume)c.resume();return c;}
+function elFor(path){let el=sfxEl[path];if(!el){el=new Audio();el.preload='auto';el.src=AUDIO_BASE+path;el.addEventListener('error',()=>{sfxBad[path]=1;});sfxEl[path]=el;}return el;}
+function decodeFile(path){const ctx=audioCtx();if(!ctx||sfxBuf[path])return;fetch(AUDIO_BASE+path).then(r=>r.ok?r.arrayBuffer():Promise.reject(0)).then(b=>ctx.decodeAudioData(b)).then(buf=>{sfxBuf[path]=buf;}).catch(()=>{});}
+function preloadAudio(){
+  Object.keys(SFX_FILES).forEach(k=>{decodeFile(SFX_FILES[k]);elFor(SFX_FILES[k]);});
+  Object.keys(SFX_SIGNATURE).forEach(t=>Object.values(SFX_SIGNATURE[t]).forEach(p=>{decodeFile(p);elFor(p);}));
+}
+function duckMusic(){if(!musicEl)return;musicEl.volume=.14;clearTimeout(musicDuckT);musicDuckT=setTimeout(()=>{if(musicEl)musicEl.volume=.34;},300);}
+function playFile(path,vol){
+  if(muted||!path)return false;
+  const ctx=liveCtx();
+  if(ctx&&sfxBuf[path]){try{const s=ctx.createBufferSource();s.buffer=sfxBuf[path];const g=ctx.createGain();g.gain.value=vol;s.connect(g);g.connect(ctx.destination);s.start();duckMusic();return true;}catch(e){}}
+  if(!sfxBad[path]){const el=elFor(path);try{el.currentTime=0;el.volume=vol;const p=el.play();if(p&&p.catch)p.catch(()=>{});duckMusic();return true;}catch(e){}}
+  return false;
+}
+// Looping theme music. Autoplay policies may block the first play() — the
+// pointerdown listener below retries it after the first user gesture.
+function playMusic(){
+  const path=AUDIO_BASE+(MUSIC_FILES[curTheme()]||MUSIC_FILES.classic);
+  if(!musicEl){musicEl=new Audio();musicEl.loop=true;musicEl.preload='auto';}
+  if(musicEl.dataset.src!==path){musicEl.src=path;musicEl.dataset.src=path;}
+  if(muted){musicEl.pause();return;}
+  musicEl.volume=.34;
+  const p=musicEl.play();if(p&&p.catch)p.catch(()=>{});
+}
+function stopMusic(){if(musicEl)musicEl.pause();}
 function sfx(kind){
   if(muted)return;
+  const sig=SFX_SIGNATURE[curTheme()];
+  if(sig&&sig[kind])playFile(sig[kind],.6);
+  if(!playFile(SFX_FILES[kind],1))synthSfx(kind);
+}
+// Synthesized fallback — used only when a bundled file is missing.
+function synthSfx(kind){
   try{
     actx=actx||new (window.AudioContext||window.webkitAudioContext)();
     const t=actx.currentTime;
@@ -967,7 +1031,7 @@ $('#inpName').addEventListener('input',e=>{
   if(G&&G.players[0]){G.players[0].name=userName();if(inGame())render();}
 });
 $('#btnNew').onclick=showStart;
-$('#btnSound').onclick=()=>{muted=!muted;$('#btnSound').textContent=muted?'🔇':'🔊';};
+$('#btnSound').onclick=()=>{muted=!muted;$('#btnSound').textContent=muted?'🔇':'🔊';if(muted)stopMusic();else playMusic();};
 $('#deckBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI&&G.deck.length>0)doDraw(G.turn,'deck');};
 $('#centerBox').onclick=()=>{if(inGame()&&G.phase==='awaiting'&&!G.players[G.turn].isAI&&G.center.length>0)doDraw(G.turn,'center');};
 $('#screenGame').addEventListener('pointerdown',e=>{
@@ -999,7 +1063,9 @@ window.__game={
 };
 function buildRosette(){let p='',r='';for(let i=0;i<16;i++)p+='<ellipse cx="50" cy="61" rx="3.2" ry="9" transform="rotate('+(i*22.5)+' 50 70)" fill="#fbe0dc" opacity=".85"/>';for(let i=0;i<28;i++)r+='<circle cx="50" cy="50" r=".9" transform="rotate('+(i*(360/28)).toFixed(3)+' 50 70)" fill="#fff" opacity=".5"/>';const g=document.getElementById('rosette');if(g)g.innerHTML=r+p+'<circle cx="50" cy="70" r="6.5" fill="none" stroke="#fff" stroke-opacity=".6"/><circle cx="50" cy="70" r="3.4" fill="#fbe0dc"/><circle cx="50" cy="70" r="1.5" fill="#fff"/>';}
 function buildHeroFan(){const f=document.getElementById('fan');if(f)f.innerHTML=[cardHTML({r:'A',s:'S'}),cardHTML({r:'K',s:'H'}),cardHTML({r:'J',s:'C'})].join('');}
-buildRosette();buildHeroFan();applyTheme();buildThemeGrid();
+buildRosette();buildHeroFan();preloadAudio();applyTheme();buildThemeGrid();
+// Autoplay policies block audio until the first user gesture — retry the music then.
+document.addEventListener('pointerdown',()=>{liveCtx();playMusic();},{once:true});
 showStart();
 if(/[?&]demo=1/.test(location.search)){
   newGame(1);

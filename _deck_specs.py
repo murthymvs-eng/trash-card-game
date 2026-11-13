@@ -257,3 +257,128 @@ DECKS["toystory"] = {
         },
     },
 }
+
+
+# --------------------------------------------------------------------------
+# MARIO (Super Mario Bros. video game)
+# --------------------------------------------------------------------------
+DECKS["mario"] = {
+    "dir": "mario_deck",
+    "style": ("classic 16-bit pixel art video game sprite style, crisp hard-edged "
+              "pixels, saturated primary colors, bold black outlines, chunky "
+              "1990s side-scrolling platformer game artwork"),
+    "houses": {
+        "hearts": {
+            "house": "Mushroom Kingdom",
+            "palette": "bright red, white and blue with gold trim",
+            "frame": "Red and white mushroom-themed card border with gold rivets",
+            "crest": "a red mushroom cap with big white spots",
+            "bg": "green warp pipe and checkered flag landscape behind",
+            "main": ("MARIO",
+                     "a short sturdy cartoon plumber hero with a red cap bearing a "
+                     "white circle emblem, bushy black mustache, big round nose, red "
+                     "long-sleeve shirt, blue overalls with two yellow buttons, white "
+                     "gloves and brown boots, cheerful grin"),
+            "characters": {
+                "A": ("MARIO",
+                      "a short sturdy cartoon plumber hero with a red cap bearing a "
+                      "white circle emblem, bushy black mustache, big round nose, red "
+                      "long-sleeve shirt, blue overalls with two yellow buttons, "
+                      "white gloves and brown boots, cheerful grin"),
+                "J": ("TOAD",
+                      "a small cheerful mushroom-headed character with a red and "
+                      "white spotted cap, enormous white eyes, tiny stubby body"),
+                "Q": ("PRINCESS PEACH",
+                      "a princess with long golden blonde hair in big curls, a gold "
+                      "crown set with blue and red jewels, a flowing pink gown with "
+                      "long white gloves, gentle serene smile"),
+                "K": ("BOWSER",
+                      "a huge muscular cartoon turtle king with a spiked green "
+                      "shell, orange scaled skin, small horns on his head, white "
+                      "fangs and a fiery mane, roaring furiously"),
+            },
+        },
+        "diamonds": {
+            "house": "Luigi's Mansion",
+            "palette": "deep green, black and violet with silver trim",
+            "frame": "Green and black haunted-mansion card border with silver rivets",
+            "crest": "a tall green warp pipe",
+            "bg": "dark haunted mansion hallway lit by green ghost flames behind",
+            "main": ("LUIGI",
+                     "a tall lanky cartoon plumber hero with a dark green cap "
+                     "bearing a white circle emblem, thin black mustache, long nose, "
+                     "green long-sleeve shirt, blue overalls with two yellow "
+                     "buttons, white gloves and brown boots, nervous grin"),
+            "characters": {
+                "A": ("LUIGI",
+                      "a tall lanky cartoon plumber hero with a dark green cap "
+                      "bearing a white circle emblem, thin black mustache, long nose, "
+                      "green long-sleeve shirt, blue overalls with two yellow "
+                      "buttons, white gloves and brown boots, nervous grin"),
+                "J": ("TOADETTE",
+                      "a small cheerful mushroom-headed character with a pink and "
+                      "white spotted cap and a pink bow, enormous white eyes, tiny "
+                      "stubby body"),
+                "Q": ("ROSALINA",
+                      "a tall elegant cosmic princess with long platinum blonde hair "
+                      "in a high ponytail, a pale teal gown, a serene expression, "
+                      "faint star sparkles around her"),
+                "K": ("BOWSER JR.",
+                      "a small boss turtle with a spiked green shell, orange skin, "
+                      "a spiky orange hair tuft and small fangs, scolding glare"),
+            },
+        },
+        "clubs": {
+            "house": "Yoshi's Island",
+            "palette": "leaf green, orange and cream with warm gold trim",
+            "frame": "Cream and orange rounded card border with gold leaf scrollwork",
+            "crest": "a large white egg with green spots",
+            "bg": "bright Yoshi's Island jungle with round fruit trees behind",
+            "main": ("YOSHI",
+                     "a friendly cartoon dinosaur with a rounded snout, big round "
+                     "white eyes, green body, white belly, orange saddle-like shoes "
+                     "and a cheerful open-mouthed smile"),
+            "characters": {
+                "A": ("YOSHI",
+                      "a friendly cartoon dinosaur with a rounded snout, big round "
+                      "white eyes, green body, white belly, orange saddle-like shoes "
+                      "and a cheerful open-mouthed smile"),
+                "J": ("TOAD",
+                      "a small cheerful mushroom-headed character with a red and "
+                      "white spotted cap, enormous white eyes, tiny stubby body"),
+                "Q": ("LEMUKI",
+                      "a chubby cheerful cartoon lemur with a tall tuft of hair on "
+                      "its head, orange shirt, big smile and round friendly eyes"),
+                "K": ("GOOMBA",
+                      "a grumpy brown walking cartoon mushroom enemy with thick "
+                      "angry eyebrows, a wide scowl and stubby feet"),
+            },
+        },
+        "spades": {
+            "house": "Bowser's Castle",
+            "palette": "charcoal grey, crimson red and molten gold",
+            "frame": "Dark stone and crimson card border with gold spike studs",
+            "crest": "a spiked green turtle shell",
+            "bg": "Bowser's Castle lava dungeon with glowing lava below behind",
+            "main": ("BOWSER",
+                     "a huge muscular cartoon turtle king with a spiked green shell, "
+                     "orange scaled skin, small horns on his head, white fangs and a "
+                     "fiery mane, roaring furiously"),
+            "characters": {
+                "A": ("BOWSER",
+                      "a huge muscular cartoon turtle king with a spiked green "
+                      "shell, orange scaled skin, small horns on his head, white "
+                      "fangs and a fiery mane, roaring furiously"),
+                "J": ("KOOPA TROOPA",
+                      "a tall cartoon turtle enemy with a green shell, yellow skin, "
+                      "a scowl and sharp white claws"),
+                "Q": ("SHY GUY",
+                      "a small shy cartoon ghost with a rounded white body, tiny "
+                      "black eyes, a wavy hem and a nervous expression"),
+                "K": ("DRY BONES",
+                      "a lanky cartoon skeletal turtle with a white skull, dark eye "
+                      "sockets, a green shell and bony thin limbs"),
+            },
+        },
+    },
+}

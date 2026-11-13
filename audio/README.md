@@ -19,7 +19,7 @@ SMB overworld theme from a reference recording (basic-pitch →
 
 | Theme id | Track | Evokes |
 |---|---|---|
-| `starwars` | `music/starwars.wav` | Imperial March (brass, marching bass, timpani) |
+| `starwars` | `music/starwars.wav` | Star Wars main title (1977) — transcribed from a reference recording (brass over tuba bass + timpani, ~88 s) |
 | `hp` | `music/hp.wav` | Hedwig's Theme — G-minor waltz, pizzicato riff |
 | `minion` | `music/minion.wav` | Goofy Despicable-Me style: tuba + xylophone |
 | `coco` | `music/coco.wav` | "Remember Me" / Bésame Mucho waltz, nylon guitar |

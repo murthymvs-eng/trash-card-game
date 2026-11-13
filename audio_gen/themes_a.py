@@ -2,36 +2,13 @@
 from dsp import *
 
 def starwars(B):
-    u = 60 / 88.0
-    def mel(b, m, beats, g=0.5, p=0.5):
-        B.add(brass(midi_f(m), beats * u + 0.08, r=0.1), b * u, g, p)
-    for b in (0, 1, 2):
-        mel(b, 62, 1)
-    mel(3, 62, 2)
-    for b, m in ((4, 73), (4.5, 74), (5, 70), (6, 69), (6.5, 67), (7, 70), (8, 69),
-                 (8.5, 67), (9, 66), (9.5, 69), (10, 67), (10.5, 66), (11, 64),
-                 (11.5, 67), (12, 66), (12.5, 64)):
-        mel(b, m, 0.5)
-    for b in (13, 14, 15):
-        mel(b, 62, 1)
-    mel(16, 62, 2)
-    for b, m in ((18, 69), (18.5, 76), (19, 74), (19.5, 76), (20, 74),
-                 (20.5, 73), (21, 70), (21.5, 69)):
-        mel(b, m, 0.5)
-    mel(22, 74, 1); mel(23, 73, .5); mel(23.5, 70, .5); mel(24, 74, 4, g=.55)
-    for m, dt in ((38, 0), (53, .02), (57, .04)):
-        B.add(brass(midi_f(m), 2.5, r=.3, a=.08), 24*u + dt, .22, .5)
-    pat = [[38, 34, 38, 38]] * 4 + [[33, 28, 33, 28]] * 3 + [[38, 38, 38, 38]]
-    for bar, notes in enumerate(pat):
-        for i, m in enumerate(notes):
-            B.add(tuba(midi_f(m), u * 0.48), (bar*4 + i) * u * 0.99, .3, .5)
-    for b in range(0, 27, 2):
-        B.add(kick(), b * u, .35)
-    for bar in range(7):
-        for b in (1, 3):
-            B.add(snare(), (bar*4 + b) * u, .28)
-    B.add(timpani(midi_f(38), 1.2), 0, .4)
-    B.add(timpani(midi_f(38), 1.4), 24 * u, .6)
+    # "Star Wars" main title (1977) — transcribed from the reference
+    # recording (basic-pitch: midi/starwars/track_basic_pitch.csv).
+    # Brass statement over tuba bass + timpani, 88s loop.
+    import os
+    here = os.path.dirname(os.path.abspath(__file__))
+    songFromCSV(B, os.path.join(here, 'midi', 'starwars', 'track_basic_pitch.csv'),
+                bass=tuba, mel=brass, shimmer=bell)
 
 def hp(B):
     u = 0.48
@@ -105,7 +82,7 @@ def coco(B):
         B.add(brass(midi_f(m), 1.6, a=.08, r=.5), 35.6 * u + dt, .28, .5)
 
 TRACKS = {
-    "starwars": dict(fn=starwars, dur=21.5, seed=11),
+    "starwars": dict(fn=starwars, dur=92.0, seed=11),
     "hp": dict(fn=hp, dur=19.5, seed=21),
     "minion": dict(fn=minion, dur=15.5, seed=31),
     "coco": dict(fn=coco, dur=24.5, seed=41),

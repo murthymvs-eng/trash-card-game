@@ -135,57 +135,9 @@ def frozen(B):
     # midi/frozen/track_basic_pitch.csv). Frozen-style voices: celesta/bell
     # attack + string pad for the melody, soft triangle bass, icy shimmer on
     # the high notes.
-    import csv, os
+    import os
     here = os.path.dirname(os.path.abspath(__file__))
-    p = os.path.join(here, 'midi', 'frozen', 'track_basic_pitch.csv')
-    rows = list(csv.DictReader(open(p)))
-    lo, hi = 56, 92   # bass < lo, shimmer > hi, melody in between
-    bass, mel, spark = [], [], []
-    for r in rows:
-        m = int(r['pitch_midi'])
-        (bass if m < lo else spark if m > hi else mel).append(r)
-    # monophonic bass: drop overlaps (keep the earlier note)
-    bass.sort(key=lambda r: (float(r['start_time_s']), -float(r['end_time_s'])))
-    kept, end = [], 0.0
-    for r in bass:
-        t0 = float(r['start_time_s'])
-        if t0 >= end - 0.02:
-            kept.append(r); end = float(r['end_time_s'])
-    bass = kept
-    # greedy two-voice polyphony: prefer a free voice, tie-break by pitch
-    mel.sort(key=lambda r: (float(r['start_time_s']), -float(r['end_time_s'])))
-    va, vb = [0.0, -99], [0.0, -99]
-    out = []
-    for r in mel:
-        t0 = float(r['start_time_s']); m = int(r['pitch_midi'])
-        cands = [n for n, v in (('A', va), ('B', vb)) if v[0] <= t0 + 0.02]
-        if cands:
-            name = min(cands, key=lambda n: abs((va if n == 'A' else vb)[1] - m))
-        else:
-            name = min(('A', 'B'), key=lambda n: (va if n == 'A' else vb)[0])
-        (va if name == 'A' else vb)[1] = m
-        (va if name == 'A' else vb)[0] = float(r['end_time_s'])
-        out.append((name, r))
-    for r in bass:
-        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
-        g = 0.22 + 0.42 * int(r['velocity']) / 127.0
-        B.add(tri(midi_f(int(r['pitch_midi'])), (t1 - t0) + 0.08, amp=1.0), t0, g, 0.5)
-    for name, r in out:
-        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
-        m = int(r['pitch_midi'])
-        g = (0.20 + 0.38 * int(r['velocity']) / 127.0) * (1.0 if name == 'A' else 0.9)
-        pan = 0.47 if name == 'A' else 0.53
-        B.add(bell(midi_f(m), min(t1 - t0, 1.1) + 0.08, amp=1.0), t0, g, pan)
-        B.add(pad_chord([midi_f(m)], (t1 - t0) + 0.05, a=0.06), t0, g * 0.45,
-              0.49 if name == 'A' else 0.51)
-    for r in spark:
-        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
-        g = 0.07 + 0.13 * int(r['velocity']) / 127.0
-        B.add(bell(midi_f(int(r['pitch_midi'])), min(t1 - t0, 0.45) + 0.04, amp=1.0),
-              t0, g, 0.5)
-    # pad the tail with silence so the bus fade rides on silence, not notes
-    t_last = max(float(r['end_time_s']) for r in rows)
-    B.add(np.zeros(int(2.0 * SR)), t_last + 0.1, 1.0, 0.5)
+    songFromCSV(B, os.path.join(here, 'midi', 'frozen', 'track_basic_pitch.csv'))
 
 TRACKS = {
     "princess": dict(fn=princess, dur=20.5, seed=91),

@@ -197,6 +197,68 @@ class Bus:
 def soft(x):
     return np.tanh(x * 1.15) / np.tanh(1.15)
 
+def songFromCSV(B, csv, lo=56, hi=92, bass=tri, mel=bell, shimmer=None,
+                pad=0.45, tail=2.0):
+    """Render a basic-pitch CSV into B as a light 2-voice arrangement.
+
+    Notes below `lo` (MIDI) become a monophonic bass line, notes above `hi`
+    become a quiet shimmer (if `shimmer` is given), and everything in between
+    is polyphonic melody (two voices, greedy assignment). Each melody note
+    also gets a soft pad voice. A `tail` seconds of silence is padded after
+    the last note so the bus fade rides on silence. Returns the last note
+    end-time (seconds)."""
+    import csv as _csv
+    rows = list(_csv.DictReader(open(csv)))
+    bass_rows, mel_rows, spark_rows = [], [], []
+    for r in rows:
+        m = int(r['pitch_midi'])
+        (bass_rows if m < lo else spark_rows if m > hi else mel_rows).append(r)
+    # monophonic bass: drop overlaps (keep the earlier note)
+    bass_rows.sort(key=lambda r: (float(r['start_time_s']),
+                                  -float(r['end_time_s'])))
+    kept, end = [], 0.0
+    for r in bass_rows:
+        t0 = float(r['start_time_s'])
+        if t0 >= end - 0.02:
+            kept.append(r); end = float(r['end_time_s'])
+    bass_rows = kept
+    # greedy two-voice polyphony: prefer a free voice, tie-break by pitch
+    mel_rows.sort(key=lambda r: (float(r['start_time_s']),
+                                 -float(r['end_time_s'])))
+    va, vb = [0.0, -99], [0.0, -99]
+    out = []
+    for r in mel_rows:
+        t0 = float(r['start_time_s']); m = int(r['pitch_midi'])
+        cands = [n for n, v in (('A', va), ('B', vb)) if v[0] <= t0 + 0.02]
+        if cands:
+            name = min(cands, key=lambda n: abs((va if n == 'A' else vb)[1] - m))
+        else:
+            name = min(('A', 'B'), key=lambda n: (va if n == 'A' else vb)[0])
+        (va if name == 'A' else vb)[1] = m
+        (va if name == 'A' else vb)[0] = float(r['end_time_s'])
+        out.append((name, r))
+    for r in bass_rows:
+        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
+        g = 0.22 + 0.42 * int(r['velocity']) / 127.0
+        B.add(bass(midi_f(int(r['pitch_midi'])), (t1 - t0) + 0.08, amp=1.0),
+              t0, g, 0.5)
+    for name, r in out:
+        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
+        m = int(r['pitch_midi'])
+        g = (0.20 + 0.38 * int(r['velocity']) / 127.0) * (1.0 if name == 'A' else 0.9)
+        pan = 0.47 if name == 'A' else 0.53
+        B.add(mel(midi_f(m), min(t1 - t0, 1.1) + 0.08, amp=1.0), t0, g, pan)
+        B.add(pad_chord([midi_f(m)], (t1 - t0) + 0.05, a=0.06), t0, g * pad, 0.5)
+    if shimmer is not None:
+        for r in spark_rows:
+            t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
+            g = 0.07 + 0.13 * int(r['velocity']) / 127.0
+            B.add(shimmer(midi_f(int(r['pitch_midi'])),
+                          min(t1 - t0, 0.45) + 0.04, amp=1.0), t0, g, 0.5)
+    t_last = max(float(r['end_time_s']) for r in rows)
+    B.add(np.zeros(int(tail * SR)), t_last + 0.1, 1.0, 0.5)
+    return t_last
+
 def _make_ir(dur, decay, seed):
     n = _n(dur)
     ir = np.random.default_rng(seed).standard_normal(n) * np.exp(-t(n) * decay)

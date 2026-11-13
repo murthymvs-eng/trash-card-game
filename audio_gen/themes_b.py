@@ -45,66 +45,15 @@ def avengers(B):
         B.add(brass(midi_f(m), 1.6, a=.07, r=.5), 33.4 * u + dt, .3, .5)
 
 def spiderman(B):
-    u = 0.33
-    def sax(b, m, beats, g=.42, p=.5):
-        B.add(brass(midi_f(m), beats * u + .09, a=.04, r=.1, vib_depth=.008,
-                    vib_rate=6), b * u, g, p)
-    sax(0, 55, 2)
-    for b, m in ((4, 70), (4.5, 67), (5, 70), (5.5, 73), (6, 70),
-                 (6.5, 72), (7, 70), (7.5, 67)):
-        sax(b, m, .5)
-    sax(8, 65, 1); sax(9, 67, 1)
-    for b, m in ((10, 70), (10.5, 69), (11, 67), (11.5, 65)):
-        sax(b, m, .5)
-    sax(12, 67, 1); sax(13, 70, 1); sax(14, 73, 1); sax(15, 70, 1)
-    for b, m in ((16, 72), (16.5, 70), (17, 72), (17.5, 69)):
-        sax(b, m, .5)
-    sax(18, 67, 2)
-    for b, m in ((20, 70), (20.5, 72), (21, 70), (21.5, 69), (22, 67),
-                 (22.5, 69), (23, 70), (23.5, 72)):
-        sax(b, m, .5)
-    sax(24, 72, 1); sax(25, 70, 1); sax(26, 69, 1); sax(27, 67, 1)
-    for b, m in ((28, 70), (28.5, 69)):
-        sax(b, m, .5)
-    sax(29, 67, 1); sax(30, 65, 1); sax(31, 67, 1)
-    sax(32, 55, 2)
-    for b, m in ((36, 70), (36.5, 67), (37, 70), (37.5, 73), (38, 72),
-                 (38.5, 73), (39, 72), (39.5, 70)):
-        sax(b, m, .5)
-    sax(40, 65, 1); sax(41, 67, 1)
-    for b, m in ((42, 70), (42.5, 73), (43, 72), (43.5, 70)):
-        sax(b, m, .5)
-    sax(44, 70, 1); sax(45, 73, 1); sax(46, 72, 1); sax(47, 70, 1)
-    for b, m in ((48, 72), (48.5, 74), (49, 72), (49.5, 74)):
-        sax(b, m, .5)
-    sax(50, 76, 2)
-    for b, m in ((52, 74), (52.5, 72), (53, 70), (53.5, 72), (54, 74),
-                 (54.5, 76), (55, 74), (55.5, 72)):
-        sax(b, m, .5)
-    sax(56, 71, 1); sax(57, 69, 1); sax(58, 70, 1); sax(59, 69, 1)
-    for b, m in ((60, 69), (60.5, 67)):
-        sax(b, m, .5)
-    sax(61, 65, 2, g=.46)
-    wb = [43, 45, 46, 48, 50, 43, 45, 46, 48, 41, 43, 45, 46, 48, 45, 43]
-    for bar, m in enumerate(wb):
-        B.add(pizz(midi_f(m), u * 1.3, pick=.3), bar * 4 * u, .3, .42)
-        B.add(pizz(midi_f(m + 12 if m < 48 else m), u * 0.7, pick=.2),
-              (bar*4 + 2) * u, .18, .58)
-    stabs = {0: (55, 58, 62, 65), 2: (53, 56, 60, 63), 4: (46, 50, 55, 58),
-             8: (55, 58, 62, 65), 10: (53, 56, 60, 63), 12: (46, 50, 55, 58),
-             14: (55, 58, 62, 65)}
-    for bar, ms in stabs.items():
-        for b in (0, 2.5):
-            for m in ms:
-                B.add(pluck(midi_f(m), u * 1.2, pick=.1), (bar*4 + b) * u, .14, .5)
-    for bar in range(16):
-        B.add(kick(), bar*4 * u, .3); B.add(kick(), (bar*4 + 2) * u, .3)
-        B.add(brush(), (bar*4 + 1) * u, .25); B.add(brush(), (bar*4 + 3) * u, .25)
-        for i in range(4):
-            B.add(hat(), (bar*4 + i*2 + 0.9) * u * 0.5, .08)
-            B.add(hat(), (bar*4 + i*2 + 1.55) * u * 0.5, .06)
+    # "Spider-Man 1967 Cartoon Theme Song" — transcribed from the reference
+    # recording (basic-pitch: midi/spiderman/track_basic_pitch.csv). The 60s
+    # synth-cartoon lead, rendered as vibrato brass over tuba bass.
+    import os
+    here = os.path.dirname(os.path.abspath(__file__))
+    songFromCSV(B, os.path.join(here, 'midi', 'spiderman', 'track_basic_pitch.csv'),
+                bass=tuba, mel=brass, shimmer=bell)
 
 TRACKS = {
     "avengers": dict(fn=avengers, dur=19.5, seed=51),
-    "spiderman": dict(fn=spiderman, dur=22.5, seed=61),
+    "spiderman": dict(fn=spiderman, dur=62.0, seed=61),
 }

@@ -3,6 +3,9 @@
 # Local review artifacts for the iOS app (screenshots, screen recordings, samples)
 ios/_review/
 
+# iOS build products (local builds land here)
+ios/TrashGame/build/
+
 # Source artwork for the art decks — the .jpg card faces are committed.
 # PNG sources stay on disk but are never pushed (1500x2100 for the five older
 # decks, 400x560 for moana/toystory — see DECK_OPTIMIZATION.md).

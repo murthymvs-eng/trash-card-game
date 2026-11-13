@@ -1,8 +1,10 @@
 # Trash — Game Audio
 
 Synthesized movie-theme music + game SFX for the Trash card game. All audio is
-generated from scratch (numpy synth in `../audio_gen/`) — original evocations of
-the film soundtracks, no ripped recordings.
+rendered from written note data (numpy synth in `../audio_gen/`) — original
+evocations of the film soundtracks, except **Mario**: a transcription of the
+SMB overworld theme from a reference recording (basic-pitch →
+`../audio_gen/midi/mario/`, rendered with NES-style chiptune voices).
 
 ## Layout
 
@@ -27,7 +29,7 @@ the film soundtracks, no ripped recordings.
 | `moana` | `music/moana.wav` | Pacific 6/8 waltz, ukulele + marimba melody |
 | `princess` | `music/princess.wav` | Disney-fairy waltz — celesta, strings, sparkle |
 | `taylor` | `music/taylor.wav` | Arena-pop anthem: four-on-floor, pad, crowd |
-| `mario` | `music/mario.wav` | NES chiptune overworld (square lead + triangle bass) |
+| `mario` | `music/mario.wav` | SMB overworld theme — transcribed from a reference recording (2 pulse melody + triangle bass, full ~82s song) |
 | `classic` (also fallback for `animal`/`fairy`/`neon`/`wood`) | `music/classic.wav` | Cheerful piano/celesta card-game jingle |
 
 ## SFX map

@@ -61,32 +61,51 @@ def taylor(B):
     B.add(shimmer(1.2, amp=.14, seed=7), 14 * u, .8, .55)
 
 def mario(B):
-    u = 0.3
-    pat0 = [(0, 72, .5), (.5, 74, .5), (1, 76, .5), (1.5, 79, .5), (2, 76, .5),
-            (2.5, 74, .5), (3, 72, 1)]
-    pat1 = [(4, 72, .5), (4.5, 74, .5), (5, 76, .5), (5.5, 79, .5), (6, 81, .5),
-            (6.5, 79, .5), (7, 76, 1)]
-    pat2 = [(8, 77, .5), (8.5, 79, .5), (9, 81, .5), (9.5, 84, .5), (10, 81, .5),
-            (10.5, 79, .5), (11, 77, 1)]
-    pat3 = [(12, 76, .5), (12.5, 77, .5), (13, 79, .5), (13.5, 76, .5), (14, 72, 2)]
-    pats = [pat0, pat1, pat2, pat3]
-    for half in range(2):
-        off = half * 16 * u
-        for p in range(4):
-            shift = 12 if (half == 1 and p >= 2) else 0
-            for b, m, d in pats[p]:
-                B.add(square(midi_f(m + shift), d * u + .05, amp=.5, r=.03),
-                      off + b * u, .3, .5)
-    for half in range(2):
-        off = half * 16
-        for bar in range(4):
-            for i, m in enumerate([36, 43, 45, 48]):
-                B.add(tri(midi_f(m), u * 0.9, amp=.6), (off + bar*4 + i) * u, .3, .45)
-    for bar in range(16):
-        B.add(kick(), bar*4 * u, .3); B.add(kick(), (bar*4 + 2) * u, .3)
-        B.add(snare(), (bar*4 + 1) * u, .14); B.add(snare(), (bar*4 + 3) * u, .14)
-        for i in range(4):
-            B.add(hat(), (bar*4 + i * 2 + 1) * u * 0.5, .07)
+    # Iconic SMB overworld theme — transcribed from the reference recording
+    # (basic-pitch: midi/mario/track_basic_pitch.csv). NES-style voices:
+    # triangle bass + two greedy-split pulse melody voices (square1/square2).
+    import csv, os
+    here = os.path.dirname(os.path.abspath(__file__))
+    p = os.path.join(here, 'midi', 'mario', 'track_basic_pitch.csv')
+    rows = list(csv.DictReader(open(p)))
+    lo = 56  # notes below this go to the triangle bass voice
+    bass, mel = [], []
+    for r in rows:
+        (bass if int(r['pitch_midi']) < lo else mel).append(r)
+    # monophonic bass: drop overlaps (keep the earlier note)
+    bass.sort(key=lambda r: (float(r['start_time_s']), -float(r['end_time_s'])))
+    kept, end = [], 0.0
+    for r in bass:
+        t0 = float(r['start_time_s'])
+        if t0 >= end - 0.02:
+            kept.append(r); end = float(r['end_time_s'])
+    bass = kept
+    # greedy two-voice polyphony: prefer a free voice, tie-break by pitch proximity
+    mel.sort(key=lambda r: (float(r['start_time_s']), -float(r['end_time_s'])))
+    va, vb = [0.0, -99], [0.0, -99]
+    out = []
+    for r in mel:
+        t0 = float(r['start_time_s']); m = int(r['pitch_midi'])
+        cands = [n for n, v in (('A', va), ('B', vb)) if v[0] <= t0 + 0.02]
+        if cands:
+            name = min(cands, key=lambda n: abs((va if n == 'A' else vb)[1] - m))
+        else:
+            name = min(('A', 'B'), key=lambda n: (va if n == 'A' else vb)[0])
+        (va if name == 'A' else vb)[1] = m
+        (va if name == 'A' else vb)[0] = float(r['end_time_s'])
+        out.append((name, r))
+    for r in bass:
+        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
+        g = 0.30 + 0.50 * int(r['velocity']) / 127.0
+        B.add(tri(midi_f(int(r['pitch_midi'])), (t1 - t0) + 0.06, amp=1.0), t0, g, 0.5)
+    for name, r in out:
+        t0, t1 = float(r['start_time_s']), float(r['end_time_s'])
+        g = (0.22 + 0.40 * int(r['velocity']) / 127.0) * (1.0 if name == 'A' else 0.92)
+        B.add(square(midi_f(int(r['pitch_midi'])), (t1 - t0) + 0.03, amp=1.0, r=0.02),
+              t0, g, 0.47 if name == 'A' else 0.53)
+    # pad the tail with silence so the bus fade rides on silence, not notes
+    t_last = max(float(r['end_time_s']) for r in rows)
+    B.add(np.zeros(int(2.0 * SR)), t_last + 0.1, 1.0, 0.5)
 
 def classic(B):
     u = 0.5
@@ -114,6 +133,6 @@ def classic(B):
 TRACKS = {
     "princess": dict(fn=princess, dur=20.5, seed=91),
     "taylor": dict(fn=taylor, dur=18.5, seed=101),
-    "mario": dict(fn=mario, dur=21.5, seed=111),
+    "mario": dict(fn=mario, dur=82.0, seed=111),
     "classic": dict(fn=classic, dur=18.5, seed=121),
 }

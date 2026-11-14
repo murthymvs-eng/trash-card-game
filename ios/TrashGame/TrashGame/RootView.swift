@@ -30,7 +30,7 @@ struct RootView: View {
                     OverlayView(
                         engine: engine,
                         theme: currentTheme,
-                        onAgain: { engine.newGame(mode: engine.state.mode) },
+                        onAgain: { engine.newGame(mode: engine.state.mode, advanced: engine.state.advanced) },
                         onChangeMode: { inGame = false }
                     )
                     if engine.state.winner.count == 1 { ConfettiView() }
@@ -59,17 +59,20 @@ struct RootView: View {
             if ProcessInfo.processInfo.arguments.contains("--autoplay") {
                 // Demo: auto-play a full 1P game (both players) for screen-recording.
                 engine.isAutoPlaying = true
-                engine.newGame(mode: 1)
+                engine.newGame(mode: 1, advanced: ProcessInfo.processInfo.arguments.contains("--advanced"))
                 inGame = true
                 engine.aiTurnStart()
             } else {
                 // Demo/debug: launch with `-startMode N` (or `--demo`) to auto-start a game.
+                // Add `--advanced` to start in Advanced mode.
                 let demoMode = ProcessInfo.processInfo.arguments.contains("--demo") ? 1
                     : UserDefaults.standard.integer(forKey: "startMode")
                 if demoMode >= 1 && !inGame {
                     // Start after the launch rotation has settled, otherwise the
                     // board can end up in a state where touches are dropped.
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { start(demoMode) }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        start(demoMode, advanced: ProcessInfo.processInfo.arguments.contains("--advanced"))
+                    }
                 }
             }
             if ProcessInfo.processInfo.arguments.contains("--landscape") {
@@ -98,7 +101,7 @@ struct RootView: View {
                 onStartOver: inGame ? {
                     showSettings = false
                     Haptics.tap()
-                    engine.newGame(mode: engine.state.mode)
+                    engine.newGame(mode: engine.state.mode, advanced: engine.state.advanced)
                 } : nil
             )
         }
@@ -187,8 +190,8 @@ struct RootView: View {
         engine.abortGame()
     }
 
-    private func start(_ mode: Int) {
-        engine.newGame(mode: mode)
+    private func start(_ mode: Int, advanced: Bool = false) {
+        engine.newGame(mode: mode, advanced: advanced)
         inGame = true
     }
 

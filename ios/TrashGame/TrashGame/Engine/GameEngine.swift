@@ -54,7 +54,7 @@ final class GameEngine: ObservableObject {
         state = .empty
     }
 
-    func newGame(mode n: Int) {
+    func newGame(mode n: Int, advanced: Bool = false) {
         generation += 1
         let total = n == 1 ? 2 : n
         var players: [Player] = []
@@ -70,9 +70,16 @@ final class GameEngine: ObservableObject {
             let isAI = n == 1 && i == 1
             players.append(Player(id: i, name: name, isAI: isAI))
         }
+        var deck = makeDeck()
+        // Advanced: deal 10 face-down cover cards per player (one per slot).
+        for i in 0..<players.count where advanced {
+            let covers = Array(deck.prefix(GameRules.slotCount))
+            deck.removeFirst(GameRules.slotCount)
+            players[i].covers = covers
+        }
         state = GameState(
             players: players,
-            deck: makeDeck(),
+            deck: deck,
             center: [],
             turn: 0,
             phase: .awaiting,
@@ -80,7 +87,8 @@ final class GameEngine: ObservableObject {
             mode: n,
             over: false,
             winner: [],
-            fast: false
+            fast: false,
+            advanced: advanced
         )
         // Debug/test hook: force the card that will be drawn next, e.g. "-forceCard 4".
         if let i = ProcessInfo.processInfo.arguments.firstIndex(of: "-forceCard"),
@@ -129,6 +137,11 @@ final class GameEngine: ObservableObject {
 
     func doDraw(_ pIdx: Int, source: String) {
         guard !state.over, state.phase == .awaiting else { return }
+        // Advanced: nobody left to draw from — end the game on score.
+        if state.advanced, state.deck.isEmpty, state.center.isEmpty {
+            gameOverByScore()
+            return
+        }
 
         var card: Card?
         if source == "center", let top = state.center.popLast() {
@@ -159,7 +172,7 @@ final class GameEngine: ObservableObject {
             after(1200) { [weak self] in
                 guard let self, !self.state.over,
                       self.state.turn == pIdx, self.state.phase == .acting else { return }
-                self.endTurn()
+                self.autoEnd(pIdx)
             }
         }
     }
@@ -182,6 +195,11 @@ final class GameEngine: ObservableObject {
         var pc = p
         pc.slots[s] = c
         pc.hand.remove(at: hi)
+        if state.advanced, let cover = p.covers[s] {
+            // Unlock: the face-down cover flips into the player's hand.
+            pc.covers[s] = nil
+            pc.hand.append(cover)
+        }
         state.players[pIdx] = pc
         state.placedThisTurn += 1
         state.lastDrawn = nil
@@ -195,7 +213,7 @@ final class GameEngine: ObservableObject {
         if state.placedThisTurn >= 1 {
             after(450) { [weak self] in
                 guard let self, !self.state.over else { return }
-                self.endTurn()
+                if self.state.advanced { self.continueTurn(pIdx) } else { self.endTurn() }
             }
         }
         return true
@@ -208,6 +226,11 @@ final class GameEngine: ObservableObject {
         let c = p.hand.remove(at: hi)
         state.players[pIdx] = p
         state.center.append(c)
+        if state.advanced {
+            // The rest of the hand (unplayed covers) is dumped into the discard.
+            state.center.append(contentsOf: p.hand)
+            state.players[pIdx].hand.removeAll()
+        }
         state.lastDrawn = nil
         playSound("discard")
         endTurn()
@@ -229,7 +252,9 @@ final class GameEngine: ObservableObject {
             }
         }
 
-        if state.deck.isEmpty {
+        if state.advanced
+            ? (state.deck.isEmpty && state.center.isEmpty)
+            : state.deck.isEmpty {
             gameOverByScore()
             return
         }
@@ -277,7 +302,47 @@ final class GameEngine: ObservableObject {
         } else {
             after(750) { [weak self] in
                 guard let self, ok(), self.state.phase == .acting else { return }
-                self.endTurn()
+                self.autoEnd(i)
+            }
+        }
+    }
+
+    /// Auto-end for the current player: classic auto-discards the just-drawn
+    /// card; advanced discards the first unplayable card and dumps the rest
+    /// of the hand into the discard pile.
+    func autoEnd(_ pIdx: Int) {
+        if state.advanced {
+            let p = state.players[pIdx]
+            let hi = p.hand.firstIndex { !canPlaceAnywhere(p, $0) } ?? 0
+            discardCard(pIdx, hand: hi)
+        } else {
+            endTurn()
+        }
+    }
+
+    /// Advanced: after a placement, the turn does NOT go back to the draw
+    /// phase (only one draw per turn). The revealed cover stays in the hand —
+    /// keep placing to continue, or tap a card to discard and end the turn.
+    func continueTurn(_ pIdx: Int) {
+        guard !state.over, state.turn == pIdx else { return }
+        if state.deck.isEmpty && state.center.isEmpty {
+            gameOverByScore()
+            return
+        }
+        state.placedThisTurn = 0
+        state.lastDrawn = nil
+        state.lastPlaced = nil
+        state.turnDrawnCard = nil
+        if state.players[pIdx].isAI || isAutoPlaying {
+            aiStep(pIdx)
+            return
+        }
+        // Human: if nothing left to play, the turn ends on its own.
+        if findPlayable(pIdx) == nil {
+            after(1200) { [weak self] in
+                guard let self, !self.state.over,
+                      self.state.turn == pIdx, self.state.phase == .acting else { return }
+                self.autoEnd(pIdx)
             }
         }
     }
@@ -287,11 +352,7 @@ final class GameEngine: ObservableObject {
     func gameOverWin(_ i: Int) {
         state.over = true
         state.winner = [i]
-        if state.mode == 1 && i == 0 {
-            state.title = "\(state.players[0].name) wins! 🎉"
-        } else {
-            state.title = winTitle(i)
-        }
+        state.title = winTitle(i) + (state.mode == 1 && i == 0 ? " 🎉" : "")
         state.subtitle = "All 10 slots filled — trash pile complete!"
         playSound("win")
         onWin?()

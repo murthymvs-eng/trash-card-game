@@ -4,7 +4,7 @@ struct StartView: View {
     let theme: Theme
     let muted: Bool
     let onMute: () -> Void
-    let onStart: (Int) -> Void
+    let onStart: (Int, Bool) -> Void
     let onSettings: () -> Void
 
     var body: some View {
@@ -27,10 +27,22 @@ struct StartView: View {
                 .foregroundColor(theme.bannerInk.opacity(0.92))
 
             VStack(spacing: 10) {
-                ModeButton(title: "1 Player", subtitle: "You vs the CPU", accent: theme.accent) { onStart(1) }
-                ModeButton(title: "2 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(2) }
-                ModeButton(title: "3 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(3) }
-                ModeButton(title: "4 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(4) }
+                ModeButton(title: "1 Player", subtitle: "You vs the CPU", accent: theme.accent) { onStart(1, false) }
+                ModeButton(title: "2 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(2, false) }
+                ModeButton(title: "3 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(3, false) }
+                ModeButton(title: "4 Players", subtitle: "Pass & play", accent: theme.accent) { onStart(4, false) }
+            }
+            .padding(.horizontal, 4)
+
+            Text("Advanced — your slots start covered; one draw a turn, then keep placing")
+                .font(.caption)
+                .foregroundColor(theme.bannerInk.opacity(0.85))
+                .multilineTextAlignment(.center)
+            VStack(spacing: 10) {
+                ModeButton(title: "Advanced · 1", subtitle: "You vs the CPU", accent: theme.accent) { onStart(1, true) }
+                ModeButton(title: "Advanced · 2", subtitle: "Pass & play", accent: theme.accent) { onStart(2, true) }
+                ModeButton(title: "Advanced · 3", subtitle: "Pass & play", accent: theme.accent) { onStart(3, true) }
+                ModeButton(title: "Advanced · 4", subtitle: "Pass & play", accent: theme.accent) { onStart(4, true) }
             }
             .padding(.horizontal, 4)
 

@@ -24,8 +24,10 @@
   "deck empty → score" rule.
 - Slot positions/ranks unchanged (A … 10 left to right); a cover hides the slot's rank
   ghost. Covered ⟺ slot is empty (kept in sync the whole game).
-- Covers live in the **hand** (not the discard): they wait there until placed or dumped at
-  turn end, so the hand can hold several cards (drawn cards + unlocked covers).
+- Covers live in the **hand** (not the discard): placing a card flips its cover into
+  the hand and you resolve it the same turn (place it if it fits). **One draw per turn** —
+  a turn is a single draw followed by a chain of placements, so the active hand is a
+  single card at a time.
 
 ### Final decisions (user-confirmed)
 - **Cover fate = Option 3:** flipped cover goes to the **player's hand**; you chain it
@@ -46,8 +48,10 @@
   hand** (`covers[s]` → `hand`, `covers[s]=null`, `lastUnlocked` for animation). Win check
   as today. Then **instead of `endTurn`**, schedule (≈450 ms) a *continue-turn* step:
   - guard: if deck **and** center empty → `gameOverByScore`;
-  - else `phase = 'awaiting'`, `placedThisTurn = 0`, clear `turnDrawnCard`/`lastDrawn`,
-    render; if the player is AI → `aiTurnStart()` (draws the next card of the chain).
+  - else **stay in the acting phase** (one draw per turn — no re-draw): reset `placedThisTurn`,
+    clear `turnDrawnCard`/`lastDrawn`, render; if AI → `aiStep()` (place the next card,
+     or auto-discard); for a human the turn auto-ends after ≈1200 ms if nothing is
+     playable, else they place to continue or tap to discard.
 - `discardCard`: classic = as today. Advanced: the discarded card **plus every card left
   in hand** goes to the discard pile, then `endTurn`.
 - Auto-end: unified `handHasPlayable(p)` check (classic hand is just the drawn card, so
@@ -56,8 +60,8 @@
 - `doDraw` / `endTurn`: safety guard — both piles empty → `gameOverByScore` (advanced).
   Classic's deck-empty → score rule untouched.
 - AI: `aiStep`/`aiTurnStart` structure unchanged — in advanced the
-  place → continue-turn → draw → aiStep chain runs until the AI has nothing to place and
-  discards (dumping its hand).
+  place → continue-turn → aiStep chain runs (drawing only once) until the AI has
+  nothing to place and discards (dumping its hand).
 ### Web specifics
 - `newGame(n)` → `newGame(n, advanced=false)`; `G.advanced`; start-screen wiring
   (`data-adv`), "Play Again" (`newGame(G.mode, G.advanced)`).

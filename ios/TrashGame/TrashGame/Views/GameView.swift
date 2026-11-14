@@ -124,7 +124,7 @@ struct GameView: View {
                 PileView(theme: theme, top: nil, count: engine.state.deck.count, label: "Deck", cardW: cw, drawable: deckDrawable) {
                     Haptics.tap(); engine.doDraw(engine.state.turn, source: "deck")
                 }
-                drawnCardView(cw: cw)
+                handView(cw: cw)
                 Text(banner).font(.system(size: max(9, cw * 0.2))).multilineTextAlignment(.center).foregroundColor(theme.bannerInk).frame(width: cw * 1.6)
                 PileView(theme: theme, top: engine.state.center.last, count: engine.state.center.count, label: "Discard", cardW: cw, drawable: centerDrawable) {
                     Haptics.tap(); engine.doDraw(engine.state.turn, source: "center")
@@ -137,7 +137,7 @@ struct GameView: View {
                     Haptics.tap(); engine.doDraw(engine.state.turn, source: "deck")
                 }
                 VStack(spacing: 4) {
-                    drawnCardView(cw: cw)
+                    handView(cw: cw)
                     Text(banner).font(.system(size: max(10, cw * 0.22))).multilineTextAlignment(.center).foregroundColor(theme.bannerInk)
                 }
                 .frame(maxWidth: .infinity)
@@ -148,26 +148,41 @@ struct GameView: View {
         }
     }
 
-    private func drawnCardView(cw: CGFloat) -> some View {
+    private func handView(cw: CGFloat) -> some View {
         let t = engine.state.turn
         let p = engine.state.players[t]
         return Group {
-            if !p.isAI, !engine.state.over, engine.state.phase == .acting, let c = p.hand.first {
-                CardFaceView(card: c, theme: theme)
-                    .frame(width: cw, height: cw * 1.4)
-                    .shadow(radius: 3)
-                    .gesture(dragGesture(card: c, player: t))
-                    .accessibilityIdentifier("hand-card")
-                    .accessibilityLabel("\(c.rank) of \(c.suit.fileName); drag onto a slot, tap to discard")
+            if !p.isAI, !engine.state.over, !p.hand.isEmpty {
+                if p.hand.count == 1 {
+                    handCard(c: p.hand[0], idx: 0, t: t, w: cw)
+                } else {
+                    // Advanced mode: the hand holds the drawn card plus every
+                    // unlocked cover. Wrap it in a grid (4 per row).
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(max(34, cw * 0.42)), spacing: 4), count: 4), spacing: 4) {
+                        ForEach(Array(p.hand.enumerated()), id: \.offset) { idx, c in
+                            handCard(c: c, idx: idx, t: t, w: max(34, cw * 0.42))
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
             } else {
                 Color.clear.frame(width: cw, height: cw * 1.4)
             }
         }
     }
 
+    private func handCard(c: Card, idx: Int, t: Int, w: CGFloat) -> some View {
+        CardFaceView(card: c, theme: theme)
+            .frame(width: w, height: w * 1.4)
+            .shadow(radius: 3)
+            .gesture(dragGesture(card: c, player: t, handIndex: idx))
+            .accessibilityIdentifier(idx == 0 ? "hand-card" : "hand-card-\(idx)")
+            .accessibilityLabel("\(c.rank) of \(c.suit.fileName); drag onto a slot, tap to discard")
+    }
+
     /// Immediate drag: the card follows the finger from touch-down — no long press.
     /// Release over one of your slots places it; a tap without movement discards it.
-    private func dragGesture(card c: Card, player t: Int) -> some Gesture {
+    private func dragGesture(card c: Card, player t: Int, handIndex hi: Int) -> some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .named("board"))
             .onChanged { value in
                 guard canAct(t) else { return }
@@ -182,11 +197,11 @@ struct GameView: View {
                 drag.point = nil
                 if !moved {
                     Haptics.discard()
-                    engine.discardCard(t, hand: 0)
+                    engine.discardCard(t, hand: hi)
                     return
                 }
                 if let slot = hitSlot(player: t, at: value.location) {
-                    if engine.placeCard(t, hand: 0, slot: slot) {
+                    if engine.placeCard(t, hand: hi, slot: slot) {
                         Haptics.place()
                     } else {
                         Haptics.error()
@@ -221,9 +236,14 @@ struct GameView: View {
         let p = engine.state.players[engine.state.turn]
         if p.isAI { return "CPU is thinking…" }
         let who = engine.state.mode == 1 ? "" : "P\(engine.state.turn + 1): "
-        var t = engine.state.phase == .awaiting
-            ? "\(who)Your turn — draw from the deck or discard"
-            : "\(who)Drag it to a slot — or tap to discard"
+        var t: String
+        if engine.state.phase == .awaiting {
+            t = "\(who)Your turn — draw from the deck or discard"
+        } else if engine.state.advanced {
+            t = "\(who)Place a card to keep your turn going — or tap one to discard and end it"
+        } else {
+            t = "\(who)Drag it to a slot — or tap to discard"
+        }
         if engine.state.deck.isEmpty { t += " • deck empty" }
         return t
     }

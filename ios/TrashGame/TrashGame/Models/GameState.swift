@@ -16,6 +16,10 @@ struct Player: Identifiable, Equatable {
     var hand: [Card]
     /// 10 trash slots; index 0 is Ace, index 9 is Ten. `nil` = empty.
     var slots: [Card?]
+    /// Advanced mode only: the face-down cover over each slot. Covered ⟺ the
+    /// slot is empty. Placing a card flips the cover into the player's hand.
+    /// Classic mode: all nil.
+    var covers: [Card?]
 
     init(id: Int, name: String, isAI: Bool) {
         self.id = id
@@ -23,6 +27,7 @@ struct Player: Identifiable, Equatable {
         self.isAI = isAI
         self.hand = []
         self.slots = Array(repeating: nil, count: GameRules.slotCount)
+        self.covers = Array(repeating: nil, count: GameRules.slotCount)
     }
 
     /// Number of filled slots (equivalent to the web build's `placed` counter).
@@ -39,6 +44,9 @@ struct GameState {
     var phase: TurnPhase
     var placedThisTurn: Int
     var mode: Int
+    /// Advanced mode: slots start covered; placement flips the cover into the
+    /// player's hand and the turn continues.
+    var advanced: Bool
     var over: Bool
     var winner: [Int]
     var fast: Bool
@@ -58,6 +66,7 @@ struct GameState {
          over: Bool = false,
          winner: [Int] = [],
          fast: Bool = false,
+         advanced: Bool = false,
          lastDrawn: (player: Int, hand: Int)? = nil,
          lastPlaced: (player: Int, slot: Int)? = nil,
          turnDrawnCard: Card? = nil,
@@ -70,6 +79,7 @@ struct GameState {
         self.phase = phase
         self.placedThisTurn = placedThisTurn
         self.mode = mode
+        self.advanced = advanced
         self.over = over
         self.winner = winner
         self.fast = fast

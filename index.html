@@ -209,7 +209,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
     <button class="mbtn" data-mode="3"><b>3 Players</b><span>Pass &amp; play</span></button>
     <button class="mbtn" data-mode="4"><b>4 Players</b><span>Pass &amp; play</span></button>
   </div>
-  <div class="modes-label">Advanced — your slots start covered; keep placing to keep drawing</div>
+  <div class="modes-label">Advanced — your slots start covered; one draw a turn, then keep placing</div>
   <div class="modes">
     <button class="mbtn adv" data-mode="1" data-adv="1"><b>Advanced · 1</b><span>You vs the CPU</span></button>
     <button class="mbtn adv" data-mode="2" data-adv="1"><b>Advanced · 2</b><span>Pass &amp; play</span></button>
@@ -252,7 +252,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
       <li>A card fits only in its own rank's slot — <b>except the Jack (J), a wildcard that fits any empty slot</b>. <b>Queens and Kings are useless</b> — they can never be placed.</li>
       <li>First to fill all <b>10 slots</b> wins instantly. If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
     </ol>
-    <p><b>Advanced mode:</b> each player's 10 slots start covered by face-down cards. On your turn, <b>draw, then keep placing</b> — every placement flips the slot's cover <b>into your hand</b>, and you draw again. Drag any card in your hand that fits an open slot (the Jack fits any open slot). <b>Tap a card to discard it and end your turn</b> — every card left in your hand is dumped into the discard pile. If nothing in your hand fits, you must discard. First to fill all 10 slots wins; if no cards are left to draw, the player with the most placed wins.</p>
+    <p><b>Advanced mode:</b> each player's 10 slots start covered by face-down cards. On your turn you <b>draw one card</b>, then <b>keep placing</b> — every placement flips the slot's cover <b>into your hand</b>, and you can play that too (no extra draws). Drag any card in your hand that fits an open slot (the Jack fits any open slot). <b>Tap a card to discard it and end your turn</b> — every card left in your hand is dumped into the discard pile. If nothing in your hand fits, you must discard. First to fill all 10 slots wins; if no cards are left to draw, the player with the most placed wins.</p>
     <div class="row"><button class="btn blue" id="btnGotIt">Got it!</button></div>
   </div>
 </div>
@@ -327,9 +327,13 @@ function autoEnd(pIdx){
 function continueTurn(pIdx){
   if(!G||G.over||G.turn!==pIdx)return;
   if(G.deck.length===0&&G.center.length===0){gameOverByScore();return;}
-  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=G.lastUnlocked=null;G.turnDrawnCard=null;
+  // One draw per turn: a placement does NOT send the turn back to the draw
+  // phase. The revealed cover stays in the hand — keep placing to continue,
+  // or tap a card to discard and end the turn.
+  G.placedThisTurn=0;G.lastDrawn=G.lastUnlocked=null;G.turnDrawnCard=null;
   render();
-  if(G.players[pIdx].isAI)aiTurnStart();
+  if(G.players[pIdx].isAI){aiStep(pIdx);return;}
+  if(findPlayable(pIdx)<0)after(1200,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')autoEnd(pIdx);});
 }
 function after(ms,fn){const t=setTimeout(fn,G.fast?0:ms);G.timers.push(t);return t;}
 
@@ -408,7 +412,7 @@ function aiStep(i){
 function winTitle(i){const n=G.players[i].name;return n==='You'?'You win!':n+' wins!';}
 function gameOverWin(i){
   G.over=true;G.winner=[i];
-  G.title=(G.mode===1&&i===0)?userName()+' wins! 🎉':winTitle(i);
+  G.title=(G.mode===1&&i===0)?winTitle(0)+' 🎉':winTitle(i);
   G.subtitle='All 10 slots filled — trash pile complete!';
   render();showOverlay();confetti();sfx('win');
 }

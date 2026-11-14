@@ -63,6 +63,7 @@ struct PlayerZoneView: View {
                 ForEach(0..<10, id: \.self) { s in
                     SlotView(
                         card: p.slots[s],
+                        cover: p.covers[s],
                         playerIndex: playerIndex,
                         slotIndex: s,
                         theme: theme,
@@ -79,6 +80,8 @@ struct PlayerZoneView: View {
 
 struct SlotView: View {
     let card: Card?
+    /// Advanced mode: the face-down cover over this slot (shown while empty).
+    let cover: Card?
     let playerIndex: Int
     let slotIndex: Int
     let theme: Theme
@@ -94,6 +97,9 @@ struct SlotView: View {
                 CardFaceView(card: card, theme: theme)
                     .id(card.id)
                     .transition(.scale(scale: 0.6).combined(with: .opacity))
+            } else if cover != nil {
+                CardBackView(theme: theme)
+                    .transition(.scale(scale: 0.6).combined(with: .opacity))
             } else {
                 Text(ghost)
                     .font(.system(size: max(9, size.width * 0.24), weight: .semibold))
@@ -108,6 +114,8 @@ struct SlotView: View {
             }
         )
         .accessibilityIdentifier("slot-\(playerIndex)-\(slotIndex)")
-        .accessibilityLabel(card != nil ? "\(card!.rank) of \(card!.suit.fileName)" : "Empty slot for \(ghost)")
+        .accessibilityLabel(card != nil ? "\(card!.rank) of \(card!.suit.fileName)"
+                         : cover != nil ? "Covered slot for \(ghost)"
+                         : "Empty slot for \(ghost)")
     }
 }

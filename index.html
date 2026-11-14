@@ -63,6 +63,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .mbtn span{font-size:12.5px;font-weight:600;opacity:.78}
 .mbtn:hover{filter:brightness(1.06)}
 .mbtn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--accentDeep)}
+.modes-label{text-align:center;font-size:13px;font-weight:700;letter-spacing:.4px;color:rgba(255,255,255,.85);margin-top:14px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.mbtn.adv{background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(0,0,0,.32));color:#fff;border-color:rgba(255,255,255,.55);box-shadow:0 4px 0 rgba(0,0,0,.45),0 8px 16px rgba(0,0,0,.28)}
 .board{display:flex;flex-direction:column;gap:10px;flex:1;justify-content:space-between}
 .zone-row{display:flex;gap:12px;justify-content:center;flex:1;align-items:stretch;flex-wrap:wrap}
 .zone{flex:1 1 46%;max-width:480px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;min-width:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),inset 0 -16px 30px rgba(0,0,0,.22),0 1px 0 rgba(0,0,0,.3);transition:border-color .25s,box-shadow .25s}
@@ -74,11 +76,13 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .trash-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
 .slot{aspect-ratio:5/7;border-radius:8px;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--slot1),var(--slot2));border:1px solid rgba(255,255,255,.1);box-shadow:inset 0 2px 6px rgba(0,0,0,.42),inset 0 -1px 0 rgba(255,255,255,.05);color:rgba(255,255,255,.42);font-family:var(--serif);font-weight:800;font-size:clamp(12px,3vw,19px);transition:background .12s,border-color .12s,box-shadow .12s,transform .12s}
 .slot .ghost{display:flex;align-items:center;justify-content:center;user-select:none;letter-spacing:.5px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.slot.covered{background:transparent;border-color:transparent;box-shadow:none;color:transparent}
+.slot.covered .ghost{display:none}
 .slot.drop-ok{border-color:var(--accent);background:var(--accentGlow);box-shadow:0 0 0 2px var(--accentRing) inset,0 0 16px var(--accentGlow);transform:scale(1.03)}
 .slot.filled{background:transparent;border-color:transparent;box-shadow:none;color:transparent}
 .slot.filled .ghost{display:none}
 .slot .card{width:100%;height:100%}
-.hand{display:flex;justify-content:center;align-items:center;gap:8px;padding:8px 0 4px;min-height:80px}
+.hand{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:8px 0 4px;min-height:80px;row-gap:6px}
 .hand .card{width:clamp(56px,8.6vw,86px);height:auto}
 .card{width:clamp(46px,8.2vw,80px);aspect-ratio:5/7;position:relative;flex:none;border-radius:7px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.45);transition:transform .12s,box-shadow .12s}
 .face-svg,.back-svg{display:block;width:100%;height:100%}
@@ -205,6 +209,13 @@ body.dragging-active{user-select:none;cursor:grabbing}
     <button class="mbtn" data-mode="3"><b>3 Players</b><span>Pass &amp; play</span></button>
     <button class="mbtn" data-mode="4"><b>4 Players</b><span>Pass &amp; play</span></button>
   </div>
+  <div class="modes-label">Advanced — your slots start covered; keep placing to keep drawing</div>
+  <div class="modes">
+    <button class="mbtn adv" data-mode="1" data-adv="1"><b>Advanced · 1</b><span>You vs the CPU</span></button>
+    <button class="mbtn adv" data-mode="2" data-adv="1"><b>Advanced · 2</b><span>Pass &amp; play</span></button>
+    <button class="mbtn adv" data-mode="3" data-adv="1"><b>Advanced · 3</b><span>Pass &amp; play</span></button>
+    <button class="mbtn adv" data-mode="4" data-adv="1"><b>Advanced · 4</b><span>Pass &amp; play</span></button>
+  </div>
 </div>
 
 <div id="screenGame" class="screen" style="display:none">
@@ -241,6 +252,7 @@ body.dragging-active{user-select:none;cursor:grabbing}
       <li>A card fits only in its own rank's slot — <b>except the Jack (J), a wildcard that fits any empty slot</b>. <b>Queens and Kings are useless</b> — they can never be placed.</li>
       <li>First to fill all <b>10 slots</b> wins instantly. If the deck runs out first, the player with the <b>most cards placed</b> wins.</li>
     </ol>
+    <p><b>Advanced mode:</b> each player's 10 slots start covered by face-down cards. On your turn, <b>draw, then keep placing</b> — every placement flips the slot's cover <b>into your hand</b>, and you draw again. Drag any card in your hand that fits an open slot (the Jack fits any open slot). <b>Tap a card to discard it and end your turn</b> — every card left in your hand is dumped into the discard pile. If nothing in your hand fits, you must discard. First to fill all 10 slots wins; if no cards are left to draw, the player with the most placed wins.</p>
     <div class="row"><button class="btn blue" id="btnGotIt">Got it!</button></div>
   </div>
 </div>
@@ -272,13 +284,15 @@ function makeDeck(){
   for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]];}
   return d;
 }
-function newGame(n){
+function newGame(n,advanced){
   if(G&&G.timers)G.timers.forEach(clearTimeout);
   const total=n===1?2:n;
   const deck=makeDeck(),players=[];
-  for(let i=0;i<total;i++)players.push({name:i===0?userName():(n===1?'CPU':'P'+(i+1)),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0});
-  // No starting hands — all cards begin in the deck. Each turn you draw one card and place it or discard it (no buffer).
-  G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,turnDrawnCard:null,title:'',subtitle:''};
+  for(let i=0;i<total;i++)players.push({name:i===0?userName():(n===1?'CPU':'P'+(i+1)),isAI:n===1&&i===1,hand:[],slots:Array(10).fill(null),placed:0,covers:advanced?deck.splice(0,10):[]});
+  // Classic: no starting hands — all cards begin in the deck. Each turn you draw one card and place it or discard it (no buffer).
+  // Advanced: each player's 10 slots start covered by face-down cards (dealt from the deck);
+  // placing a card flips that slot's cover into your hand and your turn continues.
+  G={players,deck,center:[],turn:0,phase:'awaiting',placedThisTurn:0,mode:n,advanced:!!advanced,over:false,winner:[],fast:false,timers:[],lastDrawn:null,lastPlaced:null,lastUnlocked:null,turnDrawnCard:null,title:'',subtitle:''};
   $('#screenStart').style.display='none';$('#screenGame').style.display='flex';
   $('#overlay').style.display='none';$('#btnNew').style.display='';
   playMusic();
@@ -300,10 +314,28 @@ function findPlayable(i){
   if(j>=0)return j;
   return p.hand.findIndex(c=>findSlot(p,c)>=0);
 }
+// Advanced turn helpers. autoEnd: the current player has no move left — classic auto-discards
+// the just-drawn card; advanced discards the first unplayable card and dumps the rest of the hand.
+// continueTurn: after a placement in advanced, go back to the draw phase for the same player.
+function autoEnd(pIdx){
+  if(G.advanced){
+    const p=G.players[pIdx];
+    const hi=p.hand.findIndex(c=>!canPlaceAnywhere(p,c));
+    discardCard(pIdx,hi<0?0:hi);
+  }else endTurn();
+}
+function continueTurn(pIdx){
+  if(!G||G.over||G.turn!==pIdx)return;
+  if(G.deck.length===0&&G.center.length===0){gameOverByScore();return;}
+  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=G.lastUnlocked=null;G.turnDrawnCard=null;
+  render();
+  if(G.players[pIdx].isAI)aiTurnStart();
+}
 function after(ms,fn){const t=setTimeout(fn,G.fast?0:ms);G.timers.push(t);return t;}
 
 function doDraw(pIdx,source){
   if(!G||G.over||G.phase!=='awaiting')return;
+  if(G.advanced&&G.deck.length===0&&G.center.length===0){gameOverByScore();return;}
   const p=G.players[pIdx];
   let card=null;
   if(source==='center'&&G.center.length>0)card=G.center.pop();
@@ -315,7 +347,7 @@ function doDraw(pIdx,source){
   G.phase='acting';G.placedThisTurn=0;G.lastPlaced=null;G.turnDrawnCard=card;G.lastDrawn=[pIdx,p.hand.length-1];
   sfx('draw');render();
   if(p.isAI&&!G.over)aiStep(pIdx);
-  else if(findPlayable(pIdx)<0)after(1200,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')endTurn();});
+  else if(findPlayable(pIdx)<0)after(1200,()=>{if(G&&!G.over&&G.turn===pIdx&&G.phase==='acting')autoEnd(pIdx);});
 }
 function shakeCard(pIdx,hi){const el=document.querySelector('.card[data-p="'+pIdx+'"][data-hi="'+hi+'"]');if(el){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),350);}}
 function placeCard(pIdx,hi,sIdx){
@@ -328,17 +360,20 @@ function placeCard(pIdx,hi,sIdx){
   }
   p.slots[sIdx]=c;p.hand.splice(hi,1);p.placed++;G.placedThisTurn++;
   G.lastDrawn=null;G.lastPlaced=[pIdx,sIdx];
+  if(G.advanced&&p.covers&&p.covers[sIdx]){p.hand.push(p.covers[sIdx]);p.covers[sIdx]=null;G.lastUnlocked=[pIdx,p.hand.length-1];}
   sfx('place');
   if(p.placed>=10){gameOverWin(pIdx);return true;}
   render();
-  if(G.placedThisTurn>=1&&!G.over)after(450,()=>{if(G&&!G.over)endTurn();});
+  if(G.placedThisTurn>=1&&!G.over)after(450,()=>{if(G&&!G.over){if(G.advanced)continueTurn(pIdx);else endTurn();}});
   return true;
 }
 function discardCard(pIdx,hi){
   if(!G||G.over)return;
   const p=G.players[pIdx],c=p.hand[hi];
   if(!c)return;
-  p.hand.splice(hi,1);G.center.push(c);G.lastDrawn=null;
+  p.hand.splice(hi,1);G.center.push(c);
+  if(G.advanced)while(p.hand.length)G.center.push(p.hand.pop());
+  G.lastDrawn=null;G.lastUnlocked=null;
   sfx('discard');
   endTurn();
 }
@@ -348,9 +383,9 @@ function endTurn(){
     const p=G.players[G.turn],di=p.hand.indexOf(G.turnDrawnCard);
     if(di>=0){p.hand.splice(di,1);G.center.push(G.turnDrawnCard);}
   }
-  if(G.deck.length===0){gameOverByScore();return;}
+  if(G.advanced?G.deck.length===0&&G.center.length===0:G.deck.length===0){gameOverByScore();return;}
   G.turn=(G.turn+1)%G.players.length;
-  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=null;G.turnDrawnCard=null;
+  G.phase='awaiting';G.placedThisTurn=0;G.lastDrawn=G.lastPlaced=G.lastUnlocked=null;G.turnDrawnCard=null;
   render();
   if(G.players[G.turn].isAI)aiTurnStart();
 }
@@ -367,7 +402,7 @@ function aiStep(i){
   const ok=()=>G&&inGame()&&!G.over&&G.turn===i&&G.players[i].isAI;
   if(!ok()||G.phase!=='acting')return;
   const hi=findPlayable(i);
-  if(hi<0){after(750,()=>{if(ok()&&G.phase==='acting')endTurn();});return;}
+  if(hi<0){after(750,()=>{if(ok()&&G.phase==='acting')autoEnd(i);});return;}
   after(750,()=>{if(!ok())return;placeCard(i,hi);});
 }
 function winTitle(i){const n=G.players[i].name;return n==='You'?'You win!':n+' wins!';}
@@ -785,7 +820,7 @@ function bannerText(){
   const p=G.players[G.turn];
   if(p.isAI)return 'CPU is thinking…';
   const who=G.mode===1?'':'P'+(G.turn+1)+': ';
-  let t=G.phase==='awaiting'?who+'Your turn — draw from the deck or the discard':who+'Drag it to a slot — or tap the card to discard';
+  let t=G.phase==='awaiting'?who+'Your turn — draw from the deck or the discard':(G.advanced?who+'Place a card to keep your turn going — or tap one to discard and end it':who+'Drag it to a slot — or tap the card to discard');
   if(G.deck.length===0)t+=' • deck is empty!';
   return t;
 }
@@ -796,6 +831,8 @@ function renderZone(i){
     if(p.slots[s]){
       const pop=G.lastPlaced&&G.lastPlaced[0]===i&&G.lastPlaced[1]===s?'pop':'';
       slots+='<div class="slot filled" data-p="'+i+'" data-s="'+s+'">'+cardHTML(p.slots[s],pop)+'</div>';
+    }else if(p.covers&&p.covers[s]){
+      slots+='<div class="slot covered" data-p="'+i+'" data-s="'+s+'">'+backCardHTML()+'</div>';
     }else{
       slots+='<div class="slot" data-p="'+i+'" data-s="'+s+'"><span class="ghost">'+SLOT_ORDER[s]+'</span></div>';
     }
@@ -804,7 +841,7 @@ function renderZone(i){
     if(!handUp)return backCardHTML();
     const cls=[];
     if(active&&G.phase==='acting'&&!G.over){cls.push('draggable');cls.push(canPlaceAnywhere(p,c)?'playable':'dim');}
-    if(G.lastDrawn&&G.lastDrawn[0]===i&&G.lastDrawn[1]===j)cls.push('pop');
+    if((G.lastDrawn&&G.lastDrawn[0]===i&&G.lastDrawn[1]===j)||(G.lastUnlocked&&G.lastUnlocked[0]===i&&G.lastUnlocked[1]===j))cls.push('pop');
     return cardHTML(c,cls.join(' '),dataAttrs(i,j));
   }).join('');
   return '<div class="zone'+(active?' active':'')+'"><div class="zone-head"><span class="pname">'+p.name+(active?'<span class="turnchip">TURN</span>':'')+'</span><span class="score">'+p.placed+'/10</span></div><div class="trash-grid">'+slots+'</div><div class="hand">'+hand+'</div></div>';
@@ -832,7 +869,7 @@ function showOverlay(){
   const w=G.winner;
   $('#overlayPanel').innerHTML='<h2>'+G.title+'</h2><div class="sub">'+G.subtitle+'</div><div class="scores">'+order.map(o=>'<div class="srow'+(w.includes(o.i)?' w':'')+'"><span>'+o.p.name+(w.includes(o.i)?' 🏆':'')+'</span><span class="pts">'+o.p.placed+'/10</span></div>').join('')+'</div><div class="row"><button class="btn" id="btnAgain">Play Again</button><button class="btn blue" id="btnModes">Change Mode</button></div>';
   $('#overlay').style.display='flex';
-  $('#btnAgain').onclick=()=>newGame(G.mode);
+  $('#btnAgain').onclick=()=>newGame(G.mode,G.advanced);
   $('#btnModes').onclick=showStart;
 }
 function confetti(){
@@ -998,7 +1035,7 @@ function highlightTargets(){
   }
 }
 function clearHighlights(){document.querySelectorAll('.slot.drop-ok').forEach(el=>el.classList.remove('drop-ok'));}
-document.querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>newGame(+b.dataset.mode));
+document.querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>newGame(+b.dataset.mode,b.dataset.adv==='1'));
 $('#btnHow').onclick=()=>{$('#modal').style.display='flex';};
 $('#btnGotIt').onclick=()=>{$('#modal').style.display='none';};
 // ---- Settings: name + card theme ----
@@ -1057,7 +1094,7 @@ window.addEventListener('keydown',e=>{
 });
 window.__game={
   state:()=>G,
-  newGame(n){newGame(n||1);return this;},
+  newGame(n,adv){newGame(n||1,adv);return this;},
   fast(v){if(G)G.fast=!!v;return this;},
   draw(src){doDraw(G.turn,src||'deck');return this;},
   place(){const i=G.turn;if(G.phase==='awaiting')doDraw(i,'deck');const hi=findPlayable(i);if(hi>=0)placeCard(i,hi);return this;},
